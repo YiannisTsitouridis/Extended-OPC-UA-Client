@@ -206,7 +206,7 @@ class opcuaClient(Client):
         Do not do expensive, slow or network operation there. Create another
         thread if you need to do such a thing
         """
-        def __init__(self, agent:mqtt.Client, topic:str):
+        def __init__(self, tloop, sync_handler, agent:mqtt.Client, topic:str):
             super.__init__(self, tloop, sync_handler)
             self.agent = agent
             self.topic = topic
@@ -240,7 +240,7 @@ class opcuaClient(Client):
             self.agent.publish(self.consoleTopic, "There is a subscription to the variable " + varID + " already.")
         else:
             var = self.get_node(varID)
-            handler = self.SubHandler(tloop=opcuaClient. self.agent, Topic)
+            handler = self.SubHandler(tloop=,sync_handler=, self.agent, Topic)
             sub = self.create_subscription(freq, handler)  # First arguement here is period and determines the frequency of checking for data.
             handle = sub.subscribe_data_change(var)
 

@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="subscription working!">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Problem with subhandler __init__ and arguements">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/opcUaClientClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/opcUaClientClass.py" afterDir="false" />
     </list>
@@ -83,7 +83,15 @@
       <option name="project" value="LOCAL" />
       <updated>1689936959493</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Problem with subhandler __init__ and arguements">
+      <option name="closed" value="true" />
+      <created>1689942591135</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1689942591135</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -92,6 +100,7 @@
     <MESSAGE value="stup3" />
     <MESSAGE value="changing subHandler" />
     <MESSAGE value="subscription working!" />
-    <option name="LAST_COMMIT_MESSAGE" value="subscription working!" />
+    <MESSAGE value="Problem with subhandler __init__ and arguements" />
+    <option name="LAST_COMMIT_MESSAGE" value="Problem with subhandler __init__ and arguements" />
   </component>
 </project>
