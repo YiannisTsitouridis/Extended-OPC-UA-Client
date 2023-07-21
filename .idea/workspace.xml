@@ -4,49 +4,42 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc2f9d30-a947-43c0-ab18-21704f50e41c" name="Changes" comment="aa" />
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="2Ss2SR1uy2AuowF91p9CdtKrQA8" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="2SsJKPTI9pWU8X6PUvjDI6W7M34" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Mqtt__child__of__Client"
+    "git-widget-placeholder": "Mqtt__child__of__Client",
+    "last_opened_file_path": "/home/yiannis/clientcompleteproject"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="dc2f9d30-a947-43c0-ab18-21704f50e41c" name="Changes" comment="" />
-      <created>1689920967632</created>
+      <changelist id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="" />
+      <created>1689929290762</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1689920967632</updated>
+      <updated>1689929290762</updated>
     </task>
-    <task id="LOCAL-00001" summary="aa">
-      <option name="closed" value="true" />
-      <created>1689921069775</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1689921069775</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="aa" />
-    <option name="LAST_COMMIT_MESSAGE" value="aa" />
   </component>
 </project>

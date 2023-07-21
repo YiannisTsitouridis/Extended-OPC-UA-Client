@@ -267,6 +267,7 @@ class opcuaClient(Client, Agent):
         if client_id == "" or client_id is None:
             if protocol == MQTTv31:
                 self._client_id = base62(uuid.uuid4().int, padding=22)
+                dfvdfbs
             else:
                 self._client_id = b""
         else:
