@@ -211,6 +211,24 @@ class opcuaClient(Client):
             print("Python: New event", event)
 
     def subToVarID(self, varID, freq):
+        agent = self.agent
+        class SubHandler2(opcuaClient.SubHandler):
+            """
+            Subscription Handler. To receive events from server for a subscription
+            data_change and event methods are called directly from receiving thread.
+            Do not do expensive, slow or network operation there. Create another
+            thread if you need to do such a thing
+            """
+
+            def datachange_notification(self, node, val):
+                print("Python: New data change event", node, val)
+                agent.publish(topic="subscribe", payload=str(val))
+
+                # opcuaClient.handlerPost(node, val)
+
+            def event_notification(self, event):
+                print("Python: New event", event)
+
         if varID in self.subVarIDList:
             print("There is a subscription to the variable " + varID + " already.")
             self.agent.publish(self.consoleTopic, "There is a subscription to the variable " + varID + " already.")
