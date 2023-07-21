@@ -96,7 +96,7 @@ class opcuaClient(Client):
                 mesg = str(msg.payload.decode("utf-8"))
                 print("Subscription on the variable " + mesg + " was ordered.")
                 agent.publish(self.consoleTopic, "Subscription on the variable " + mesg + " was ordered.")
-                subvar = self.subToVarID(mess["varID"], mess["SubscriptionPeriod"])
+                subvar = self.subToVarID(mess["varID"], mess["SubscriptionPeriod"], mess["topic"])
                 return subvar
 
             if (msg.topic == str(self.name) + "/Unsubscribe"):
@@ -196,6 +196,9 @@ class opcuaClient(Client):
         except:
             print("Couldn't read the value with ID ", varID)
 
+    # def handlerPost(self, node, val):
+    #     self.
+
     class SubHandler(object):
         """
         Subscription Handler. To receive events from server for a subscription
@@ -203,38 +206,41 @@ class opcuaClient(Client):
         Do not do expensive, slow or network operation there. Create another
         thread if you need to do such a thing
         """
-
+        def __init__(self, agent:mqtt.Client, topic:str):
+            super.__init__(self, tloop, sync_handler)
+            self.agent = agent
+            self.topic = topic
         def datachange_notification(self, node, val):
             print("Python: New data change event", node, val)
+            self.agent.publish(self.topic, str(node) + str(val))
 
         def event_notification(self, event):
             print("Python: New event", event)
 
-    def subToVarID(self, varID, freq):
-        agent = self.agent
-        class SubHandler2(opcuaClient.SubHandler):
-            """
-            Subscription Handler. To receive events from server for a subscription
-            data_change and event methods are called directly from receiving thread.
-            Do not do expensive, slow or network operation there. Create another
-            thread if you need to do such a thing
-            """
-
-            def datachange_notification(self, node, val):
-                print("Python: New data change event", node, val)
-                agent.publish(topic="subscribe", payload=str(val))
-
-                # opcuaClient.handlerPost(node, val)
-
-            def event_notification(self, event):
-                print("Python: New event", event)
+    def subToVarID(self, varID, freq, Topic):
+        # class SubHandler2(opcuaClient.SubHandler):
+        #     """
+        #     Subscription Handler. To receive events from server for a subscription
+        #     data_change and event methods are called directly from receiving thread.
+        #     Do not do expensive, slow or network operation there. Create another
+        #     thread if you need to do such a thing
+        #     """
+        #
+        #     def datachange_notification(self, node, val):
+        #         print("Python: New data change event", node.nodeid, val)
+        #         agent.publish(topic="subscribe", payload=str(val))
+        #
+        #         # opcuaClient.handlerPost(node, val)
+        #
+        #     def event_notification(self, event):
+        #         print("Python: New event", event)
 
         if varID in self.subVarIDList:
             print("There is a subscription to the variable " + varID + " already.")
             self.agent.publish(self.consoleTopic, "There is a subscription to the variable " + varID + " already.")
         else:
             var = self.get_node(varID)
-            handler = self.SubHandler
+            handler = self.SubHandler(tloop=opcuaClient. self.agent, Topic)
             sub = self.create_subscription(freq, handler)  # First arguement here is period and determines the frequency of checking for data.
             handle = sub.subscribe_data_change(var)
 
@@ -268,9 +274,6 @@ class opcuaClient(Client):
             self.agent.publish(str(self.name) + "/ex/client", "Could not find the parent of the method with ID: " + nodeId)
         result = methodParent.call_method(meth, *args)
         return result
-
-    def handlerPost(self, node, val):
-        self.agent.publish(node, val)
 
 
 
