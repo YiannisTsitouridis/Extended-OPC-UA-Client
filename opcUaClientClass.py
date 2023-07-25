@@ -16,7 +16,7 @@ from typing import List, Any
 from dict2xml import dict2xml
 from asyncua.crypto.security_policies import SecurityPolicyBasic256Sha256
 import paho.mqtt.client as mqtt
-from asyncua.sync import Client, ThreadLoop, _logger
+from asyncua.sync import Client, ThreadLoop, _logger, _SubHandler
 import codecs
 import sqlalchemy
 import configparser
@@ -199,49 +199,51 @@ class opcuaClient(Client):
     # def handlerPost(self, node, val):
     #     self.
 
-    class SubHandler(object):
-        """
-        Subscription Handler. To receive events from server for a subscription
-        data_change and event methods are called directly from receiving thread.
-        Do not do expensive, slow or network operation there. Create another
-        thread if you need to do such a thing
-        """
-        def __init__(self, tloop, sync_handler, agent:mqtt.Client, topic:str):
-            super.__init__(self, tloop, sync_handler)
-            self.agent = agent
-            self.topic = topic
-        def datachange_notification(self, node, val):
-            print("Python: New data change event", node, val)
-            self.agent.publish(self.topic, str(node) + str(val))
+    # class SubHandler(object):
+    #     """
+    #     Subscription Handler. To receive events from server for a subscription
+    #     data_change and event methods are called directly from receiving thread.
+    #     Do not do expensive, slow or network operation there. Create another
+    #     thread if you need to do such a thing
+    #     """
+    #     # def __init__(self, client, topic:str):
+    #     #     super.__init__()
+    #     #     self.client = client
+    #     #     self.topic = topic
+    #     def datachange_notification(self, node, val, data):
+    #         print("Python: New data change event", node, val)
+    #         self.agent.publish(self.topic, str(node) + str(val))
+    #
+    #     def event_notification(self, event):
+    #         print("Python: New event", event)
 
-        def event_notification(self, event):
-            print("Python: New event", event)
+    def subToVarID(self, varID, period, Topic):
 
-    def subToVarID(self, varID, freq, Topic):
-        # class SubHandler2(opcuaClient.SubHandler):
-        #     """
-        #     Subscription Handler. To receive events from server for a subscription
-        #     data_change and event methods are called directly from receiving thread.
-        #     Do not do expensive, slow or network operation there. Create another
-        #     thread if you need to do such a thing
-        #     """
-        #
-        #     def datachange_notification(self, node, val):
-        #         print("Python: New data change event", node.nodeid, val)
-        #         agent.publish(topic="subscribe", payload=str(val))
-        #
-        #         # opcuaClient.handlerPost(node, val)
-        #
-        #     def event_notification(self, event):
-        #         print("Python: New event", event)
+        agent = self.agent
+        class SubHandler(object):
+            """
+            Subscription Handler. To receive events from server for a subscription
+            data_change and event methods are called directly from receiving thread.
+            Do not do expensive, slow or network operation there. Create another
+            thread if you need to do such a thing
+            """
+
+            def datachange_notification(self, node, val, data):
+                print("Python: New data change event", node.nodeid, val)
+                agent.publish(topic=Topic, payload=str(val))
+
+                # opcuaClient.handlerPost(node, val)
+
+            def event_notification(self, event):
+                print("Python: New event", event)
 
         if varID in self.subVarIDList:
             print("There is a subscription to the variable " + varID + " already.")
             self.agent.publish(self.consoleTopic, "There is a subscription to the variable " + varID + " already.")
         else:
             var = self.get_node(varID)
-            handler = self.SubHandler(tloop=,sync_handler=, self.agent, Topic)
-            sub = self.create_subscription(freq, handler)  # First arguement here is period and determines the frequency of checking for data.
+            handler = SubHandler()
+            sub = self.create_subscription(period, handler)  # First arguement here is period and determines the frequency of checking for data.
             handle = sub.subscribe_data_change(var)
 
             self.subscriptionsList.append(sub)
