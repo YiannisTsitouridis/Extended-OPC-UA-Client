@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Before I go">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Seems all good!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/opcUaClientClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/opcUaClientClass.py" afterDir="false" />
     </list>
@@ -103,7 +103,15 @@
       <option name="project" value="LOCAL" />
       <updated>1689944724330</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Seems all good!">
+      <option name="closed" value="true" />
+      <created>1690265850039</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1690265850039</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -114,6 +122,7 @@
     <MESSAGE value="subscription working!" />
     <MESSAGE value="Problem with subhandler __init__ and arguements" />
     <MESSAGE value="Before I go" />
-    <option name="LAST_COMMIT_MESSAGE" value="Before I go" />
+    <MESSAGE value="Seems all good!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Seems all good!" />
   </component>
 </project>

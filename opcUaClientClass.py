@@ -56,10 +56,6 @@ class opcuaClient(Client):
         self.agent = self.createMqttAgent()
         self.initial_subscriptions()
 
-        print(self.name)
-        print(self.consoleTopic)
-        print(self.readTopic, self.brokerURL, self.brokerPort)
-
 
     def createMqttAgent(self):
         def on_connect(agent, userdata, flags, rc):
@@ -81,13 +77,13 @@ class opcuaClient(Client):
                 print("Call of method", mess["methodID"], " was ordered.")
                 agent.publish(str(self.consoleTopic), "Call of method " + mess["methodID"] + " was ordered.")
                 if len(mess) == 1:
-                    callMeth = self.callMethodFromNodeID(mess["methodID", self])
+                    callMeth = self.callMethodFromNodeID(self, str(mess["methodID"]))
                     return callMeth
                 elif len(mess) == 2:
-                    callMeth = self.callMethodFromNodeID(mess["methodID"], self, mess["arg1"])
+                    callMeth = self.callMethodFromNodeID(self, str(mess["methodID"]),  mess["arg1"])
                     return callMeth
                 elif len(mess) == 3:
-                    callMeth = self.callMethodFromNodeID(mess["methodID"], self, mess["arg1"], mess["arg1"])
+                    callMeth = self.callMethodFromNodeID(self, str(mess["methodID"]), mess["arg1"], mess["arg2"])
                     return callMeth
 
             if (msg.topic == str(self.name) + "/Subscribe"):
@@ -144,7 +140,7 @@ class opcuaClient(Client):
 
 
     def __str__(self):
-        return f"{self.name} with url :{self.url} and tloop = {self.tloop}"
+        return f"{self.name} with url :{self.name} and tloop = {self.tloop}"
 
 
 
@@ -196,26 +192,6 @@ class opcuaClient(Client):
         except:
             print("Couldn't read the value with ID ", varID)
 
-    # def handlerPost(self, node, val):
-    #     self.
-
-    # class SubHandler(object):
-    #     """
-    #     Subscription Handler. To receive events from server for a subscription
-    #     data_change and event methods are called directly from receiving thread.
-    #     Do not do expensive, slow or network operation there. Create another
-    #     thread if you need to do such a thing
-    #     """
-    #     # def __init__(self, client, topic:str):
-    #     #     super.__init__()
-    #     #     self.client = client
-    #     #     self.topic = topic
-    #     def datachange_notification(self, node, val, data):
-    #         print("Python: New data change event", node, val)
-    #         self.agent.publish(self.topic, str(node) + str(val))
-    #
-    #     def event_notification(self, event):
-    #         print("Python: New event", event)
 
     def subToVarID(self, varID, period, Topic):
 
@@ -229,7 +205,7 @@ class opcuaClient(Client):
             """
 
             def datachange_notification(self, node, val, data):
-                print("Python: New data change event", node.nodeid, val)
+                print("Python: New data change for", node.nodeid, ", ", val)
                 agent.publish(topic=Topic, payload=str(val))
 
                 # opcuaClient.handlerPost(node, val)
@@ -267,15 +243,28 @@ class opcuaClient(Client):
             return "No subscription found to the variable ", varID, "."
 
     def callMethodFromNodeID(self, nodeId, *args):
-        meth = self.get_node(nodeId)
+        print("Before set_node function")
+        meth = self.get_node(nodeid=nodeId)
         print("Method with Browse Name ", str(meth.read_browse_name), "is being called")
         try:
             methodParent: object = meth.get_parent()
+            print('\n', methodParent, '\n')
+            print('\n', meth.nodeid, '\n')
+
+
         except:
             print("Could not find the parent of the method with ID: ", nodeId)
-            self.agent.publish(str(self.name) + "/ex/client", "Could not find the parent of the method with ID: " + nodeId)
-        result = methodParent.call_method(meth, *args)
+            self.agent.publish(str(self.consoleTopic), "Could not find the parent of the method with ID: " + nodeId)
+
+        print('\n', "One step before method call", '\n')
+        result = asyncua.sync.call_method_full(methodParent, nodeId, *args)
+        # result = methodParent.call_method(meth, arg)
+        # result = methodParent.call_method(meth, *args)
         return result
+
+        # except:
+        #     print('\n',"Couldn't call function",'\n')
+
 
 
 
