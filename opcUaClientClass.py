@@ -79,7 +79,7 @@ class opcuaClient(Client):
                 if len(mess) == 1:
                     callMeth = self.callMethodFromNodeID(self, mess["methodID"])
                 elif len(mess) == 2:
-                    self.callMethodFromNodeID(self, mess["methodID"],  mess["arg1"])
+                    self.callMethodFromNodeID(mess["methodID"], mess["arg1"])
                 elif len(mess) == 3:
                     callMeth = self.callMethodFromNodeID(self, str(mess["methodID"]), mess["arg1"], mess["arg2"])
 
@@ -239,16 +239,17 @@ class opcuaClient(Client):
             self.agent.publish(str(self.name) + "/ex/client", "No subscription found to the variable " + varID + ".")
             return "No subscription found to the variable ", varID, "."
 
-    def callMethodFromNodeID(self, nodeId, *args):
+    def callMethodFromNodeID(self, parentId, nodeId, *args):
         meth = Client.get_node(self, "ns=2;s=controller1.m1.turnOn")
         print('\n'+"Method with ID: ", str(meth.nodeid), "is being called"+'\n')
         try:
-            methodParent: object = meth.get_parent()
+            methodParent: object = Client.get_node(parentId)
+            print('\n'+"Parent is: ", str(meth.nodeid)+'\n')
         except:
             print("Could not find the parent of the method with ID: ", nodeId)
-            self.agent.publish(str(self.name) + "/ex/client",
-                               "Could not find the parent of the method with ID: " + nodeId)
-        result = methodParent.call_method(meth, *args)
+            self.agent.publish(str(self.name) + "/ex/client", "Could not find the parent of the method with ID: " + nodeId)
+        # methodParent = Client.get_node(nodeid="ns=2;s=controller1.m1")
+        result = methodParent.call_method(nodeId, *args)
         return result
 
     # def callMethodFromNodeID(self, nodeid, *args):
