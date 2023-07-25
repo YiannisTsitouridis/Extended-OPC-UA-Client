@@ -77,14 +77,11 @@ class opcuaClient(Client):
                 print("Call of method", mess["methodID"], " was ordered.")
                 agent.publish(str(self.consoleTopic), "Call of method " + mess["methodID"] + " was ordered.")
                 if len(mess) == 1:
-                    callMeth = self.callMethodFromNodeID(self, str(mess["methodID"]))
-                    return callMeth
+                    callMeth = self.callMethodFromNodeID(self, mess["methodID"])
                 elif len(mess) == 2:
-                    callMeth = self.callMethodFromNodeID(self, str(mess["methodID"]),  mess["arg1"])
-                    return callMeth
+                    self.callMethodFromNodeID(self, mess["methodID"],  mess["arg1"])
                 elif len(mess) == 3:
                     callMeth = self.callMethodFromNodeID(self, str(mess["methodID"]), mess["arg1"], mess["arg2"])
-                    return callMeth
 
             if (msg.topic == str(self.name) + "/Subscribe"):
                 print("we've got something here")
@@ -243,27 +240,39 @@ class opcuaClient(Client):
             return "No subscription found to the variable ", varID, "."
 
     def callMethodFromNodeID(self, nodeId, *args):
-        print("Before set_node function")
-        meth = self.get_node(nodeid=nodeId)
-        print("Method with Browse Name ", str(meth.read_browse_name), "is being called")
+        meth = Client.get_node(self, "ns=2;s=controller1.m1.turnOn")
+        print('\n'+"Method with ID: ", str(meth.nodeid), "is being called"+'\n')
         try:
             methodParent: object = meth.get_parent()
-            print('\n', methodParent, '\n')
-            print('\n', meth.nodeid, '\n')
-
-
         except:
             print("Could not find the parent of the method with ID: ", nodeId)
-            self.agent.publish(str(self.consoleTopic), "Could not find the parent of the method with ID: " + nodeId)
-
-        print('\n', "One step before method call", '\n')
-        result = asyncua.sync.call_method_full(methodParent, nodeId, *args)
-        # result = methodParent.call_method(meth, arg)
-        # result = methodParent.call_method(meth, *args)
+            self.agent.publish(str(self.name) + "/ex/client",
+                               "Could not find the parent of the method with ID: " + nodeId)
+        result = methodParent.call_method(meth, *args)
         return result
 
-        # except:
-        #     print('\n',"Couldn't call function",'\n')
+    # def callMethodFromNodeID(self, nodeid, *args):
+    #     print("Before set_node function")
+    #     meth = self.get_node(nodeid)
+    #     print("Method with Browse Name ", str(meth.read_browse_name), "is being called")
+    #     try:
+    #         methodParent: object = meth.get_parent()
+    #         print('\n', methodParent, '\n')
+    #         print('\n', meth.nodeid, '\n')
+    #
+    #
+    #     except:
+    #         print("Could not find the parent of the method with ID: ", nodeid)
+    #         self.agent.publish(str(self.consoleTopic), "Could not find the parent of the method with ID: " + nodeid)
+    #
+    #     print('\n', "One step before method call", '\n')
+    #     result = asyncua.sync.call_method_full(methodParent, nodeid, *args)
+    #     # result = methodParent.call_method(meth, arg)
+    #     # result = methodParent.call_method(meth, *args)
+    #     return result
+    #
+    #     # except:
+    #     #     print('\n',"Couldn't call function",'\n')
 
 
 

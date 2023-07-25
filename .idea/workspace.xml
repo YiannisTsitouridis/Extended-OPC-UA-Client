@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Seems all good!">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Problem with get_node in callMethodFromID">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/opcUaClientClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/opcUaClientClass.py" afterDir="false" />
     </list>
@@ -111,7 +111,15 @@
       <option name="project" value="LOCAL" />
       <updated>1690265850039</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Problem with get_node in callMethodFromID">
+      <option name="closed" value="true" />
+      <created>1690280180156</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1690280180156</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -123,6 +131,7 @@
     <MESSAGE value="Problem with subhandler __init__ and arguements" />
     <MESSAGE value="Before I go" />
     <MESSAGE value="Seems all good!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Seems all good!" />
+    <MESSAGE value="Problem with get_node in callMethodFromID" />
+    <option name="LAST_COMMIT_MESSAGE" value="Problem with get_node in callMethodFromID" />
   </component>
 </project>
