@@ -41,40 +41,46 @@ except ImportError:
 ####                     DEFINING MAIN FUNCTION                         ####
 ############################################################################
 
-
 def main():
     serversData = configparser.ConfigParser()
     serversData.read("clientData.ini")
     numOfServers = serversData.getint('NumberOfServers', 'serversNum')
     clientsList = []
-    for i in range(1, numOfServers+1):
+    for i in range(1, numOfServers + 1):
         with ThreadLoop() as tloop:
-            localurl = serversData.get('Server' + str(i-1), 'url')
-            localname = serversData.get(('Server' + str(i-1)), 'name')
-            localmqttUrl = serversData.get(('Server' + str(i-1)), 'mqttUrl')
-            localmqttPort = serversData.get(('Server' + str(i-1)), 'mqttPort')
-            localarchitectureTopic = serversData.get(('Server' + str(i-1)), 'architecturetopic')
-            localconsoleTopic = serversData.get('Server' + str(i-1), 'consoletopic')
-            localreadTopic = serversData.get(('Server' + str(i-1)), 'readtopic')
-            print("Reached till here!"+'\n')
-            with opcuaClient(localurl, localname, localmqttUrl, int(localmqttPort), localarchitectureTopic, localconsoleTopic, localreadTopic) as client:
+            localurl = serversData.get('Server' + str(i - 1), 'url')
+            localname = serversData.get(('Server' + str(i - 1)), 'name')
+            localmqttUrl = serversData.get(('Server' + str(i - 1)), 'mqttUrl')
+            localmqttPort = serversData.get(('Server' + str(i - 1)), 'mqttPort')
+            localarchitectureTopic = serversData.get(('Server' + str(i - 1)), 'architecturetopic')
+            localconsoleTopic = serversData.get('Server' + str(i - 1), 'consoletopic')
+            localreadTopic = serversData.get(('Server' + str(i - 1)), 'readtopic')
+            print("Reached till here!" + '\n')
+            with opcuaClient(localurl, localname, localmqttUrl, int(localmqttPort), localarchitectureTopic,
+                             localconsoleTopic, localreadTopic) as client:
                 try:
                     client.connect()
                     print("Server with name " + str(client.name) + " detected")
                     time.sleep(2)
                     clientsList.append(client)
                 except:
-                    print("Error occurred while trying to connect to server" + str(client.name) + "with url:" + str(client.url))
-                    client.agent.publish("Topic", "Error occurred while trying to connect to server" + str(client.name) + " with url: " + str(client.url))
+                    print("Error occurred while trying to connect to server" + str(client.name) + "with url:" + str(
+                        client.url))
+                    client.agent.publish("Topic", "Error occurred while trying to connect to server" + str(
+                        client.name) + " with url: " + str(client.url))
+                resul = client.initial_subscriptions()
                 tree = client.browse_server()
                 treejs = json.dumps(tree)
                 client.agent.publish("arch", treejs)
-                print(client.name, " architecture posted:"+"\n \n", tree)
-                ag = client.crea
-
-
-            time.sleep(100)
-    time.sleep(1000)
+                # print(client.name, " architecture posted:" + "\n \n", tree)
+                # print("hello!")
+                # client.agent.loop_start()
+                # client.agent.subscribe("hotel")
+                embed()
+            print("reach here")
+    print("Reach here!!!!!!")
+if __name__ == "__main__":
+    main()
 
 
     # serversNumber = serverDataParser.getint('NumberOfServers', 'serversNum')
@@ -156,8 +162,6 @@ def main():
     #
     # print("Check")
 
-if __name__ == "__main__":
-    main()
 
 
 

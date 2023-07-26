@@ -88,7 +88,7 @@ class opcuaClient(Client):
                 mess = json.loads(msg.payload)
                 mesg = str(msg.payload.decode("utf-8"))
                 print("Subscription on the variable " + mesg + " was ordered.")
-                agent.publish(self.consoleTopic, "Subscription on the variable " + mesg + " was ordered.")
+                agent.publish(str(self.consoleTopic), "Subscription on the variable " + mesg + " was ordered.")
                 subvar = self.subToVarID(mess["varID"], mess["SubscriptionPeriod"], mess["topic"])
                 return subvar
 
@@ -104,14 +104,16 @@ class opcuaClient(Client):
                 agent.publish(self.readTopic, value)
                 return value
 
-            if (msg.payload == str(self.name) + "/Write"):
+            if (msg.topic == str(self.name) + "/Write"):
                 mess = json.loads(msg.payload)
                 if len(mess) != 2:
                     agent.publish(self.consoleTopic, "Wrong number of arguements")
+                    print("Wrong number of arguements")
                     return "Wrong number of arguements"
                 else:
                     var = self.get_node(mess["varID"])
                     var.set_value(mess["value"])
+                    print("var written")
 
         self.agent = mqtt.Client(self.name)
         print("Here?")
@@ -131,6 +133,9 @@ class opcuaClient(Client):
         self.agent.subscribe(str(self.name) + "/Subscribe")
         self.agent.subscribe(str(self.name) + "/Method_calls")
         self.agent.subscribe(str(self.name) + "/Unsubscribe")
+        self.agent.subscribe(str(self.name) + "/Read")
+        self.agent.subscribe(str(self.name) + "/Write")
+
         return 0
 
 
@@ -252,71 +257,3 @@ class opcuaClient(Client):
         finally:
             result = methodParent.call_method(meth, *args)
             return result
-
-    # def callMethodFromNodeID(self, nodeid, *args):
-    #     print("Before set_node function")
-    #     meth = self.get_node(nodeid)
-    #     print("Method with Browse Name ", str(meth.read_browse_name), "is being called")
-    #     try:
-    #         methodParent: object = meth.get_parent()
-    #         print('\n', methodParent, '\n')
-    #         print('\n', meth.nodeid, '\n')
-    #
-    #
-    #     except:
-    #         print("Could not find the parent of the method with ID: ", nodeid)
-    #         self.agent.publish(str(self.consoleTopic), "Could not find the parent of the method with ID: " + nodeid)
-    #
-    #     print('\n', "One step before method call", '\n')
-    #     result = asyncua.sync.call_method_full(methodParent, nodeid, *args)
-    #     # result = methodParent.call_method(meth, arg)
-    #     # result = methodParent.call_method(meth, *args)
-    #     return result
-    #
-    #     # except:
-    #     #     print('\n',"Couldn't call function",'\n')
-
-
-
-
-
-def main():
-    serversData = configparser.ConfigParser()
-    serversData.read("clientData.ini")
-    numOfServers = serversData.getint('NumberOfServers', 'serversNum')
-    clientsList = []
-    for i in range(1, numOfServers + 1):
-        with ThreadLoop() as tloop:
-            localurl = serversData.get('Server' + str(i - 1), 'url')
-            localname = serversData.get(('Server' + str(i - 1)), 'name')
-            localmqttUrl = serversData.get(('Server' + str(i - 1)), 'mqttUrl')
-            localmqttPort = serversData.get(('Server' + str(i - 1)), 'mqttPort')
-            localarchitectureTopic = serversData.get(('Server' + str(i - 1)), 'architecturetopic')
-            localconsoleTopic = serversData.get('Server' + str(i - 1), 'consoletopic')
-            localreadTopic = serversData.get(('Server' + str(i - 1)), 'readtopic')
-            print("Reached till here!" + '\n')
-            with opcuaClient(localurl, localname, localmqttUrl, int(localmqttPort), localarchitectureTopic,
-                             localconsoleTopic, localreadTopic) as client:
-                try:
-                    client.connect()
-                    print("Server with name " + str(client.name) + " detected")
-                    time.sleep(2)
-                    clientsList.append(client)
-                except:
-                    print("Error occurred while trying to connect to server" + str(client.name) + "with url:" + str(
-                        client.url))
-                    client.agent.publish("Topic", "Error occurred while trying to connect to server" + str(
-                        client.name) + " with url: " + str(client.url))
-                resul = client.initial_subscriptions()
-                tree = client.browse_server()
-                treejs = json.dumps(tree)
-                client.agent.publish("arch", treejs)
-                # print(client.name, " architecture posted:" + "\n \n", tree)
-                # print("hello!")
-                # client.agent.loop_start()
-                # client.agent.subscribe("hotel")
-                embed()
-            print("reach here")
-    print("Reach here!!!!!!")
-if __name__ == "__main__":
-    main()

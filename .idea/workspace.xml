@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Pause to try an old one">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Found the bug in method_call.&#10;It's all ready!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/opcUaClientClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/opcUaClientClass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/startUp.py" beforeDir="false" afterPath="$PROJECT_DIR$/startUp.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,14 +31,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Mqtt__child__of__Client&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/yiannis/eclipse-workspace/lastTry/temp/opcUaClientClass.py&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Mqtt__child__of__Client",
+    "last_opened_file_path": "/home/yiannis/clientcompleteproject/startUp.py"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -135,7 +136,15 @@
       <option name="project" value="LOCAL" />
       <updated>1690289490004</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Found the bug in method_call.&#10;It's all ready!">
+      <option name="closed" value="true" />
+      <created>1690357521809</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1690357521809</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -150,6 +159,7 @@
     <MESSAGE value="Problem with get_node in callMethodFromID" />
     <MESSAGE value="get_node problem:OK" />
     <MESSAGE value="Pause to try an old one" />
-    <option name="LAST_COMMIT_MESSAGE" value="Pause to try an old one" />
+    <MESSAGE value="Found the bug in method_call.&#10;It's all ready!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Found the bug in method_call.&#10;It's all ready!" />
   </component>
 </project>
