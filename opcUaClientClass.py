@@ -77,11 +77,11 @@ class opcuaClient(Client):
                 print("Call of method", mess["methodID"], " was ordered.")
                 agent.publish(str(self.consoleTopic), "Call of method " + mess["methodID"] + " was ordered.")
                 if len(mess) == 1:
-                    callMeth = self.callMethodFromNodeID(self, mess["methodID"])
+                    callMeth = self.callMethodFromNodeID(mess["methodID"])
                 elif len(mess) == 2:
                     self.callMethodFromNodeID(mess["methodID"], mess["arg1"])
                 elif len(mess) == 3:
-                    callMeth = self.callMethodFromNodeID(self, str(mess["methodID"]), mess["arg1"], mess["arg2"])
+                    callMeth = self.callMethodFromNodeID(str(mess["methodID"]), mess["arg1"], mess["arg2"])
 
             if (msg.topic == str(self.name) + "/Subscribe"):
                 print("we've got something here")
@@ -239,18 +239,19 @@ class opcuaClient(Client):
             self.agent.publish(str(self.name) + "/ex/client", "No subscription found to the variable " + varID + ".")
             return "No subscription found to the variable ", varID, "."
 
-    def callMethodFromNodeID(self, parentId, nodeId, *args):
-        meth = Client.get_node(self, "ns=2;s=controller1.m1.turnOn")
-        print('\n'+"Method with ID: ", str(meth.nodeid), "is being called"+'\n')
+    def callMethodFromNodeID(self, nodeId, *args):
+        print("Before set_node function")
+        meth = self.get_node(nodeId)
+        print("Method with Browse Name ", str(meth.read_browse_name), "is being called")
         try:
-            methodParent: object = Client.get_node(parentId)
-            print('\n'+"Parent is: ", str(meth.nodeid)+'\n')
+            methodParent: object = meth.get_parent()
+            print('\n', methodParent, '\n')
         except:
             print("Could not find the parent of the method with ID: ", nodeId)
-            self.agent.publish(str(self.name) + "/ex/client", "Could not find the parent of the method with ID: " + nodeId)
-        # methodParent = Client.get_node(nodeid="ns=2;s=controller1.m1")
-        result = methodParent.call_method(nodeId, *args)
-        return result
+            self.agent.publish(str(self.consoleTopic), "Could not find the parent of the method with ID: " + nodeId)
+        finally:
+            result = methodParent.call_method(meth, *args)
+            return result
 
     # def callMethodFromNodeID(self, nodeid, *args):
     #     print("Before set_node function")
