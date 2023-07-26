@@ -16,29 +16,20 @@ from typing import List, Any
 from dict2xml import dict2xml
 from asyncua.crypto.security_policies import SecurityPolicyBasic256Sha256
 import paho.mqtt.client as mqtt
-from asyncua.sync import Client, ThreadLoop, _logger, _SubHandler
-import codecs
-import sqlalchemy
-import configparser
+from asyncua.sync import Client, ThreadLoop, _logger
 
 
+
+##################################################################################################
 # For every server in the industry another client entity should be created to be connected with it
-# url: the url of the server that each client will connect to
-# name:the name of each client
-
-try:
-    from IPython import embed
-    print("IPython module imported")
-except ImportError:
-    import code
-
-    def embed():
-        vars = globals()
-        vars.update(locals())
-        shell = code.InteractiveConsole(vars)
-        shell.interact()
-        print("Code module imported")
-
+# url:                  the url of the server that each client will connect to
+# name:                 the name of each client(same as the server name)
+# mqtturl:              the url/name of the mqtt broker through which the data are transferred to/from the Platform
+# mqttport:             the port of the mqtt broker through which the data are transferred to/from the Platform
+# architecturetopic:    the mqtt topic in which the nodes of the server will be posted after connecting to it
+# consoletopic:         the mqtt topic where console-type messages are posted
+# readtopic:            the mqtt topic where the read-asked values are published
+##################################################################################################
 class opcuaClient(Client):
     # This class is a child class to the Client Class from asyncua package.
     # When you add the __init__() function, the child class will no longer inherit the parent's __init__() function.
@@ -52,7 +43,6 @@ class opcuaClient(Client):
         self.architectureTopic = architecturetopic
         self.consoleTopic = consoletopic
         self.readTopic = readtopic
-
         self.agent = self.createMqttAgent()
         self.initial_subscriptions()
 
@@ -137,13 +127,78 @@ class opcuaClient(Client):
 
         return 0
 
-
-
-
     def __str__(self):
         return f"{self.name} with url :{self.name} and tloop = {self.tloop}"
 
+    # Defining the dynamic list for the IDs of the variables that are to be subscribed.
+    subVarIDList: list[str] = []
+    subscriptionsList: list[object] = []
 
+    def subToVarID(self, varID, period, Topic):
+
+        agent = self.agent
+        class SubHandler(object):
+            """
+            Subscription Handler. To receive events from server for a subscription
+            data_change and event methods are called directly from receiving thread.
+            Do not do expensive, slow or network operation there. Create another
+            thread if you need to do such a thing
+            """
+            def datachange_notification(self, node, val, data):
+                print("Python: New data change for", node.nodeid, ", ", val)
+                agent.publish(topic=Topic, payload=str(val))
+            def event_notification(self, event):
+                print("Python: New event", event)
+
+        if varID in self.subVarIDList:
+            print("There is a subscription to the variable " + varID + " already.")
+            self.agent.publish(self.consoleTopic, "There is a subscription to the variable " + varID + " already.")
+        else:
+            var = self.get_node(varID)
+            handler = SubHandler()
+            sub = self.create_subscription(period, handler)  # First arguement here is period of checking for data.
+            handle = sub.subscribe_data_change(var)
+
+            self.subscriptionsList.append(sub)
+            self.subVarIDList.append(varID)
+            print("Subscription on the variable ", varID, " successful.")
+            self.agent.publish(self.consoleTopic, "Subscription on the variable " + varID + "successful.")
+            return sub
+
+    def unsubFromVarID(self, varID):
+        if varID in self.subVarIDList:
+            ind = self.subVarIDList.index(varID)
+            sub = self.subscriptionsList[ind]
+            sub.delete()
+            del self.subscriptionsList[ind]
+            del self.subVarIDList[ind]
+            print("Ending subscription on the variable ", varID, " successfully.")
+            return "Ending subscription on the variable ", varID, " successfully."
+        else:
+            print("No subscription found to the variable ", varID, ".")
+            self.agent.publish(str(self.name) + "/ex/client", "No subscription found to the variable " + varID + ".")
+            return "No subscription found to the variable ", varID, "."
+
+    def callMethodFromNodeID(self, nodeId, *args):
+        print("Before set_node function")
+        meth = self.get_node(nodeId)
+        print("Method with Browse Name ", str(meth.read_browse_name), "is being called")
+        try:
+            methodParent: object = meth.get_parent()
+            print('\n', methodParent, '\n')
+        except:
+            print("Could not find the parent of the method with ID: ", nodeId)
+            self.agent.publish(str(self.consoleTopic), "Could not find the parent of the method with ID: " + nodeId)
+        finally:
+            result = methodParent.call_method(meth, *args)
+            return result
+
+    def readValue(self, varID):
+        var = self.get_node(varID)
+        ret = var.read_value()
+        return ret
+        # except:
+        #     print("Couldn't read the value with ID ", varID)
 
     def browse_node_tree(self, node):
         """
@@ -180,78 +235,3 @@ class opcuaClient(Client):
         return self.browse_node_tree(self.get_root_node())
 
 
-
-    # Defining the dynamic list for the IDs of the variables that are to be subscribed.
-    subVarIDList: list[str] = []
-    subscriptionsList: list[object] = []
-
-    def readValue(self, varID):
-        var = self.get_node(varID)
-        ret = var.read_value()
-        return ret
-        # except:
-        #     print("Couldn't read the value with ID ", varID)
-
-
-    def subToVarID(self, varID, period, Topic):
-
-        agent = self.agent
-        class SubHandler(object):
-            """
-            Subscription Handler. To receive events from server for a subscription
-            data_change and event methods are called directly from receiving thread.
-            Do not do expensive, slow or network operation there. Create another
-            thread if you need to do such a thing
-            """
-
-            def datachange_notification(self, node, val, data):
-                print("Python: New data change for", node.nodeid, ", ", val)
-                agent.publish(topic=Topic, payload=str(val))
-
-                # opcuaClient.handlerPost(node, val)
-
-            def event_notification(self, event):
-                print("Python: New event", event)
-
-        if varID in self.subVarIDList:
-            print("There is a subscription to the variable " + varID + " already.")
-            self.agent.publish(self.consoleTopic, "There is a subscription to the variable " + varID + " already.")
-        else:
-            var = self.get_node(varID)
-            handler = SubHandler()
-            sub = self.create_subscription(period, handler)  # First arguement here is period and determines the frequency of checking for data.
-            handle = sub.subscribe_data_change(var)
-
-            self.subscriptionsList.append(sub)
-            self.subVarIDList.append(varID)
-            print("Subscription on the variable ", varID, " successful.")
-            self.agent.publish(self.consoleTopic, "Subscription on the variable " + varID + "successful.")
-            return sub
-
-    def unsubFromVarID(self, varID):
-        if varID in self.subVarIDList:
-            ind = self.subVarIDList.index(varID)
-            sub = self.subscriptionsList[ind]
-            sub.delete()
-            del self.subscriptionsList[ind]
-            del self.subVarIDList[ind]
-            print("Ending subscription on the variable ", varID, " successfully.")
-            return "Ending subscription on the variable ", varID, " successfully."
-        else:
-            print("No subscription found to the variable ", varID, ".")
-            self.agent.publish(str(self.name) + "/ex/client", "No subscription found to the variable " + varID + ".")
-            return "No subscription found to the variable ", varID, "."
-
-    def callMethodFromNodeID(self, nodeId, *args):
-        print("Before set_node function")
-        meth = self.get_node(nodeId)
-        print("Method with Browse Name ", str(meth.read_browse_name), "is being called")
-        try:
-            methodParent: object = meth.get_parent()
-            print('\n', methodParent, '\n')
-        except:
-            print("Could not find the parent of the method with ID: ", nodeId)
-            self.agent.publish(str(self.consoleTopic), "Could not find the parent of the method with ID: " + nodeId)
-        finally:
-            result = methodParent.call_method(meth, *args)
-            return result

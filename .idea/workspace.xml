@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Read function also fixed.">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Write function also fixed.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/opcUaClientClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/opcUaClientClass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/startUp.py" beforeDir="false" afterPath="$PROJECT_DIR$/startUp.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +152,15 @@
       <option name="project" value="LOCAL" />
       <updated>1690360976286</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Write function also fixed.">
+      <option name="closed" value="true" />
+      <created>1690362913554</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1690362913554</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -168,6 +177,7 @@
     <MESSAGE value="Pause to try an old one" />
     <MESSAGE value="Found the bug in method_call.&#10;It's all ready!" />
     <MESSAGE value="Read function also fixed." />
-    <option name="LAST_COMMIT_MESSAGE" value="Read function also fixed." />
+    <MESSAGE value="Write function also fixed." />
+    <option name="LAST_COMMIT_MESSAGE" value="Write function also fixed." />
   </component>
 </project>
