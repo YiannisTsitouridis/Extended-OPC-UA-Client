@@ -99,7 +99,7 @@ class opcuaClient(Client):
                 agent.publish(self.consoleTopic, "Ending subscription on the variable " + mess + " was ordered.")
 
             if (msg.topic == str(self.name) + "/Read"):
-                mess = msg.payload
+                mess = msg.payload.decode("utf-8")
                 value = self.readValue(mess)
                 agent.publish(self.readTopic, value)
                 return value
@@ -129,7 +129,6 @@ class opcuaClient(Client):
     def initial_subscriptions(self):
         # From the birth of mqtt agent, we want it to subscribe to the following topics.
         self.agent.subscribe(self.consoleTopic)
-        self.agent.subscribe(self.readTopic)
         self.agent.subscribe(str(self.name) + "/Subscribe")
         self.agent.subscribe(str(self.name) + "/Method_calls")
         self.agent.subscribe(str(self.name) + "/Unsubscribe")
@@ -187,12 +186,11 @@ class opcuaClient(Client):
     subscriptionsList: list[object] = []
 
     def readValue(self, varID):
-        try:
-            var = self.get_node(varID)
-            ret = var.read_value()
-            return ret
-        except:
-            print("Couldn't read the value with ID ", varID)
+        var = self.get_node(varID)
+        ret = var.read_value()
+        return ret
+        # except:
+        #     print("Couldn't read the value with ID ", varID)
 
 
     def subToVarID(self, varID, period, Topic):
