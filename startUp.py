@@ -72,13 +72,8 @@ def main():
                 tree = client.browse_server()
                 treejs = json.dumps(tree)
                 client.agent.publish("arch", treejs)
-                # print(client.name, " architecture posted:" + "\n \n", tree)
-                # print("hello!")
-                # client.agent.loop_start()
-                # client.agent.subscribe("hotel")
                 embed()
-            print("reach here")
-    print("Reach here!!!!!!")
+
 if __name__ == "__main__":
     main()
 
