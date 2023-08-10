@@ -22,6 +22,7 @@ from asyncua.sync import Client, ThreadLoop, _logger
 import codecs
 import sqlalchemy
 import configparser
+import threading
 from opcUaClientClass import opcuaClient
 
 # This part of code is for importing the appropriate console
@@ -38,19 +39,18 @@ except ImportError:
         shell.interact()
         print("Code module imported")
 
-global flag
+
 
 ############################################################################
 ####                     DEFINING MAIN FUNCTION                         ####
 ############################################################################
-def stop():
-    flag = False
-def main():
+
+def startUp():
     serversData = configparser.ConfigParser()
     serversData.read("clientData.ini")
     numOfServers = serversData.getint('NumberOfServers', 'serversNum')
     clientsList = []
-    flag =True
+    kill = False
     for i in range(1, numOfServers + 1):
         localurl = serversData.get('Server' + str(i - 1), 'url')
         localname = serversData.get(('Server' + str(i - 1)), 'name')
@@ -77,10 +77,39 @@ def main():
             treejs = json.dumps(tree)
             client.agent.publish("arch", treejs)
             embed()
+            while not kill:
+                time.sleep(0.1)
+            else:
+                client.disconnect()
+                client.tloop.stop()
 
 
 
+def main():
+    global kill
+    kill = False
+    def on_connect(agent, userdata, flags, rc):
+        print("Connected!")
 
+    def on_message(agent, userdata, msg):
+        print("Recieved something!")
+        print(msg.payload)
+        mess = str(msg.payload.decode("utf-8"))
+        if mess == "stop":
+            print("stop ordered")
+            # startUp.stop()
+            # runThread.start()
+            kill = True
+        elif mess == "startUp":
+            print("startUp ordered")
+            startUp()
+
+    generalAgent = mqtt.Client("general")
+    generalAgent.on_connect = on_connect
+    generalAgent.on_message = on_message
+    generalAgent.connect(host="localhost", port=1883)
+    generalAgent.subscribe("generalTopic")
+    generalAgent.loop_forever()
 
 if __name__ == "__main__":
     main()

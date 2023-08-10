@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Added global flag to stop all threads">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Before I merge startUp with generalManager">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/generalManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/generalManager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/startUp.py" beforeDir="false" afterPath="$PROJECT_DIR$/startUp.py" afterDir="false" />
     </list>
@@ -26,7 +27,7 @@
     <setting file="file:///usr/local/lib/python3.10/dist-packages/paho/mqtt/client.py" root0="SKIP_INSPECTION" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
   "customColor": "",
@@ -198,7 +199,31 @@
       <option name="project" value="LOCAL" />
       <updated>1691654461867</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="define stop function in startUp">
+      <option name="closed" value="true" />
+      <created>1691658948055</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1691658948055</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Before try">
+      <option name="closed" value="true" />
+      <created>1691659011022</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1691659011022</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Before I merge startUp with generalManager">
+      <option name="closed" value="true" />
+      <created>1691668466517</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1691668466517</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -221,6 +246,8 @@
     <MESSAGE value="Added a clue of general Manager" />
     <MESSAGE value="Added global flag to stop all threads" />
     <MESSAGE value="define stop function in startUp" />
-    <option name="LAST_COMMIT_MESSAGE" value="define stop function in startUp" />
+    <MESSAGE value="Before try" />
+    <MESSAGE value="Before I merge startUp with generalManager" />
+    <option name="LAST_COMMIT_MESSAGE" value="Before I merge startUp with generalManager" />
   </component>
 </project>

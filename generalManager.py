@@ -5,7 +5,6 @@ import time
 import paho.mqtt.client as mqtt
 import startUp
 import threading
-from startUp import stop
 
 
 def main():
