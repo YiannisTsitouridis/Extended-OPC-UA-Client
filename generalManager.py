@@ -2,15 +2,15 @@ import sys
 import os
 import time
 import paho.mqtt.client as mqtt
-from startUp import flag
 import startUp
+from startUp import stop
 
 def on_connect(agent, userdata, flags, rc):
     agent.subscribe("generalManager")
 
 def on_message(agent, userdata, msg):
     if msg.payload == "stop":
-        flag = False
+        stop()
     elif msg.payload == "startUp":
         startUp
 
