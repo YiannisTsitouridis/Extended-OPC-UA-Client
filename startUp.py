@@ -52,36 +52,32 @@ def main():
     clientsList = []
     flag =True
     for i in range(1, numOfServers + 1):
-        with ThreadLoop() as tloop:
-            localurl = serversData.get('Server' + str(i - 1), 'url')
-            localname = serversData.get(('Server' + str(i - 1)), 'name')
-            localmqttUrl = serversData.get(('Server' + str(i - 1)), 'mqttUrl')
-            localmqttPort = serversData.get(('Server' + str(i - 1)), 'mqttPort')
-            localarchitectureTopic = serversData.get(('Server' + str(i - 1)), 'architecturetopic')
-            localconsoleTopic = serversData.get('Server' + str(i - 1), 'consoletopic')
-            localreadTopic = serversData.get(('Server' + str(i - 1)), 'readtopic')
-            print("Reached till here!" + '\n')
-            with opcuaClient(localurl, localname, localmqttUrl, int(localmqttPort), localarchitectureTopic,
-                             localconsoleTopic, localreadTopic) as client:
-                try:
-                    client.connect()
-                    print("Server with name " + str(client.name) + " detected")
-                    time.sleep(2)
-                    clientsList.append(client)
-                except:
-                    print("Error occurred while trying to connect to server" + str(client.name) + "with url:" + str(
-                        client.url))
-                    client.agent.publish("Topic", "Error occurred while trying to connect to server" + str(
-                        client.name) + " with url: " + str(client.url))
-                resul = client.initial_subscriptions()
-                tree = client.browse_server()
-                treejs = json.dumps(tree)
-                client.agent.publish("arch", treejs)
-                embed()
-                while flag:
-                    time.sleep(0.5)
-                else:
-                    tloop.stop()
+        localurl = serversData.get('Server' + str(i - 1), 'url')
+        localname = serversData.get(('Server' + str(i - 1)), 'name')
+        localmqttUrl = serversData.get(('Server' + str(i - 1)), 'mqttUrl')
+        localmqttPort = serversData.get(('Server' + str(i - 1)), 'mqttPort')
+        localarchitectureTopic = serversData.get(('Server' + str(i - 1)), 'architecturetopic')
+        localconsoleTopic = serversData.get('Server' + str(i - 1), 'consoletopic')
+        localreadTopic = serversData.get(('Server' + str(i - 1)), 'readtopic')
+        print("Reached till here!" + '\n')
+        with opcuaClient(localurl, localname, localmqttUrl, int(localmqttPort), localarchitectureTopic,
+                         localconsoleTopic, localreadTopic) as client:
+            try:
+                client.connect()
+                print("Server with name " + str(client.name) + " detected")
+                time.sleep(2)
+                clientsList.append(client)
+            except:
+                print("Error occurred while trying to connect to server" + str(client.name) + "with url:" + str(
+                    client.url))
+                client.agent.publish("Topic", "Error occurred while trying to connect to server" + str(
+                    client.name) + " with url: " + str(client.url))
+            resul = client.initial_subscriptions()
+            tree = client.browse_server()
+            treejs = json.dumps(tree)
+            client.agent.publish("arch", treejs)
+            embed()
+
 
 
 
