@@ -20,16 +20,16 @@ from asyncua.sync import Client, ThreadLoop, _logger
 
 
 
-##################################################################################################
-# For every server in the industry another client entity should be created to be connected with it
-# url:                  the url of the server that each client will connect to
-# name:                 the name of each client(same as the server name)
-# mqtturl:              the url/name of the mqtt broker through which the data are transferred to/from the Platform
-# mqttport:             the port of the mqtt broker through which the data are transferred to/from the Platform
-# architecturetopic:    the mqtt topic in which the nodes of the server will be posted after connecting to it
-# consoletopic:         the mqtt topic where console-type messages are posted
-# readtopic:            the mqtt topic where the read-asked values are published
-##################################################################################################
+#########################################################################################################################
+# For every server in the industry another client entity should be created to be connected with it                      #
+# url:                  the url of the server that each client will connect to                                          #
+# name:                 the name of each client(same as the server name)                                                #
+# mqtturl:              the url/name of the mqtt broker through which the data are transferred to/from the Platform     #
+# mqttport:             the port of the mqtt broker through which the data are transferred to/from the Platform         #
+# architecturetopic:    the mqtt topic in which the nodes of the server will be posted after connecting to it           #
+# consoletopic:         the mqtt topic where console-type messages are posted                                           #
+# readtopic:            the mqtt topic where the read-asked values are published                                        #
+#########################################################################################################################
 class opcuaClient(Client):
     # This class is a child class to the Client Class from asyncua package.
     # When you add the __init__() function, the child class will no longer inherit the parent's __init__() function.

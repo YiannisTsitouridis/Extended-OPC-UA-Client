@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import sys
+import os
 import asyncio
 sys.path.insert(0, "..")
 import asyncua
@@ -37,6 +38,8 @@ except ImportError:
         shell.interact()
         print("Code module imported")
 
+global flag
+
 ############################################################################
 ####                     DEFINING MAIN FUNCTION                         ####
 ############################################################################
@@ -72,13 +75,11 @@ def main():
                 tree = client.browse_server()
                 treejs = json.dumps(tree)
                 client.agent.publish("arch", treejs)
+                if not flag:
+                    tloop.stop()
                 embed()
+
+
 
 if __name__ == "__main__":
     main()
-
-
-
-    
-    
-

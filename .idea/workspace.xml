@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Write function also fixed.">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Added a clue of general Manager">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generalManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/generalManager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/opcUaClientClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/opcUaClientClass.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/startUp.py" beforeDir="false" afterPath="$PROJECT_DIR$/startUp.py" afterDir="false" />
     </list>
@@ -26,19 +27,23 @@
     <setting file="file://$PROJECT_DIR$/../.local/lib/python3.10/site-packages/asyncua/sync.py" root0="SKIP_INSPECTION" />
     <setting file="file:///usr/local/lib/python3.10/dist-packages/paho/mqtt/client.py" root0="SKIP_INSPECTION" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 3
+}]]></component>
   <component name="ProjectId" id="2SsJKPTI9pWU8X6PUvjDI6W7M34" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Mqtt__child__of__Client",
-    "last_opened_file_path": "/home/yiannis/clientcompleteproject/startUp.py"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Mqtt__child__of__Client&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/yiannis/clientcompleteproject/generalManager.py&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -160,7 +165,31 @@
       <option name="project" value="LOCAL" />
       <updated>1690362913554</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Clean and fine!">
+      <option name="closed" value="true" />
+      <created>1690363789922</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1690363789922</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Clean and fine!2">
+      <option name="closed" value="true" />
+      <created>1690364000164</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1690364000164</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Added a clue of general Manager">
+      <option name="closed" value="true" />
+      <created>1690364673691</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1690364673692</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -178,6 +207,9 @@
     <MESSAGE value="Found the bug in method_call.&#10;It's all ready!" />
     <MESSAGE value="Read function also fixed." />
     <MESSAGE value="Write function also fixed." />
-    <option name="LAST_COMMIT_MESSAGE" value="Write function also fixed." />
+    <MESSAGE value="Clean and fine!" />
+    <MESSAGE value="Clean and fine!2" />
+    <MESSAGE value="Added a clue of general Manager" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a clue of general Manager" />
   </component>
 </project>
