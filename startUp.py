@@ -43,12 +43,14 @@ global flag
 ############################################################################
 ####                     DEFINING MAIN FUNCTION                         ####
 ############################################################################
-
+def stop():
+    flag = False
 def main():
     serversData = configparser.ConfigParser()
     serversData.read("clientData.ini")
     numOfServers = serversData.getint('NumberOfServers', 'serversNum')
     clientsList = []
+    flag =True
     for i in range(1, numOfServers + 1):
         with ThreadLoop() as tloop:
             localurl = serversData.get('Server' + str(i - 1), 'url')
@@ -75,9 +77,12 @@ def main():
                 tree = client.browse_server()
                 treejs = json.dumps(tree)
                 client.agent.publish("arch", treejs)
-                if not flag:
-                    tloop.stop()
                 embed()
+                while flag:
+                    time.sleep(0.5)
+                else:
+                    tloop.stop()
+
 
 
 
