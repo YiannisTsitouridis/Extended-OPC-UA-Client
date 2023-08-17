@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Before I merge startUp with generalManager">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Last commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/generalManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/generalManager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/startUp.py" beforeDir="false" afterPath="$PROJECT_DIR$/startUp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/startUp.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,29 +22,34 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/../.local/lib/python3.10/site-packages/asyncua/__init__.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/../.local/lib/python3.10/site-packages/asyncua/client/client.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/../.local/lib/python3.10/site-packages/asyncua/common/__init__.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/../.local/lib/python3.10/site-packages/asyncua/common/node.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/../.local/lib/python3.10/site-packages/asyncua/sync.py" root0="SKIP_INSPECTION" />
+    <setting file="file:///usr/lib/python3.10/threading.py" root0="SKIP_INSPECTION" />
     <setting file="file:///usr/local/lib/python3.10/dist-packages/paho/mqtt/client.py" root0="SKIP_INSPECTION" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2SsJKPTI9pWU8X6PUvjDI6W7M34" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Mqtt__child__of__Client&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/yiannis/clientcompleteproject/generalManager.py&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Mqtt__child__of__Client",
+    "last_opened_file_path": "/home/yiannis/clientcompleteproject/startStop.py"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -223,8 +227,35 @@
       <option name="project" value="LOCAL" />
       <updated>1691668466517</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Last commit">
+      <option name="closed" value="true" />
+      <created>1691672251654</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1691672251654</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Last commit">
+      <option name="closed" value="true" />
+      <created>1691672275076</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1691672275076</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="stup" />
@@ -248,6 +279,7 @@
     <MESSAGE value="define stop function in startUp" />
     <MESSAGE value="Before try" />
     <MESSAGE value="Before I merge startUp with generalManager" />
-    <option name="LAST_COMMIT_MESSAGE" value="Before I merge startUp with generalManager" />
+    <MESSAGE value="Last commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Last commit" />
   </component>
 </project>
