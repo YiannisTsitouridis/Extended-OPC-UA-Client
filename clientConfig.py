@@ -15,12 +15,12 @@ def addserver():
 
     # Taking console inputs for the new server. #
     serverUrl = input("Type the Url of the new server ")
-    serverName = input("Type the name of server " + str(i) + ": ")
-    mqttUrl = input("Type the url of mqtt Broker " + str(i) + ": ")
-    mqttPort = input("Type the port of mqtt Broker " + str(i) + ": ")
-    architectureTopic = input("Type the topic where the server architecture will be sent" + str(i) + ": ")
-    consoleTopic = input("Type the topic for the console messages " + str(i) + ": ")
-    readTopic = input("Type the topic for displaying the values ordered to read " + str(i) + ": ")
+    serverName = input("Type the name of the new server: ")
+    mqttUrl = input("Type the name of the new server: ")
+    mqttPort = input("Type the name of the new server: ")
+    architectureTopic = input("Type the name of the new server: ")
+    consoleTopic = input("Type the name of the new server: ")
+    readTopic = input("Type the name of the new server: ")
 
     # Setting the taken inputs in the clientConfig.ini file, in the new server's section. #
     initial_configfile.add_section("Server" + str(numOfServers))
@@ -151,8 +151,8 @@ if __name__=='__main__':
         elif function_name == addserver.__name__:
             addserver()
         elif function_name == addserver_from_UI.__name__:
-            addserver_from_UI(arg[2])
+            addserver_from_UI(args[2])
         elif function_name == initialize_from_UI.__name__:
-            initialize_from_UI(arg[2])
+            initialize_from_UI(args[2])
         else:
             print("Invalid function name.")
