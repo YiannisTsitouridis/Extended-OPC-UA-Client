@@ -19,15 +19,12 @@ import xml.etree.ElementTree as ET
 from xml.etree.ElementTree import Element, tostring
 from typing import List, Any
 from dict2xml import dict2xml
-from asyncua.crypto.security_policies import SecurityPolicyBasic256Sha256
 import paho.mqtt.client as mqtt
 from asyncua.sync import Client, ThreadLoop, _logger
 import codecs
-import sqlalchemy
 import configparser
 import threading
 from opcUaClientClass import opcuaClient
-from multiprocessing.pool import ThreadPool
 
 # This part of code is for importing the appropriate console
 try:

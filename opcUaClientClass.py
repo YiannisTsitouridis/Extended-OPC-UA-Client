@@ -1,18 +1,14 @@
 import sys
-import asyncio
 sys.path.insert(0, "..")
-import asyncua
 import logging
 import time
 from asyncua import common
-from asyncua.common import node, subscription, shortcuts
 from pathlib import Path
 import numpy as np
 import json
 from asyncua import ua
 import xml.etree.ElementTree as ET
 from xml.etree.ElementTree import Element, tostring
-from typing import List, Any
 from dict2xml import dict2xml
 from asyncua.crypto.security_policies import SecurityPolicyBasic256Sha256
 import paho.mqtt.client as mqtt
@@ -204,6 +200,7 @@ class opcuaClient(Client):
         """
         Build and return a nested node tree dict by recursion (filtered by OPC UA objects and variables).
         """
+        global attributes
         node_class = node.read_node_class()
         children = []
         for child in node.get_children():
@@ -211,8 +208,16 @@ class opcuaClient(Client):
                 children.append(
                     self.browse_node_tree(child)
                 )
+                if child.read_node_class() == ua.NodeClass.Method:
+                    print(child.read_attribute)
+                    # attributes = []
+                    # child.arg
+                    # for attribute in child.read_attributes():
+                    #     attributes.append(attribute)
+
+
         if node_class != ua.NodeClass.Variable:
-            var_type = None
+            var_type = node_class
         else:
             try:
                 var_type = (node.read_data_type_as_variant_type()).value
@@ -224,6 +229,7 @@ class opcuaClient(Client):
             'name': (node.read_display_name()).Text,
             'cls': node_class.value,
             'children': children,
+            'attributes': None,
             'type': var_type,
         }
 
