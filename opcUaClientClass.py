@@ -2,11 +2,11 @@ import sys
 sys.path.insert(0, "..")
 import logging
 import time
-from asyncua import common
 from pathlib import Path
 import numpy as np
 import json
-from asyncua import ua
+from asyncua import ua, common, sync, Client
+from asyncua.sync import DataTypeDictionaryBuilder
 import xml.etree.ElementTree as ET
 from xml.etree.ElementTree import Element, tostring
 from dict2xml import dict2xml
@@ -41,7 +41,6 @@ class opcuaClient(Client):
         self.readTopic = readtopic
         self.agent = self.createMqttAgent()
         self.initial_subscriptions()
-
 
     def createMqttAgent(self):
         def on_connect(agent, userdata, flags, rc):
@@ -196,42 +195,76 @@ class opcuaClient(Client):
         # except:
         #     print("Couldn't read the value with ID ", varID)
 
-    def browse_node_tree(self, node):
+    # def browse_node_tree(self, nodes):
+    #     """
+    #     Browses multiple nodes in one ua call
+    #     returns a List of Tuples(Node, BrowseResult)
+    #     """
+    #     nodestobrowse = []
+    #     for node in nodes:
+    #         desc = ua.BrowseDescription()
+    #         desc.NodeId = node.nodeid
+    #         desc.ResultMask = ua.BrowseResultMask.All
+    #         nodestobrowse.append(desc)
+    #     parameters = ua.BrowseParameters()
+    #     parameters.View = ua.ViewDescription()
+    #     parameters.RequestedMaxReferencesPerNode = 0
+    #     parameters.NodesToBrowse = nodestobrowse
+    #     results = self.uaclient.browse(parameters)
+    #     return list(zip(nodes, results))
+
+    def browse_node_tree(self, syncnode):
         """
         Build and return a nested node tree dict by recursion (filtered by OPC UA objects and variables).
         """
-        global attributes
-        node_class = node.read_node_class()
+        global typeOfN
+        node_class = syncnode.read_node_class()
         children = []
-        for child in node.get_children():
-            if child.read_node_class() in [ua.NodeClass.Object, ua.NodeClass.Variable, ua.NodeClass.Method, ua.NodeClass.ObjectType]:
+
+        for child in syncnode.get_children():
+            if child.read_node_class() in [ua.NodeClass.Object, ua.NodeClass.Variable, ua.NodeClass.Method, ua.NodeClass.ObjectType, ua.Argument]:
+                if child.read_node_class == ua.NodeClass.Method:
+                    typeOfN = "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!method!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+                    # for arg in child.get_input_arguements():
+                    #     print("Name:", arg.name)
+                    #     print("DataType:", arg.data_type)
+                else:
+                    typeOfN = "None"
                 children.append(
                     self.browse_node_tree(child)
                 )
-                if child.read_node_class() == ua.NodeClass.Method:
-                    print(child.read_attribute)
-                    # attributes = []
-                    # child.arg
-                    # for attribute in child.read_attributes():
-                    #     attributes.append(attribute)
-
 
         if node_class != ua.NodeClass.Variable:
             var_type = node_class
+
         else:
             try:
-                var_type = (node.read_data_type_as_variant_type()).value
+                var_type = (syncnode.read_data_type_as_variant_type()).value
             except ua.UaError:
-                _logger.warning('Node Variable Type could not be determined for %r', node)
+                _logger.warning('Node Variable Type could not be determined for %r', syncnode)
                 var_type = None
         return {
-            'id': node.nodeid.to_string(),
-            'name': (node.read_display_name()).Text,
+            'id': syncnode.nodeid.to_string(),
+            'name': (syncnode.read_display_name()).Text,
             'cls': node_class.value,
             'children': children,
-            'attributes': None,
+            'typeOfNode': typeOfN,
             'type': var_type,
-        }
+          }
+
+    # def browse_aiobjects(self, aiobject):
+    #     """
+    #             Build and return a nested node tree dict by recursion (filtered by OPC UA objects and variables).
+    #             """
+    #     global attributes
+    #     node_class = aiobject.read_node_class()
+    #     children = []
+    #     for child in [aiobject.get_children(), aiobject.aio_obj]:
+    #         if child in aiobject.aio_obj:
+    #             print(child, child.read_display_name, child.read_data_type)
+    #             children.append(
+    #                 self.browse_node_tree(child)
+    #             )
 
     def browse_server(self):
         """

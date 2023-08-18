@@ -67,7 +67,7 @@ def startClient(num):
     with opcuaClient(localurl, localname, localmqttUrl, int(localmqttPort), localarchitectureTopic,
                      localconsoleTopic, localreadTopic) as client:
         try:
-            client.connect()
+            client.__enter__()
             print("Server with name " + str(client.name) + " detected")
             clientsList.append(client)
         except:
@@ -77,6 +77,8 @@ def startClient(num):
                 client.name) + " with url: " + str(client.url))
         tree = client.browse_server()
         treejs = json.dumps(tree)
+
+        print(treejs)
         client.agent.publish("arch", treejs)
         embed()
 
