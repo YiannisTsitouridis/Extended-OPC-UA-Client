@@ -213,30 +213,35 @@ class opcuaClient(Client):
     #     results = self.uaclient.browse(parameters)
     #     return list(zip(nodes, results))
 
+
+
     def browse_node_tree(self, syncnode):
         """
         Build and return a nested node tree dict by recursion (filtered by OPC UA objects and variables).
         """
-        global typeOfN
         node_class = syncnode.read_node_class()
         children = []
-
         for child in syncnode.get_children():
             if child.read_node_class() in [ua.NodeClass.Object, ua.NodeClass.Variable, ua.NodeClass.Method, ua.NodeClass.ObjectType, ua.Argument]:
-                if child.read_node_class == ua.NodeClass.Method:
-                    typeOfN = "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!method!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-                    # for arg in child.get_input_arguements():
-                    #     print("Name:", arg.name)
-                    #     print("DataType:", arg.data_type)
-                else:
-                    typeOfN = "None"
+                if child.read_node_class() in [ua.NodeClass.Method]:
+                    input_arguments_property = child.get_child("InputArguments")
+                    if input_arguments_property is not None:
+                        input_arguments = input_arguments_property.get_value()
+                        for arg in input_arguments:
+                            # input_arguments.append(arg)
+                            print(arg)
+                            print("Argument Name:", arg.Name)
+                            print("Argument DataType:", arg.data_type)
+                            print("Argument ValueRank:", arg.ValueRank)
+                            print("Argument Description:", arg.Description)
+                    else:
+                        print("None")
                 children.append(
                     self.browse_node_tree(child)
                 )
 
         if node_class != ua.NodeClass.Variable:
             var_type = node_class
-
         else:
             try:
                 var_type = (syncnode.read_data_type_as_variant_type()).value
@@ -248,23 +253,10 @@ class opcuaClient(Client):
             'name': (syncnode.read_display_name()).Text,
             'cls': node_class.value,
             'children': children,
-            'typeOfNode': typeOfN,
+            'typeOfNode': str(node_class),
             'type': var_type,
           }
 
-    # def browse_aiobjects(self, aiobject):
-    #     """
-    #             Build and return a nested node tree dict by recursion (filtered by OPC UA objects and variables).
-    #             """
-    #     global attributes
-    #     node_class = aiobject.read_node_class()
-    #     children = []
-    #     for child in [aiobject.get_children(), aiobject.aio_obj]:
-    #         if child in aiobject.aio_obj:
-    #             print(child, child.read_display_name, child.read_data_type)
-    #             children.append(
-    #                 self.browse_node_tree(child)
-    #             )
 
     def browse_server(self):
         """
