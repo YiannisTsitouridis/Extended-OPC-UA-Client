@@ -236,8 +236,7 @@ class opcuaClient(Client):
                             # print("Argument DataType:", arg.data_type)
                             # print("Argument ValueRank:", arg.ValueRank)
                             # print("Argument Description:", arg.Description)
-                        ars = json.dumps(arguments)
-                        args = json.loads(ars)
+                        args = json.dumps(arguments)
                     else:
                         args = None
                 children.append(
