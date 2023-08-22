@@ -219,6 +219,7 @@ class opcuaClient(Client):
         """
         Build and return a nested node tree dict by recursion (filtered by OPC UA objects and variables).
         """
+        global args
         node_class = syncnode.read_node_class()
         children = []
         for child in syncnode.get_children():
@@ -227,15 +228,18 @@ class opcuaClient(Client):
                     input_arguments_property = child.get_child("InputArguments")
                     if input_arguments_property is not None:
                         input_arguments = input_arguments_property.get_value()
+                        arguments = []
                         for arg in input_arguments:
-                            # input_arguments.append(arg)
-                            print(arg)
-                            print("Argument Name:", arg.Name)
-                            print("Argument DataType:", arg.data_type)
-                            print("Argument ValueRank:", arg.ValueRank)
-                            print("Argument Description:", arg.Description)
+                            arguments.append(str(arg))
+                            # print(arg)
+                            # print("Argument Name:", arg.Name)
+                            # print("Argument DataType:", arg.data_type)
+                            # print("Argument ValueRank:", arg.ValueRank)
+                            # print("Argument Description:", arg.Description)
+                        ars = json.dumps(arguments)
+                        args = json.loads(ars)
                     else:
-                        print("None")
+                        args = None
                 children.append(
                     self.browse_node_tree(child)
                 )
@@ -248,14 +252,25 @@ class opcuaClient(Client):
             except ua.UaError:
                 _logger.warning('Node Variable Type could not be determined for %r', syncnode)
                 var_type = None
-        return {
-            'id': syncnode.nodeid.to_string(),
-            'name': (syncnode.read_display_name()).Text,
-            'cls': node_class.value,
-            'children': children,
-            'typeOfNode': str(node_class),
-            'type': var_type,
-          }
+        if syncnode.read_node_class() in [ua.NodeClass.Method]:
+            return {
+                'id': syncnode.nodeid.to_string(),
+                'name': (syncnode.read_display_name()).Text,
+                'cls': node_class.value,
+                'children': children,
+                'typeOfNode': str(node_class),
+                'arguments': str(args),
+                'type': var_type,
+            }
+        else:
+            return {
+                'id': syncnode.nodeid.to_string(),
+                'name': (syncnode.read_display_name()).Text,
+                'cls': node_class.value,
+                'children': children,
+                'typeOfNode': str(node_class),
+                'type': var_type,
+              }
 
 
     def browse_server(self):
