@@ -99,7 +99,6 @@ def main():
         print("Connected!")
 
     def on_message(agent, userdata, msg):
-        print("Recieved something!")
         mess = str(msg.payload.decode("utf-8"))
         if msg.topic == "startStop":
             if mess == "stop":
@@ -118,7 +117,7 @@ def main():
     generalAgent = mqtt.Client("general")
     generalAgent.on_connect = on_connect
     generalAgent.on_message = on_message
-    generalAgent.connect(host="localhost", port=1883)
+    generalAgent.connect(host="test.mosquitto.org", port=1883)
     generalAgent.subscribe("startStop")
     generalAgent.loop_forever()
 
