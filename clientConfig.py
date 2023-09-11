@@ -20,6 +20,11 @@ def addserver():
     architectureTopic = input("Type the name of the new server: ")
     consoleTopic = input("Type the name of the new server: ")
     readTopic = input("Type the name of the new server: ")
+    methRequestTopic = input("method request topic")
+    readRequestTopic = input("read request topic")
+    writeRequestTopic = input("write request topic")
+    subRequestTopic = input("subscription request topic")
+    unSubRequestTopic = input("unsubscribe request topic")
 
     # Setting the taken inputs in the clientConfig.ini file, in the new server's section. #
     initial_configfile.add_section("Server" + str(numOfServers))
@@ -30,6 +35,11 @@ def addserver():
     initial_configfile.set('Server', 'architectureTopic', architectureTopic)
     initial_configfile.set('Server', 'consoleTopic', consoleTopic)
     initial_configfile.set('Server', 'readTopic', readTopic)
+    initial_configfile.set('Server' + str(numOfServers), 'methRequestTopic', methRequestTopic)
+    initial_configfile.set('Server' + str(numOfServers), 'readRequestTopic', readRequestTopic)
+    initial_configfile.set('Server' + str(numOfServers), 'writeRequestTopic', writeRequestTopic)
+    initial_configfile.set('Server' + str(numOfServers), 'subRequestTopic', subRequestTopic)
+    initial_configfile.set('Server' + str(numOfServers), 'unSubRequestTopic', unSubRequestTopic)
 
     with open(r"try.ini", 'w') as configfile:
         initial_configfile.write(configfile)
@@ -54,6 +64,11 @@ def initialize():
         architectureTopic = input("Type the topic where the server architecture will be sent" + str(i) + ": ")
         consoleTopic = input("Type the topic for the console messages " + str(i) + ": ")
         readTopic = input("Type the topic for displaying the values ordered to read " + str(i) + ": ")
+        methRequestTopic = input("method request topic")
+        readRequestTopic = input("read request topic")
+        writeRequestTopic = input("write request topic")
+        subRequestTopic = input("subscription request topic")
+        unSubRequestTopic = input("unsubscribe request topic")
 
         # Setting the taken inputs in the clientConfig.ini file #
         config.set('Server' + str(i), 'url', serverUrl)
@@ -63,6 +78,11 @@ def initialize():
         config.set('Server' + str(i), 'architectureTopic', architectureTopic)
         config.set('Server' + str(i), 'consoleTopic', consoleTopic)
         config.set('Server' + str(i), 'readTopic', readTopic)
+        config.set('Server' + str(i), 'methRequestTopic', methRequestTopic)
+        config.set('Server' + str(i), 'readRequestTopic', readRequestTopic)
+        config.set('Server' + str(i), 'writeRequestTopic', writeRequestTopic)
+        config.set('Server' + str(i), 'subRequestTopic', subRequestTopic)
+        config.set('Server' + str(i), 'unSubRequestTopic', unSubRequestTopic)
 
     with open(r"clientData.ini", 'w') as configfile:
         config.write(configfile)
@@ -88,16 +108,27 @@ def addserver_from_UI(dataFromUI):
     architectureTopic = dataObject["architectureTopic"]
     consoleTopic = dataObject["consoleTopic"]
     readTopic = dataObject["readTopic"]
+    methRequestTopic = dataObject["methRequestTopic"]
+    readRequestTopic = dataObject["readRequestTopic"]
+    writeRequestTopic = dataObject["writeRequestTopic"]
+    subRequestTopic = dataObject["subRequestTopic"]
+    unSubRequestTopic = dataObject["unSubRequestTopic"]
 
     # Setting the taken inputs in the clientConfig.ini file, in the new server's section. #
     initial_configfile.add_section("Server" + str(numOfServers))
-    initial_configfile.set('Server', 'serversNum', serverUrl)
-    initial_configfile.set('Server', 'serverName', serverName)
-    initial_configfile.set('Server', 'mqttUrl', mqttUrl)
-    initial_configfile.set('Server', 'mqttPort', mqttPort)
-    initial_configfile.set('Server', 'architectureTopic', architectureTopic)
-    initial_configfile.set('Server', 'consoleTopic', consoleTopic)
-    initial_configfile.set('Server', 'readTopic', readTopic)
+    initial_configfile.set('Server' + str(numOfServers), 'serversNum', serverUrl)
+    initial_configfile.set('Server' + str(numOfServers), 'serverName', serverName)
+    initial_configfile.set('Server' + str(numOfServers), 'mqttUrl', mqttUrl)
+    initial_configfile.set('Server' + str(numOfServers), 'mqttPort', mqttPort)
+    initial_configfile.set('Server' + str(numOfServers), 'architectureTopic', architectureTopic)
+    initial_configfile.set('Server' + str(numOfServers), 'consoleTopic', consoleTopic)
+    initial_configfile.set('Server' + str(numOfServers), 'readTopic', readTopic)
+    initial_configfile.set('Server' + str(numOfServers), 'methRequestTopic', methRequestTopic)
+    initial_configfile.set('Server' + str(numOfServers), 'readRequestTopic', readRequestTopic)
+    initial_configfile.set('Server' + str(numOfServers), 'writeRequestTopic', writeRequestTopic)
+    initial_configfile.set('Server' + str(numOfServers), 'subRequestTopic', subRequestTopic)
+    initial_configfile.set('Server' + str(numOfServers), 'unSubRequestTopic', unSubRequestTopic)
+
 
 
 def initialize_from_UI(dataFromUI):
@@ -122,6 +153,13 @@ def initialize_from_UI(dataFromUI):
         architectureTopic = dataObject["architectureTopic"]
         consoleTopic = dataObject["consoleTopic"]
         readTopic = dataObject["readTopic"]
+        methRequestTopic = dataObject["methRequestTopic"]
+        readRequestTopic = dataObject["readRequestTopic"]
+        writeRequestTopic = dataObject["writeRequestTopic"]
+        subRequestTopic = dataObject["subRequestTopic"]
+        unSubRequestTopic = dataObject["unSubRequestTopic"]
+
+        
 
         # Setting the taken inputs in the clientConfig.ini file #
         config.set('Server' + str(i), 'url', serverUrl)
@@ -131,6 +169,11 @@ def initialize_from_UI(dataFromUI):
         config.set('Server' + str(i), 'architectureTopic', architectureTopic)
         config.set('Server' + str(i), 'consoleTopic', consoleTopic)
         config.set('Server' + str(i), 'readTopic', readTopic)
+        config.set('Server' + str(i), 'methRequestTopic', methRequestTopic)
+        config.set('Server' + str(i), 'readRequestTopic', readRequestTopic)
+        config.set('Server' + str(i), 'writeRequestTopic', writeRequestTopic)
+        config.set('Server' + str(i), 'subRequestTopic', subRequestTopic)
+        config.set('Server' + str(i), 'unSubRequestTopic', unSubRequestTopic)
 
     with open(r"clientData.ini", 'w') as configfile:
         config.write(configfile)

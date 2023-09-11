@@ -25,12 +25,19 @@ from asyncua.sync import Client, ThreadLoop, _logger
 # architecturetopic:    the mqtt topic in which the nodes of the server will be posted after connecting to it           #
 # consoletopic:         the mqtt topic where console-type messages are posted                                           #
 # readtopic:            the mqtt topic where the read-asked values are published                                        #
+# methRequestTopic:     #
+# readRequestTopic:     #
+# writeRequestTopic:    #
+# subRequestTopic:      #
+# unSubRequestTopic:      #
 #########################################################################################################################
 class opcuaClient(Client):
     # This class is a child class to the Client Class from asyncua package.
     # When you add the __init__() function, the child class will no longer inherit the parent's __init__() function.
     # Unless you run the super().__init__ function
-    def __init__(self, url: str, name: str, mqtturl: str, mqttport: int, architecturetopic: str, consoletopic: str, readtopic: str):
+    def __init__(self, url: str, name: str, mqtturl: str, mqttport: int, architecturetopic: str, consoletopic: str,
+                 readtopic: str, methRequestTopic: str, readRequestTopic: str, writeRequestTopic: str,
+                 subRequestTopic: str, unSubRequestTopic:str):
         super().__init__(url)
         self.name = name
         self.brokerURL = mqtturl
@@ -39,6 +46,11 @@ class opcuaClient(Client):
         self.architectureTopic = architecturetopic
         self.consoleTopic = consoletopic
         self.readTopic = readtopic
+        self.methRequestTopic = methRequestTopic
+        self.readRequestTopic = readRequestTopic
+        self.writeRequestTopic = writeRequestTopic
+        self.subRequestTopic = subRequestTopic
+        self.unSubRequestTopic = unSubRequestTopic
         self.agent = self.createMqttAgent()
         self.initial_subscriptions()
 
@@ -57,7 +69,7 @@ class opcuaClient(Client):
             # logger = logging.getLogger("KeepAlive")
             # logger.setLevel(logging.DEBUG)
 
-            if (msg.topic == str(self.name) + "/Method_calls"):
+            if (msg.topic == self.methRequestTopic):
                 mess = json.loads(msg.payload)
                 print("Call of method", mess["methodID"], " was ordered.")
                 agent.publish(str(self.consoleTopic), "Call of method " + mess["methodID"] + " was ordered.")
@@ -68,7 +80,7 @@ class opcuaClient(Client):
                 elif len(mess) == 3:
                     callMeth = self.callMethodFromNodeID(str(mess["methodID"]), mess["arg1"], mess["arg2"])
 
-            if (msg.topic == str(self.name) + "/Subscribe"):
+            if (msg.topic == self.subRequestTopic):
                 print("we've got something here")
                 mess = json.loads(msg.payload)
                 mesg = str(msg.payload.decode("utf-8"))
@@ -77,19 +89,19 @@ class opcuaClient(Client):
                 subvar = self.subToVarID(mess["varID"], mess["SubscriptionPeriod"], mess["topic"])
                 return subvar
 
-            if (msg.topic == str(self.name) + "/Unsubscribe"):
+            if (msg.topic == self.unSubRequestTopic):
                 mess = str(msg.payload.decode("utf-8"))
                 unsu = self.unsubFromVarID(mess)
                 print("Ending subscription on the variable ", mess, " was ordered.")
                 agent.publish(self.consoleTopic, "Ending subscription on the variable " + mess + " was ordered.")
 
-            if (msg.topic == str(self.name) + "/Read"):
+            if (msg.topic == self.readRequestTopic):
                 mess = msg.payload.decode("utf-8")
                 retMess = self.readValue(mess)
                 agent.publish(self.readTopic, retMess)
                 return retMess
 
-            if (msg.topic == str(self.name) + "/Write"):
+            if (msg.topic == self.writeRequestTopic):
                 mess = json.loads(msg.payload)
                 if len(mess) != 2:
                     agent.publish(self.consoleTopic, "Wrong number of arguements")
