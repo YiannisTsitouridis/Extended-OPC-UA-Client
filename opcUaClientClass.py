@@ -85,9 +85,9 @@ class opcuaClient(Client):
 
             if (msg.topic == str(self.name) + "/Read"):
                 mess = msg.payload.decode("utf-8")
-                value = self.readValue(mess)
-                agent.publish(self.readTopic, value)
-                return value
+                retMess = self.readValue(mess)
+                agent.publish(self.readTopic, retMess)
+                return retMess
 
             if (msg.topic == str(self.name) + "/Write"):
                 mess = json.loads(msg.payload)
@@ -190,7 +190,9 @@ class opcuaClient(Client):
 
     def readValue(self, varID):
         var = self.get_node(varID)
-        ret = var.read_value()
+        val = var.read_value()
+        d = dict(varId = var, value = val)
+        ret = json.dumps(d)
         return ret
         # except:
         #     print("Couldn't read the value with ID ", varID)
