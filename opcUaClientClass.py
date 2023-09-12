@@ -25,11 +25,11 @@ from asyncua.sync import Client, ThreadLoop, _logger
 # architecturetopic:    the mqtt topic in which the nodes of the server will be posted after connecting to it           #
 # consoletopic:         the mqtt topic where console-type messages are posted                                           #
 # readtopic:            the mqtt topic where the read-asked values are published                                        #
-# methRequestTopic:     #
-# readRequestTopic:     #
-# writeRequestTopic:    #
-# subRequestTopic:      #
-# unSubRequestTopic:      #
+# methRequestTopic:     the mqtt topic where the UI publishes to call an OPC UA method                                  #
+# readRequestTopic:     the mqtt topic where the UI publishes to request to read the value of a variable                #
+# writeRequestTopic:    the mqtt topic where the UI publishes to request to write the value of a variable               #
+# subRequestTopic:      the mqtt topic where the UI publishes to request to monitor the value changes of a variable     #
+# unSubRequestTopic:    the mqtt topic where the UI publishes to request to stop monitoring variable's value changes    #
 #########################################################################################################################
 class opcuaClient(Client):
     # This class is a child class to the Client Class from asyncua package.

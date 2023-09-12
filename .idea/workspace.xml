@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Read message fixed.">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Before I g  o">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientConfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/clientConfig.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/opcUaClientClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/opcUaClientClass.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -336,7 +335,15 @@
       <option name="project" value="LOCAL" />
       <updated>1694433144704</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Before I go">
+      <option name="closed" value="true" />
+      <created>1694436977030</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1694436977030</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -351,7 +358,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Seems all good!" />
     <MESSAGE value="Problem with get_node in callMethodFromID" />
     <MESSAGE value="get_node problem:OK" />
     <MESSAGE value="Pause to try an old one" />
@@ -376,6 +382,7 @@
     <MESSAGE value="Done!" />
     <MESSAGE value="Initial commit." />
     <MESSAGE value="Read message fixed." />
-    <option name="LAST_COMMIT_MESSAGE" value="Read message fixed." />
+    <MESSAGE value="Before I go" />
+    <option name="LAST_COMMIT_MESSAGE" value="Before I go" />
   </component>
 </project>
