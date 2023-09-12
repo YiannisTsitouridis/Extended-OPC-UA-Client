@@ -15,7 +15,6 @@ import paho.mqtt.client as mqtt
 from asyncua.sync import Client, ThreadLoop, _logger
 
 
-
 #########################################################################################################################
 # For every server in the industry another client entity should be created to be connected with it                      #
 # url:                  the url of the server that each client will connect to                                          #

@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Before I g  o">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Comments complete.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/opcUaClientClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/opcUaClientClass.py" afterDir="false" />
     </list>
@@ -51,7 +51,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "AllTopicsFromUI",
-    "last_opened_file_path": "/home/yiannis/eclipse-workspace/Server.py"
+    "last_opened_file_path": "/home/yiannis/eclipse-workspace/extraServer.py"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -343,7 +343,15 @@
       <option name="project" value="LOCAL" />
       <updated>1694436977030</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Comments complete.">
+      <option name="closed" value="true" />
+      <created>1694498867835</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1694498867835</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -358,7 +366,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Problem with get_node in callMethodFromID" />
     <MESSAGE value="get_node problem:OK" />
     <MESSAGE value="Pause to try an old one" />
     <MESSAGE value="Found the bug in method_call.&#10;It's all ready!" />
@@ -383,6 +390,7 @@
     <MESSAGE value="Initial commit." />
     <MESSAGE value="Read message fixed." />
     <MESSAGE value="Before I go" />
-    <option name="LAST_COMMIT_MESSAGE" value="Before I go" />
+    <MESSAGE value="Comments complete." />
+    <option name="LAST_COMMIT_MESSAGE" value="Comments complete." />
   </component>
 </project>
