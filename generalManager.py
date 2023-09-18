@@ -64,8 +64,12 @@ def startClient(num):
     localarchitectureTopic = serversData.get(('Server' + str(num - 1)), 'architecturetopic')
     localconsoleTopic = serversData.get('Server' + str(num - 1), 'consoletopic')
     localreadTopic = serversData.get(('Server' + str(num - 1)), 'readtopic')
+    localwriteTopic = serversData.get(('Server' + str(num - 1)), 'writetopic')
+    localsubrequestTopic = serversData.get(('Server' + str(num - 1)), 'subrequesttopic')
+    localunsubrequestTopic = serversData.get(('Server' + str(num - 1)), 'unsubrequesttopic')
+    localsubscribeTopic = serversData.get(('Server' + str(num - 1)), 'subscribetopic')
     with opcuaClient(localurl, localname, localmqttUrl, int(localmqttPort), localarchitectureTopic,
-                     localconsoleTopic, localreadTopic) as client:
+                     localconsoleTopic, localreadTopic, localwriteTopic, localsubrequestTopic, localunsubrequestTopic, localsubscribeTopic) as client:
         try:
             client.__enter__()
             print("Server with name " + str(client.name) + " detected")
