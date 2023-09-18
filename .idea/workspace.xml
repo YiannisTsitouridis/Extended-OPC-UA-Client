@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Comments complete.">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="First commit in branch">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clientConfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/clientConfig.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/opcUaClientClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/opcUaClientClass.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -16,7 +17,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="GeneralManagerMergedScript" />
+        <entry key="$PROJECT_DIR$" value="BrowseWithNsList" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -50,7 +51,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "AllTopicsFromUI",
+    "git-widget-placeholder": "CommonSubTopic",
     "last_opened_file_path": "/home/yiannis/eclipse-workspace/extraServer.py"
   }
 }]]></component>
@@ -351,7 +352,23 @@
       <option name="project" value="LOCAL" />
       <updated>1694498867835</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Last commit on this branch">
+      <option name="closed" value="true" />
+      <created>1694522040957</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1694522040957</updated>
+    </task>
+    <task id="LOCAL-00038" summary="First commit in branch">
+      <option name="closed" value="true" />
+      <created>1694523364139</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1694523364139</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -366,8 +383,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="get_node problem:OK" />
-    <MESSAGE value="Pause to try an old one" />
     <MESSAGE value="Found the bug in method_call.&#10;It's all ready!" />
     <MESSAGE value="Read function also fixed." />
     <MESSAGE value="Write function also fixed." />
@@ -391,6 +406,8 @@
     <MESSAGE value="Read message fixed." />
     <MESSAGE value="Before I go" />
     <MESSAGE value="Comments complete." />
-    <option name="LAST_COMMIT_MESSAGE" value="Comments complete." />
+    <MESSAGE value="Last commit on this branch" />
+    <MESSAGE value="First commit in branch" />
+    <option name="LAST_COMMIT_MESSAGE" value="First commit in branch" />
   </component>
 </project>

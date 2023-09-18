@@ -36,7 +36,7 @@ class opcuaClient(Client):
     # Unless you run the super().__init__ function
     def __init__(self, url: str, name: str, mqtturl: str, mqttport: int, architecturetopic: str, consoletopic: str,
                  readtopic: str, methRequestTopic: str, readRequestTopic: str, writeRequestTopic: str,
-                 subRequestTopic: str, unSubRequestTopic:str):
+                 subRequestTopic: str, unSubRequestTopic:str, subscribeTopic:str):
         super().__init__(url)
         self.name = name
         self.brokerURL = mqtturl
@@ -50,6 +50,7 @@ class opcuaClient(Client):
         self.writeRequestTopic = writeRequestTopic
         self.subRequestTopic = subRequestTopic
         self.unSubRequestTopic = unSubRequestTopic
+        self.subscribeTopic = subscribeTopic
         self.agent = self.createMqttAgent()
         self.initial_subscriptions()
 
@@ -85,7 +86,7 @@ class opcuaClient(Client):
                 mesg = str(msg.payload.decode("utf-8"))
                 print("Subscription on the variable " + mesg + " was ordered.")
                 agent.publish(str(self.consoleTopic), "Subscription on the variable " + mesg + " was ordered.")
-                subvar = self.subToVarID(mess["varID"], mess["SubscriptionPeriod"], mess["topic"])
+                subvar = self.subToVarID(mess["varID"], mess["SubscriptionPeriod"], self.subscribeTopic)
                 return subvar
 
             if (msg.topic == self.unSubRequestTopic):
@@ -152,7 +153,8 @@ class opcuaClient(Client):
             """
             def datachange_notification(self, node, val, data):
                 print("Python: New data change for", node.nodeid, ", ", val)
-                agent.publish(topic=Topic, payload=str(val))
+                me = dict(varID = varID, value = val)
+                agent.publish(topic=Topic, payload=json.dumps(me))
             def event_notification(self, event):
                 print("Python: New event", event)
 

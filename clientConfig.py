@@ -69,6 +69,7 @@ def initialize():
         writeRequestTopic = input("write request topic")
         subRequestTopic = input("subscription request topic")
         unSubRequestTopic = input("unsubscribe request topic")
+        subscriptionTopic = input("Subscription Topic")
 
         # Setting the taken inputs in the clientConfig.ini file #
         config.set('Server' + str(i), 'url', serverUrl)
@@ -83,6 +84,7 @@ def initialize():
         config.set('Server' + str(i), 'writeRequestTopic', writeRequestTopic)
         config.set('Server' + str(i), 'subRequestTopic', subRequestTopic)
         config.set('Server' + str(i), 'unSubRequestTopic', unSubRequestTopic)
+        config.set('Server' + str(i), 'subscriptionTopic', subscriptionTopic)
 
     with open(r"clientData.ini", 'w') as configfile:
         config.write(configfile)
@@ -113,6 +115,7 @@ def addserver_from_UI(dataFromUI):
     writeRequestTopic = dataObject["writeRequestTopic"]
     subRequestTopic = dataObject["subRequestTopic"]
     unSubRequestTopic = dataObject["unSubRequestTopic"]
+    subscriptionTopic = dataObject["subscriptionTopic"]
 
     # Setting the taken inputs in the clientConfig.ini file, in the new server's section. #
     initial_configfile.add_section("Server" + str(numOfServers))
@@ -128,6 +131,7 @@ def addserver_from_UI(dataFromUI):
     initial_configfile.set('Server' + str(numOfServers), 'writeRequestTopic', writeRequestTopic)
     initial_configfile.set('Server' + str(numOfServers), 'subRequestTopic', subRequestTopic)
     initial_configfile.set('Server' + str(numOfServers), 'unSubRequestTopic', unSubRequestTopic)
+    initial_configfile.set('Server' + str(numOfServers), 'subscriptionTopic', subscriptionTopic)
 
 
 
@@ -158,6 +162,8 @@ def initialize_from_UI(dataFromUI):
         writeRequestTopic = dataObject["writeRequestTopic"]
         subRequestTopic = dataObject["subRequestTopic"]
         unSubRequestTopic = dataObject["unSubRequestTopic"]
+        subscriptionTopic = dataObject["subscriptionTopic"]
+
 
         
 
@@ -174,6 +180,7 @@ def initialize_from_UI(dataFromUI):
         config.set('Server' + str(i), 'writeRequestTopic', writeRequestTopic)
         config.set('Server' + str(i), 'subRequestTopic', subRequestTopic)
         config.set('Server' + str(i), 'unSubRequestTopic', unSubRequestTopic)
+        config.set('Server' + str(i), 'subscriptionTopic', subscriptionTopic)
 
     with open(r"clientData.ini", 'w') as configfile:
         config.write(configfile)
