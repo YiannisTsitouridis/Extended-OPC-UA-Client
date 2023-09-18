@@ -25,6 +25,7 @@ def addserver():
     writeRequestTopic = input("write request topic")
     subRequestTopic = input("subscription request topic")
     unSubRequestTopic = input("unsubscribe request topic")
+    subscriptionTopic = input("Subscription Topic")
 
     # Setting the taken inputs in the clientConfig.ini file, in the new server's section. #
     initial_configfile.add_section("Server" + str(numOfServers))
@@ -40,6 +41,8 @@ def addserver():
     initial_configfile.set('Server' + str(numOfServers), 'writeRequestTopic', writeRequestTopic)
     initial_configfile.set('Server' + str(numOfServers), 'subRequestTopic', subRequestTopic)
     initial_configfile.set('Server' + str(numOfServers), 'unSubRequestTopic', unSubRequestTopic)
+    initial_configfile.set('Server' + str(numOfServers), 'subscriptionTopic', subscriptionTopic)
+
 
     with open(r"try.ini", 'w') as configfile:
         initial_configfile.write(configfile)
