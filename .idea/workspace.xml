@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="some things corrected from config">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Some more corrections">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/generalManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/generalManager.py" afterDir="false" />
     </list>
@@ -399,7 +399,15 @@
       <option name="project" value="LOCAL" />
       <updated>1695113121693</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Some more corrections">
+      <option name="closed" value="true" />
+      <created>1695114358132</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1695114358132</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -414,7 +422,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Clean and fine!" />
     <MESSAGE value="Clean and fine!2" />
     <MESSAGE value="Added a clue of general Manager" />
     <MESSAGE value="Added global flag to stop all threads" />
@@ -439,6 +446,7 @@
     <MESSAGE value="1" />
     <MESSAGE value="2" />
     <MESSAGE value="some things corrected from config" />
-    <option name="LAST_COMMIT_MESSAGE" value="some things corrected from config" />
+    <MESSAGE value="Some more corrections" />
+    <option name="LAST_COMMIT_MESSAGE" value="Some more corrections" />
   </component>
 </project>
