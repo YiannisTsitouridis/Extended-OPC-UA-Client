@@ -92,7 +92,8 @@ def startClient(num):
 def stop(numOfServers):
     print("All client instances are terminated.")
     for i in range(1, numOfServers):
-        clientsList[i].stop()
+        if clientsList[i].is_alive:
+            clientsList[i].stop()
 
 def killClient(num):
     clientsList[num]._stop()
@@ -101,6 +102,10 @@ def killClient(num):
 def restartClient(num):
     clientsList[num] = threading.Thread(target=startClient, args=(num,))
     clientsList[num].start()
+
+def refreshClient(num):
+    killClient(num)
+    restartClient(num)
 
 
 ############################################################################
@@ -125,7 +130,11 @@ def main():
                 startUp(numOfServers)
         elif msg.topic == "restart":
             killClient(mess)
-
+            startClient(mess)
+        elif msg.topic == "killClient":
+            pass
+        elif msg.topic == "createNewClient":
+            pass
         elif msg.topic == "initialize":
             clientConfig.initialize_from_UI(mess)
         elif msg.topic == "addServer":
