@@ -99,13 +99,13 @@ def killClient(num):
     clientsList[num]._stop()
     clientsList[num]._delete()
 
-def restartClient(num):
+def startClient(num):
     clientsList[num] = threading.Thread(target=startClient, args=(num,))
     clientsList[num].start()
 
 def refreshClient(num):
     killClient(num)
-    restartClient(num)
+    startClient(num)
 
 
 ############################################################################
@@ -128,13 +128,12 @@ def main():
             elif mess == "startUp":
                 print("startUp ordered")
                 startUp(numOfServers)
-        elif msg.topic == "restart":
-            killClient(mess)
-            startClient(mess)
+        elif msg.topic == "refreshClient":
+            refreshClient(int(mess))
         elif msg.topic == "killClient":
-            pass
-        elif msg.topic == "createNewClient":
-            pass
+            killClient(int(mess))
+        elif msg.topic == "startClient":
+            startClient(int(mess))
         elif msg.topic == "initialize":
             clientConfig.initialize_from_UI(mess)
         elif msg.topic == "addServer":
