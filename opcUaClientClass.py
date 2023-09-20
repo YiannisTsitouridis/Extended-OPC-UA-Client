@@ -36,7 +36,7 @@ class opcuaClient(Client):
     # Unless you run the super().__init__ function
     def __init__(self, url: str, name: str, mqtturl: str, mqttport: int, architecturetopic: str, consoletopic: str,
                  readtopic: str, methRequestTopic: str, readRequestTopic: str, writeRequestTopic: str,
-                 subRequestTopic: str, unSubRequestTopic:str, subscribeTopic:str):
+                 subRequestTopic: str, unSubRequestTopic:str, subscribeTopic:str, connectDisconnectTopic:str):
         super().__init__(url)
         self.name = name
         self.brokerURL = mqtturl
@@ -51,6 +51,7 @@ class opcuaClient(Client):
         self.subRequestTopic = subRequestTopic
         self.unSubRequestTopic = unSubRequestTopic
         self.subscribeTopic = subscribeTopic
+        self.connectDisconnectTopic = connectDisconnectTopic
         # TO DO!
         # Add fields that have to do with server's security policy.
         # self.set_security(policy = , certificate = , private_key = , private_key_password = , server_certificate = , mode = )
@@ -99,7 +100,7 @@ class opcuaClient(Client):
                 agent.publish(self.consoleTopic, "Ending subscription on the variable " + mess + " was ordered.")
 
             if (msg.topic == self.readRequestTopic):
-                mess = msg.payload.decode("utf-8")
+                mess = str(msg.payload.decode("utf-8"))
                 retMess = self.readValue(mess)
                 agent.publish(self.readTopic, retMess)
                 return retMess
@@ -114,6 +115,13 @@ class opcuaClient(Client):
                     var = self.get_node(mess["varID"])
                     var.set_value(mess["value"])
                     print("var written")
+
+            if (msg.topic == self.connectDisconnectTopic):
+                mess = str(msg.payload.decode("utf-8"))
+                if mess == "disconnect":
+                    self.disconnect()
+                elif mess == "reconnect":
+                    self.connect()
 
         self.agent = mqtt.Client(self.name)
         print("Here?")
@@ -212,25 +220,6 @@ class opcuaClient(Client):
         return ret
         # except:
         #     print("Couldn't read the value with ID ", varID)
-
-    # def browse_node_tree(self, nodes):
-    #     """
-    #     Browses multiple nodes in one ua call
-    #     returns a List of Tuples(Node, BrowseResult)
-    #     """
-    #     nodestobrowse = []
-    #     for node in nodes:
-    #         desc = ua.BrowseDescription()
-    #         desc.NodeId = node.nodeid
-    #         desc.ResultMask = ua.BrowseResultMask.All
-    #         nodestobrowse.append(desc)
-    #     parameters = ua.BrowseParameters()
-    #     parameters.View = ua.ViewDescription()
-    #     parameters.RequestedMaxReferencesPerNode = 0
-    #     parameters.NodesToBrowse = nodestobrowse
-    #     results = self.uaclient.browse(parameters)
-    #     return list(zip(nodes, results))
-
 
 
     def browse_node_tree(self, syncnode):
