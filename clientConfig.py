@@ -26,6 +26,8 @@ def addserver():
     subRequestTopic = input("Type the topic for variable subscription requests: ")
     unSubRequestTopic = input("unsubscribe request topic")
     subscriptionTopic = input("Subscription Topic")
+    connectDisconnectTopic = input("Connect-Disconnect Topic")
+
 
     # Setting the taken inputs in the clientConfig.ini file, in the new server's section. #
     initial_configfile.add_section("Server" + str(numOfServers))
@@ -42,6 +44,8 @@ def addserver():
     initial_configfile.set('Server' + str(numOfServers), 'subRequestTopic', subRequestTopic)
     initial_configfile.set('Server' + str(numOfServers), 'unSubRequestTopic', unSubRequestTopic)
     initial_configfile.set('Server' + str(numOfServers), 'subscriptionTopic', subscriptionTopic)
+    initial_configfile.set('Server' + str(numOfServers), 'connectDisconnectTopic', connectDisconnectTopic)
+
 
 
     with open(r"try.ini", 'w') as configfile:
@@ -73,6 +77,7 @@ def initialize():
         subRequestTopic = input("subscription request topic for server" + str(i))
         unSubRequestTopic = input("unsubscribe request topic for server" + str(i))
         subscriptionTopic = input("Subscription Topic for server" + str(i))
+        connectDisconnectTopic = input("Connect-Disconnect Topic for server" + str(i))
 
         # Setting the taken inputs in the clientConfig.ini file #
         config.set('Server' + str(i), 'url', serverUrl)
@@ -88,6 +93,8 @@ def initialize():
         config.set('Server' + str(i), 'subRequestTopic', subRequestTopic)
         config.set('Server' + str(i), 'unSubRequestTopic', unSubRequestTopic)
         config.set('Server' + str(i), 'subscriptionTopic', subscriptionTopic)
+        config.set('Server' + str(i), 'connectDisconnectTopic', connectDisconnectTopic)
+
 
     with open(r"clientData.ini", 'w') as configfile:
         config.write(configfile)
@@ -119,6 +126,7 @@ def addserver_from_UI(dataFromUI):
     subRequestTopic = dataObject["subRequestTopic"]
     unSubRequestTopic = dataObject["unSubRequestTopic"]
     subscriptionTopic = dataObject["subscriptionTopic"]
+    connectDisconnectTopic = dataObject["connectDisconnectTopic"]
 
     # Setting the taken inputs in the clientConfig.ini file, in the new server's section. #
     initial_configfile.add_section("Server" + str(numOfServers))
@@ -135,6 +143,7 @@ def addserver_from_UI(dataFromUI):
     initial_configfile.set('Server' + str(numOfServers), 'subRequestTopic', subRequestTopic)
     initial_configfile.set('Server' + str(numOfServers), 'unSubRequestTopic', unSubRequestTopic)
     initial_configfile.set('Server' + str(numOfServers), 'subscriptionTopic', subscriptionTopic)
+    initial_configfile.set('Server' + str(numOfServers), 'connectDisconnectTopic', connectDisconnectTopic)
 
 
 
@@ -166,6 +175,7 @@ def initialize_from_UI(dataFromUI):
         subRequestTopic = dataObject["subRequestTopic"]
         unSubRequestTopic = dataObject["unSubRequestTopic"]
         subscriptionTopic = dataObject["subscriptionTopic"]
+        connectDisconnectTopic = dataObject["connectDisconnectTopic"]
 
         # Setting the taken inputs in the clientConfig.ini file #
         config.set('Server' + str(i), 'url', serverUrl)
@@ -181,6 +191,7 @@ def initialize_from_UI(dataFromUI):
         config.set('Server' + str(i), 'subRequestTopic', subRequestTopic)
         config.set('Server' + str(i), 'unSubRequestTopic', unSubRequestTopic)
         config.set('Server' + str(i), 'subscriptionTopic', subscriptionTopic)
+        config.set('Server' + str(i), 'connectDisconnectTopic', connectDisconnectTopic)
 
     with open(r"clientData.ini", 'w') as configfile:
         config.write(configfile)
