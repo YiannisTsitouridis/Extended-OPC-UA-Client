@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Functions complete.">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Fixed in config and genManager too.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opcUaClientClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/opcUaClientClass.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -439,7 +438,23 @@
       <option name="project" value="LOCAL" />
       <updated>1695207065809</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="Fixed connect-disconnect topic">
+      <option name="closed" value="true" />
+      <created>1695212870919</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1695212870919</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Fixed in config and genManager too.">
+      <option name="closed" value="true" />
+      <created>1695213400150</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1695213400150</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -454,8 +469,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Before try" />
-    <MESSAGE value="Before I merge startUp with generalManager" />
     <MESSAGE value="Last commit" />
     <MESSAGE value="New threads in loop." />
     <MESSAGE value="Corrected i-1" />
@@ -479,6 +492,8 @@
     <MESSAGE value="First branch commit" />
     <MESSAGE value="new functions" />
     <MESSAGE value="Functions complete." />
-    <option name="LAST_COMMIT_MESSAGE" value="Functions complete." />
+    <MESSAGE value="Fixed connect-disconnect topic" />
+    <MESSAGE value="Fixed in config and genManager too." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed in config and genManager too." />
   </component>
 </project>
