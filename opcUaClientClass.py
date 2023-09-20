@@ -51,6 +51,9 @@ class opcuaClient(Client):
         self.subRequestTopic = subRequestTopic
         self.unSubRequestTopic = unSubRequestTopic
         self.subscribeTopic = subscribeTopic
+        # TO DO!
+        # Add fields that have to do with server's security policy.
+        # self.set_security(policy = , certificate = , private_key = , private_key_password = , server_certificate = , mode = )
         self.agent = self.createMqttAgent()
         self.initial_subscriptions()
 

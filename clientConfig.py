@@ -167,9 +167,6 @@ def initialize_from_UI(dataFromUI):
         unSubRequestTopic = dataObject["unSubRequestTopic"]
         subscriptionTopic = dataObject["subscriptionTopic"]
 
-
-        
-
         # Setting the taken inputs in the clientConfig.ini file #
         config.set('Server' + str(i), 'url', serverUrl)
         config.set('Server' + str(i), 'name', serverName)

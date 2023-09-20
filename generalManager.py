@@ -94,6 +94,15 @@ def stop(numOfServers):
     for i in range(1, numOfServers):
         clientsList[i].stop()
 
+def killClient(num):
+    clientsList[num]._stop()
+    clientsList[num]._delete()
+
+def restartClient(num):
+    clientsList[num] = threading.Thread(target=startClient, args=(num,))
+    clientsList[num].start()
+
+
 ############################################################################
 ####                     DEFINING MAIN FUNCTION                         ####
 ############################################################################
@@ -114,6 +123,9 @@ def main():
             elif mess == "startUp":
                 print("startUp ordered")
                 startUp(numOfServers)
+        elif msg.topic == "restart":
+            killClient(mess)
+
         elif msg.topic == "initialize":
             clientConfig.initialize_from_UI(mess)
         elif msg.topic == "addServer":
