@@ -26,6 +26,18 @@ import configparser
 import threading
 from opcUaClientClass import opcuaClient
 
+###########################################################################################################################
+# For every client uses the following MQTT Topics:                        #
+# startStop:                                                           #
+# refreshClient:                                                                #
+# killClient:                     #
+# startClient:                        #
+# initialize:                 #
+# addServer:                                                      #
+# editServer:                                                     #
+###########################################################################################################################
+
+
 # This part of code is for importing the appropriate console
 try:
     from IPython import embed
@@ -140,6 +152,8 @@ def main():
             clientConfig.initialize_from_UI(mess)
         elif msg.topic == "addServer":
             clientConfig.addserver_from_UI(mess)
+        elif msg.topic == "editServer":
+            pass
 
 
 

@@ -15,21 +15,22 @@ import paho.mqtt.client as mqtt
 from asyncua.sync import Client, ThreadLoop, _logger
 
 
-#########################################################################################################################
-# For every server in the industry another client entity should be created to be connected with it                      #
-# url:                  the url of the server that each client will connect to                                          #
-# name:                 the name of each client(same as the server name)                                                #
-# mqtturl:              the url/name of the mqtt broker through which the data are transferred to/from the Platform     #
-# mqttport:             the port of the mqtt broker through which the data are transferred to/from the Platform         #
-# architecturetopic:    the mqtt topic in which the nodes of the server will be posted after connecting to it           #
-# consoletopic:         the mqtt topic where console-type messages are posted                                           #
-# readtopic:            the mqtt topic where the read-asked values are published                                        #
-# methRequestTopic:     the mqtt topic where the UI publishes to call an OPC UA method                                  #
-# readRequestTopic:     the mqtt topic where the UI publishes to request to read the value of a variable                #
-# writeRequestTopic:    the mqtt topic where the UI publishes to request to write the value of a variable               #
-# subRequestTopic:      the mqtt topic where the UI publishes to request to monitor the value changes of a variable     #
-# unSubRequestTopic:    the mqtt topic where the UI publishes to request to stop monitoring variable's value changes    #
-#########################################################################################################################
+###########################################################################################################################
+# For every server in the industry another client entity should be created to be connected with it                        #
+# url:                    the url of the server that each client will connect to                                          #
+# name:                   the name of each client(same as the server name)                                                #
+# mqtturl:                the url/name of the mqtt broker through which the data are transferred to/from the Platform     #
+# mqttport:               the port of the mqtt broker through which the data are transferred to/from the Platform         #
+# architecturetopic:      the mqtt topic in which the nodes of the server will be posted after connecting to it           #
+# consoletopic:           the mqtt topic where console-type messages are posted                                           #
+# readtopic:              the mqtt topic where the read-asked values are published                                        #
+# methRequestTopic:       the mqtt topic where the UI publishes to call an OPC UA method                                  #
+# readRequestTopic:       the mqtt topic where the UI publishes to request to read the value of a variable                #
+# writeRequestTopic:      the mqtt topic where the UI publishes to request to write the value of a variable               #
+# subRequestTopic:        the mqtt topic where the UI publishes to request to monitor the value changes of a variable     #
+# unSubRequestTopic:      the mqtt topic where the UI publishes to request to stop monitoring variable's value changes    #
+# connectDisconnectTopic: the mqtt topic where the UI publishes to request to stop monitoring variable's value changes    #
+###########################################################################################################################
 class opcuaClient(Client):
     # This class is a child class to the Client Class from asyncua package.
     # When you add the __init__() function, the child class will no longer inherit the parent's __init__() function.
@@ -278,12 +279,9 @@ class opcuaClient(Client):
                 'type': var_type,
               }
 
-
     def browse_server(self):
         """
         Build and return a nested node tree dict by recursion (filtered by OPC UA objects and variables).
         And bring back the architecture of each server.
         """
         return self.browse_node_tree(self.get_root_node())
-
-
