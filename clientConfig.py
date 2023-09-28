@@ -46,9 +46,7 @@ def addserver():
     initial_configfile.set('Server' + str(numOfServers), 'subscriptionTopic', subscriptionTopic)
     initial_configfile.set('Server' + str(numOfServers), 'connectDisconnectTopic', connectDisconnectTopic)
 
-
-
-    with open(r"try.ini", 'w') as configfile:
+    with open(r"clientData.ini", 'w') as configfile:
         initial_configfile.write(configfile)
 
 
@@ -99,6 +97,46 @@ def initialize():
     with open(r"clientData.ini", 'w') as configfile:
         config.write(configfile)
 
+def edit_server(num):
+    initial_configfile = configparser.ConfigParser()
+    initial_configfile.read("clientData.ini")
+
+    # Taking console inputs for the new server. #
+    serverUrl = input("Type the new Url of the server: ")
+    serverName = input("Type the new name of the new server: ")
+    mqttUrl = input("Type the new Url or username of the mqtt Broker: ")
+    mqttPort = input("Type the new port of the mqtt Broker: ")
+    architectureTopic = input("Type the new name of the architecture topic: ")
+    consoleTopic = input("Type the new topic for console messages: ")
+    readTopic = input("Type the new topic for the read values: ")
+    methRequestTopic = input("Type the new topic for method requests: ")
+    readRequestTopic = input("Type the new topic for reading values requests: ")
+    writeRequestTopic = input("Type the new topic for writing values requests: ")
+    subRequestTopic = input("Type the new topic for variable subscription requests: ")
+    unSubRequestTopic = input("New Unsubscribe request topic")
+    subscriptionTopic = input("New Subscription Topic")
+    connectDisconnectTopic = input("New Connect-Disconnect Topic")
+
+    # Setting the taken inputs in the clientConfig.ini file, in the new server's section. #
+    initial_configfile.add_section("Server" + str(num))
+    initial_configfile.set('Server' + str(num), 'serversNum', serverUrl)
+    initial_configfile.set('Server' + str(num), 'serverName', serverName)
+    initial_configfile.set('Server' + str(num), 'mqttUrl', mqttUrl)
+    initial_configfile.set('Server' + str(num), 'mqttPort', mqttPort)
+    initial_configfile.set('Server' + str(num), 'architectureTopic', architectureTopic)
+    initial_configfile.set('Server' + str(num), 'consoleTopic', consoleTopic)
+    initial_configfile.set('Server' + str(num), 'readTopic', readTopic)
+    initial_configfile.set('Server' + str(num), 'methRequestTopic', methRequestTopic)
+    initial_configfile.set('Server' + str(num), 'readRequestTopic', readRequestTopic)
+    initial_configfile.set('Server' + str(num), 'writeRequestTopic', writeRequestTopic)
+    initial_configfile.set('Server' + str(num), 'subRequestTopic', subRequestTopic)
+    initial_configfile.set('Server' + str(num), 'unSubRequestTopic', unSubRequestTopic)
+    initial_configfile.set('Server' + str(num), 'subscriptionTopic', subscriptionTopic)
+    initial_configfile.set('Server' + str(num), 'connectDisconnectTopic', connectDisconnectTopic)
+
+    with open(r"clientData.ini", 'w') as configfile:
+        initial_configfile.write(configfile)
+
 
 def addserver_from_UI(dataFromUI):
 
@@ -145,12 +183,49 @@ def addserver_from_UI(dataFromUI):
     initial_configfile.set('Server' + str(numOfServers), 'subscriptionTopic', subscriptionTopic)
     initial_configfile.set('Server' + str(numOfServers), 'connectDisconnectTopic', connectDisconnectTopic)
 
+    with open(r"clientData.ini", 'w') as configfile:
+        initial_configfile.write(configfile)
+
+def edit_server_from_UI(dataFromUI):
+    dataObject = json.loads(dataFromUI)
+    initial_configfile = configparser.ConfigParser()
+    initial_configfile.read("clientData.ini")
+    i = dataObject["numOfServers"]
+
+    serverUrl = dataObject["serverUrl"]
+    serverName = dataObject["serverName"]
+    mqttUrl = dataObject["mqttUrl"]
+    mqttPort = dataObject["mqttPort"]
+    architectureTopic = dataObject["architectureTopic"]
+    consoleTopic = dataObject["consoleTopic"]
+    readTopic = dataObject["readTopic"]
+    methRequestTopic = dataObject["methRequestTopic"]
+    readRequestTopic = dataObject["readRequestTopic"]
+    writeRequestTopic = dataObject["writeRequestTopic"]
+    subRequestTopic = dataObject["subRequestTopic"]
+    unSubRequestTopic = dataObject["unSubRequestTopic"]
+    subscriptionTopic = dataObject["subscriptionTopic"]
+    connectDisconnectTopic = dataObject["connectDisconnectTopic"]
+
+    initial_configfile.set('Server' + str(i), 'url', serverUrl)
+    initial_configfile.set('Server' + str(i), 'name', serverName)
+    initial_configfile.set('Server' + str(i), 'mqttUrl', mqttUrl)
+    initial_configfile.set('Server' + str(i), 'mqttPort', mqttPort)
+    initial_configfile.set('Server' + str(i), 'architectureTopic', architectureTopic)
+    initial_configfile.set('Server' + str(i), 'consoleTopic', consoleTopic)
+    initial_configfile.set('Server' + str(i), 'readTopic', readTopic)
+    initial_configfile.set('Server' + str(i), 'methRequestTopic', methRequestTopic)
+    initial_configfile.set('Server' + str(i), 'readRequestTopic', readRequestTopic)
+    initial_configfile.set('Server' + str(i), 'writeRequestTopic', writeRequestTopic)
+    initial_configfile.set('Server' + str(i), 'subRequestTopic', subRequestTopic)
+    initial_configfile.set('Server' + str(i), 'unSubRequestTopic', unSubRequestTopic)
+    initial_configfile.set('Server' + str(i), 'subscriptionTopic', subscriptionTopic)
+    initial_configfile.set('Server' + str(i), 'connectDisconnectTopic', connectDisconnectTopic)
 
 
 def initialize_from_UI(dataFromUI):
 
     dataObject = json.loads(dataFromUI)
-
     config = configparser.ConfigParser()
 
     n = len(dataObject)
@@ -214,5 +289,9 @@ if __name__=='__main__':
             addserver_from_UI(args[2])
         elif function_name == initialize_from_UI.__name__:
             initialize_from_UI(args[2])
+        elif function_name == edit_server.__name__:
+            edit_server(args[2])
+        elif function_name == edit_server_from_UI.__name__:
+            edit_server_from_UI(args[2])
         else:
             print("Invalid function name.")
