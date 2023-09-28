@@ -153,7 +153,7 @@ def main():
         elif msg.topic == "addServer":
             clientConfig.addserver_from_UI(mess)
         elif msg.topic == "editServer":
-            pass
+            clientConfig.edit_server_from_UI(mess)
 
 
 
