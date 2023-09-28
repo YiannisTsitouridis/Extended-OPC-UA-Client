@@ -4,38 +4,30 @@ import os
 import asyncio
 
 import clientConfig
-
 sys.path.insert(0, "..")
-import asyncua
 import logging
-import time
-from asyncua import common
-from asyncua.common import node, subscription, shortcuts
 from pathlib import Path
 import numpy as np
 import json
-from asyncua import ua
-import xml.etree.ElementTree as ET
-from xml.etree.ElementTree import Element, tostring
 from typing import List, Any
-from dict2xml import dict2xml
 import paho.mqtt.client as mqtt
-from asyncua.sync import Client, ThreadLoop, _logger
 import codecs
 import configparser
 import threading
 from opcUaClientClass import opcuaClient
 
-###########################################################################################################################
-# For every client uses the following MQTT Topics:                        #
-# startStop:                                                           #
-# refreshClient:                                                                #
-# killClient:                     #
-# startClient:                        #
-# initialize:                 #
-# addServer:                                                      #
-# editServer:                                                     #
-###########################################################################################################################
+########################################################################################################################
+# For every client uses the following MQTT Topics:                                                                     #
+# startStop:            Sending "startUp" on this topic, the system starts to operate all the clients for the servers  #
+#                       registered at the clientData.ini file. Sending stop will stop all the client instances running #
+# refreshClient:        Sending the number of the server you want to delete thread and create again                    #
+# killClient:           Sending the number of the server whose client thread you want to kill                          #
+# startClient:          Sending the number of the server you want to start a client thread for                         #
+# initialize:           Sending a JSON string with the list of servers and arguments                                   #
+# addServer:            Sending a JSON string with the list of arguments for the new server                            #
+# editServer:           Sending a JSON string with the number of the server you want to edit and the list of arguments #
+#                       for the new server                                                                             #
+########################################################################################################################
 
 
 # This part of code is for importing the appropriate console
@@ -163,9 +155,6 @@ def main():
     generalAgent.connect(host="test.mosquitto.org", port=1883)
     generalAgent.subscribe("startStop")
     generalAgent.loop_forever()
-
-
-
 
 
 
