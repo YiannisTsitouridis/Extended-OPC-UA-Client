@@ -141,7 +141,7 @@ def main():
         elif msg.topic == "startClient":
             startClient(int(mess))
         # Add clear here!
-        elif msg.topic == "startClient":
+        elif msg.topic == "clearConfig":
             clientConfig.clearConfig()
         elif msg.topic == "addServer":
             clientConfig.addserver_from_UI(mess)
