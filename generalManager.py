@@ -140,7 +140,6 @@ def main():
             killClient(int(mess))
         elif msg.topic == "startClient":
             startClient(int(mess))
-        # Add clear here!
         elif msg.topic == "clearConfig":
             clientConfig.clearConfig()
         elif msg.topic == "addServer":

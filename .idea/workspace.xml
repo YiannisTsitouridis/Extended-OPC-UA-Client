@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientConfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/clientConfig.py" afterDir="false" />
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Init gone,&#10;clearConfig ready!">
       <change beforePath="$PROJECT_DIR$/generalManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/generalManager.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -63,14 +61,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Problem with subhandler __init__ and arguements">
-      <option name="closed" value="true" />
-      <created>1689942591135</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1689942591135</updated>
     </task>
     <task id="LOCAL-00007" summary="Before I go">
       <option name="closed" value="true" />
@@ -456,7 +446,15 @@
       <option name="project" value="LOCAL" />
       <updated>1695887949040</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="Init gone,&#10;clearConfig ready!">
+      <option name="closed" value="true" />
+      <created>1695978162253</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1695978162253</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -471,7 +469,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Cannot find solution with arguements" />
     <MESSAGE value="So close to browse!" />
     <MESSAGE value="Printing arguements" />
     <MESSAGE value="Passed in arch string" />
@@ -496,6 +493,7 @@
     <MESSAGE value="First version including edit server data" />
     <MESSAGE value="Added edit topic" />
     <MESSAGE value="Fixed some comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed some comments" />
+    <MESSAGE value="Init gone,&#10;clearConfig ready!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Init gone,&#10;clearConfig ready!" />
   </component>
 </project>
