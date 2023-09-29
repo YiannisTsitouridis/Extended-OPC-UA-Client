@@ -50,53 +50,6 @@ def addserver():
         initial_configfile.write(configfile)
 
 
-def initialize():
-    config = configparser.ConfigParser()
-
-    n = int(input("Number of servers: "))
-
-    config.add_section('NumberOfServers')
-    config.set('NumberOfServers', 'serversNum', str(n))
-
-    for i in range(0, n):
-        config.add_section("Server" + str(i))
-
-        # Taking console inputs for every server. #
-        serverUrl = input("Type the Url of server "+str(i)+": ")
-        serverName = input("Type the name of server " + str(i) + ": ")
-        mqttUrl = input("Type the url of mqtt Broker " + str(i) + ": ")
-        mqttPort = input("Type the port of mqtt Broker " + str(i) + ": ")
-        architectureTopic = input("Type the topic where the server" + str(i) + " architecture will be sent: ")
-        consoleTopic = input("Type the topic for the console messages of server" + str(i) + ": ")
-        readTopic = input("Type the topic for displaying the values ordered to read from server" + str(i) + ": ")
-        methRequestTopic = input("method request topic for server" + str(i))
-        readRequestTopic = input("read request topic for server" + str(i))
-        writeRequestTopic = input("write request topic for server" + str(i))
-        subRequestTopic = input("subscription request topic for server" + str(i))
-        unSubRequestTopic = input("unsubscribe request topic for server" + str(i))
-        subscriptionTopic = input("Subscription Topic for server" + str(i))
-        connectDisconnectTopic = input("Connect-Disconnect Topic for server" + str(i))
-
-        # Setting the taken inputs in the clientConfig.ini file #
-        config.set('Server' + str(i), 'url', serverUrl)
-        config.set('Server' + str(i), 'name', serverName)
-        config.set('Server' + str(i), 'mqttUrl', mqttUrl)
-        config.set('Server' + str(i), 'mqttPort', mqttPort)
-        config.set('Server' + str(i), 'architectureTopic', architectureTopic)
-        config.set('Server' + str(i), 'consoleTopic', consoleTopic)
-        config.set('Server' + str(i), 'readTopic', readTopic)
-        config.set('Server' + str(i), 'methRequestTopic', methRequestTopic)
-        config.set('Server' + str(i), 'readRequestTopic', readRequestTopic)
-        config.set('Server' + str(i), 'writeRequestTopic', writeRequestTopic)
-        config.set('Server' + str(i), 'subRequestTopic', subRequestTopic)
-        config.set('Server' + str(i), 'unSubRequestTopic', unSubRequestTopic)
-        config.set('Server' + str(i), 'subscriptionTopic', subscriptionTopic)
-        config.set('Server' + str(i), 'connectDisconnectTopic', connectDisconnectTopic)
-
-
-    with open(r"clientData.ini", 'w') as configfile:
-        config.write(configfile)
-
 def edit_server(num):
     initial_configfile = configparser.ConfigParser()
     initial_configfile.read("clientData.ini")
@@ -190,7 +143,7 @@ def edit_server_from_UI(dataFromUI):
     dataObject = json.loads(dataFromUI)
     initial_configfile = configparser.ConfigParser()
     initial_configfile.read("clientData.ini")
-    i = dataObject["numOfServers"]
+    i = dataObject["numOfServer"]
 
     serverUrl = dataObject["serverUrl"]
     serverName = dataObject["serverName"]
@@ -271,9 +224,16 @@ def initialize_from_UI(dataFromUI):
     with open(r"clientData.ini", 'w') as configfile:
         config.write(configfile)
 
+def clearConfig():
+    initial_configfile = configparser.ConfigParser()
+    initial_configfile.read("clientData.ini")
+    num = initial_configfile.getint('NumberOfServers', 'serversNum')
+    for i in range(0, num):
+        initial_configfile.remove_section('Server' + str(i))
+    initial_configfile.set('NumberOfServers', 'serversNum', '0')
 
-    # def deleteServer():
-    # def deleteServer_from_UI():
+    with open(r"clientData.ini", 'w') as configfile:
+        initial_configfile.write(configfile)
 
 
 if __name__=='__main__':
@@ -281,9 +241,7 @@ if __name__=='__main__':
     # if len(args)
     function_name = args[1]
     if args:
-        if function_name == initialize.__name__:
-            initialize()
-        elif function_name == addserver.__name__:
+        if function_name == addserver.__name__:
             addserver()
         elif function_name == addserver_from_UI.__name__:
             addserver_from_UI(args[2])
@@ -293,5 +251,7 @@ if __name__=='__main__':
             edit_server(args[2])
         elif function_name == edit_server_from_UI.__name__:
             edit_server_from_UI(args[2])
+        elif function_name == clearConfig.__name__:
+            clearConfig()
         else:
             print("Invalid function name.")

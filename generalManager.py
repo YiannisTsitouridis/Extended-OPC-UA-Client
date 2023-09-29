@@ -19,7 +19,7 @@ from opcUaClientClass import opcuaClient
 ########################################################################################################################
 # For every client uses the following MQTT Topics:                                                                     #
 # startStop:            Sending "startUp" on this topic, the system starts to operate all the clients for the servers  #
-#                       registered at the clientData.ini file. Sending stop will stop all the client instances running #
+#                       registered at the clientData.ini file. Sending "stop" will stop all the client instances running #
 # refreshClient:        Sending the number of the server you want to delete thread and create again                    #
 # killClient:           Sending the number of the server whose client thread you want to kill                          #
 # startClient:          Sending the number of the server you want to start a client thread for                         #
@@ -140,8 +140,9 @@ def main():
             killClient(int(mess))
         elif msg.topic == "startClient":
             startClient(int(mess))
-        elif msg.topic == "initialize":
-            clientConfig.initialize_from_UI(mess)
+        # Add clear here!
+        elif msg.topic == "startClient":
+            clientConfig.clearConfig()
         elif msg.topic == "addServer":
             clientConfig.addserver_from_UI(mess)
         elif msg.topic == "editServer":
