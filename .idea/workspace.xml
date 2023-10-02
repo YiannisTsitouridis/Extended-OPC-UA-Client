@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="2nd server">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="2nd server!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/clientConfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/clientConfig.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clientData.ini" beforeDir="false" afterPath="$PROJECT_DIR$/clientData.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generalManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/generalManager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/opcUaClientClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/opcUaClientClass.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,14 +65,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00010" summary="get_node problem:OK">
-      <option name="closed" value="true" />
-      <created>1690282773600</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1690282773600</updated>
     </task>
     <task id="LOCAL-00011" summary="Pause to try an old one">
       <option name="closed" value="true" />
@@ -455,7 +450,15 @@
       <option name="project" value="LOCAL" />
       <updated>1696235023729</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="2nd server!">
+      <option name="closed" value="true" />
+      <created>1696238985057</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1696238985057</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -470,7 +473,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Done!" />
     <MESSAGE value="Initial commit." />
     <MESSAGE value="Read message fixed." />
     <MESSAGE value="Before I go" />
@@ -495,6 +497,7 @@
     <MESSAGE value="Corrected one mistake" />
     <MESSAGE value="yj" />
     <MESSAGE value="2nd server" />
-    <option name="LAST_COMMIT_MESSAGE" value="2nd server" />
+    <MESSAGE value="2nd server!" />
+    <option name="LAST_COMMIT_MESSAGE" value="2nd server!" />
   </component>
 </project>

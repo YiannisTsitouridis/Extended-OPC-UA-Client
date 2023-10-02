@@ -44,7 +44,7 @@ except ImportError:
         shell.interact()
         print("Code module imported")
 
-clientsList = []
+clientsList = []    # List with the threads of all the client instances.
 
 ############################################################################
 ####                     DEFINING USEFUL FUNCTIONS                      ####
@@ -53,28 +53,33 @@ clientsList = []
 def startUp(numOfServers):
     kill = False
     # with ThreadPool() as pool:
-    for i in range(1, numOfServers + 1):
-        t = threading.Thread(target=startClient, args=(i,))
-        clientsList.append(t)
-        clientsList[i-1].start()
+    for i in range(0, numOfServers):
+        print("In  startup loop")
+        #t = threading.Thread(target=startClient, args=(i,))
+        print("One thread created")
+        #clientsList.append(t)
+        #clientsList[i].start()
+        startClient(i)
+        print("Thread ", i, "has started")
 
 def startClient(num):
     serversData = configparser.ConfigParser()
     serversData.read("clientData.ini")
-    localurl = serversData.get('Server' + str(num - 1), 'url')
-    localname = serversData.get(('Server' + str(num - 1)), 'name')
-    localmqttUrl = serversData.get(('Server' + str(num - 1)), 'mqttUrl')
-    localmqttPort = serversData.get(('Server' + str(num - 1)), 'mqttPort')
-    localarchitectureTopic = serversData.get(('Server' + str(num - 1)), 'architectureTopic')
-    localconsoleTopic = serversData.get('Server' + str(num - 1), 'consoleTopic')
-    localreadTopic = serversData.get(('Server' + str(num - 1)), 'readTopic')
-    localmethrequestTopic = serversData.get(('Server' + str(num - 1)), 'methRequestTopic')
-    localreadRequestTopic = serversData.get(('Server' + str(num - 1)), 'readRequestTopic')
-    localwriteRequestTopic = serversData.get(('Server' + str(num - 1)), 'writeRequestTopic')
-    localsubrequestTopic = serversData.get(('Server' + str(num - 1)), 'subRequestTopic')
-    localunsubrequestTopic = serversData.get(('Server' + str(num - 1)), 'unSubRequestTopic')
-    localsubscribeTopic = serversData.get(('Server' + str(num - 1)), 'subscriptionTopic')
-    localconnectDisconnectTopic = serversData.get(('Server' + str(num - 1)), 'connectDisconnectTopic')
+    localurl = serversData.get('Server' + str(num), 'url')
+    localname = serversData.get(('Server' + str(num)), 'name')
+    localmqttUrl = serversData.get(('Server' + str(num)), 'mqtturl')
+    localmqttPort = serversData.get('Server' + str(num), 'mqttport')
+    localarchitectureTopic = serversData.get('Server' + str(num), 'architecturetopic')
+    localconsoleTopic = serversData.get('Server' + str(num), 'consoletopic')
+    localreadTopic = serversData.get('Server' + str(num), 'readtopic')
+    localmethrequestTopic = serversData.get('Server' + str(num), 'methrequesttopic')
+    localreadRequestTopic = serversData.get('Server' + str(num), 'readrequesttopic')
+    localwriteRequestTopic = serversData.get('Server' + str(num), 'writerequesttopic')
+    localsubrequestTopic = serversData.get('Server' + str(num), 'subrequesttopic')
+    localunsubrequestTopic = serversData.get('Server' + str(num), 'unsubrequesttopic')
+    localsubscribeTopic = serversData.get('Server' + str(num), 'subscriptiontopic')
+    localconnectDisconnectTopic = serversData.get('Server' + str(num), 'connectdisconnecttopic')
+    print("Where does this print?")
     with opcuaClient(localurl, localname, localmqttUrl, int(localmqttPort), localarchitectureTopic,
                      localconsoleTopic, localreadTopic, localmethrequestTopic, localreadRequestTopic,
                      localwriteRequestTopic, localsubrequestTopic, localunsubrequestTopic, localsubscribeTopic,
@@ -82,22 +87,26 @@ def startClient(num):
         try:
             client.__enter__()
             print("Server with name " + str(client.name) + " detected")
-            clientsList.append(client)
+            client.agent.publish("Server with name " + str(client.name) + " detected")
         except:
             print("Error occurred while trying to connect to server" + str(client.name) + "with url:" + str(
                 client.url))
             client.agent.publish("Topic", "Error occurred while trying to connect to server" + str(
                 client.name) + " with url: " + str(client.url))
+
+        print("Inside the client ", num, "loop")
         tree = client.browse_server()
         treejs = json.dumps(tree)
 
         print(treejs)
-        client.agent.publish("arch", treejs)
+        client.agent.publish('arc', "Connected with server")
+
+        client.agent.publish('arc', treejs)
         embed()
 
 def stop(numOfServers):
     print("All client instances are terminated.")
-    for i in range(1, numOfServers):
+    for i in range(0, numOfServers):
         if clientsList[i].is_alive:
             clientsList[i].stop()
 
@@ -121,7 +130,6 @@ def main():
     serversData = configparser.ConfigParser()
     serversData.read("clientData.ini")
     numOfServers = serversData.getint('NumberOfServers', 'serversNum')
-
     def on_connect(agent, userdata, flags, rc):
         print("Connected!")
 

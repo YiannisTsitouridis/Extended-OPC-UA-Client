@@ -56,7 +56,7 @@ class opcuaClient(Client):
         # TO DO!
         # Add fields that have to do with server's security policy.
         # self.set_security(policy = , certificate = , private_key = , private_key_password = , server_certificate = , mode = )
-        self.agent = self.createMqttAgent()
+        self.agent:object = self.createMqttAgent()
         self.initial_subscriptions()
 
     def createMqttAgent(self):
