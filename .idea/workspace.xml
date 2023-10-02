@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="2nd server">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientData.ini" beforeDir="false" afterPath="$PROJECT_DIR$/clientData.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clientConfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/clientConfig.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,14 +62,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Problem with get_node in callMethodFromID">
-      <option name="closed" value="true" />
-      <created>1690280180156</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1690280180156</updated>
     </task>
     <task id="LOCAL-00010" summary="get_node problem:OK">
       <option name="closed" value="true" />
@@ -455,7 +447,15 @@
       <option name="project" value="LOCAL" />
       <updated>1695978862174</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="2nd server">
+      <option name="closed" value="true" />
+      <created>1696235023727</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1696235023729</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -470,7 +470,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Passed in arch string" />
     <MESSAGE value="Done!" />
     <MESSAGE value="Initial commit." />
     <MESSAGE value="Read message fixed." />
@@ -495,6 +494,7 @@
     <MESSAGE value="Init gone,&#10;clearConfig ready!" />
     <MESSAGE value="Corrected one mistake" />
     <MESSAGE value="yj" />
-    <option name="LAST_COMMIT_MESSAGE" value="yj" />
+    <MESSAGE value="2nd server" />
+    <option name="LAST_COMMIT_MESSAGE" value="2nd server" />
   </component>
 </project>

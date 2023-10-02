@@ -71,7 +71,6 @@ def edit_server(num):
     connectDisconnectTopic = input("New Connect-Disconnect Topic")
 
     # Setting the taken inputs in the clientConfig.ini file, in the new server's section. #
-    initial_configfile.add_section("Server" + str(num))
     initial_configfile.set('Server' + str(num), 'serversNum', serverUrl)
     initial_configfile.set('Server' + str(num), 'serverName', serverName)
     initial_configfile.set('Server' + str(num), 'mqttUrl', mqttUrl)
@@ -120,7 +119,6 @@ def addserver_from_UI(dataFromUI):
     connectDisconnectTopic = dataObject["connectDisconnectTopic"]
 
     # Setting the taken inputs in the clientConfig.ini file, in the new server's section. #
-    initial_configfile.add_section("Server" + str(numOfServers))
     initial_configfile.set('Server' + str(numOfServers), 'serversNum', serverUrl)
     initial_configfile.set('Server' + str(numOfServers), 'serverName', serverName)
     initial_configfile.set('Server' + str(numOfServers), 'mqttUrl', mqttUrl)
