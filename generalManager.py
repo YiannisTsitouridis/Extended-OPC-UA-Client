@@ -55,11 +55,11 @@ def startUp(numOfServers):
     # with ThreadPool() as pool:
     for i in range(0, numOfServers):
         print("In  startup loop")
-        #t = threading.Thread(target=startClient, args=(i,))
+        t = threading.Thread(target=startClient, args=(i,))
         print("One thread created")
-        #clientsList.append(t)
-        #clientsList[i].start()
-        startClient(i)
+        clientsList.append(t)
+        clientsList[i].start()
+        #startClient(i)
         print("Thread ", i, "has started")
 
 def startClient(num):
@@ -102,6 +102,7 @@ def startClient(num):
         client.agent.publish('arc', "Connected with server")
 
         client.agent.publish('arc', treejs)
+
         embed()
 
 def stop(numOfServers):
@@ -114,9 +115,6 @@ def killClient(num):
     clientsList[num]._stop()
     clientsList[num]._delete()
 
-def startClient(num):
-    clientsList[num] = threading.Thread(target=startClient, args=(num,))
-    clientsList[num].start()
 
 def refreshClient(num):
     killClient(num)
