@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Init gone,&#10;clearConfig ready!">
-      <change beforePath="$PROJECT_DIR$/generalManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/generalManager.py" afterDir="false" />
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clientData.ini" beforeDir="false" afterPath="$PROJECT_DIR$/clientData.ini" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,14 +46,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Deleting-initialize",
-    "last_opened_file_path": "/home/yiannis/eclipse-workspace/extraServer.py"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Deleting-initialize&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/yiannis/eclipse-workspace/extraServer.py&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -61,22 +62,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Before I go">
-      <option name="closed" value="true" />
-      <created>1689944724330</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1689944724330</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Seems all good!">
-      <option name="closed" value="true" />
-      <created>1690265850039</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1690265850039</updated>
     </task>
     <task id="LOCAL-00009" summary="Problem with get_node in callMethodFromID">
       <option name="closed" value="true" />
@@ -454,7 +439,23 @@
       <option name="project" value="LOCAL" />
       <updated>1695978162253</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="Corrected one mistake">
+      <option name="closed" value="true" />
+      <created>1695978572065</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1695978572065</updated>
+    </task>
+    <task id="LOCAL-00057" summary="yj">
+      <option name="closed" value="true" />
+      <created>1695978862174</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1695978862174</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -469,8 +470,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="So close to browse!" />
-    <MESSAGE value="Printing arguements" />
     <MESSAGE value="Passed in arch string" />
     <MESSAGE value="Done!" />
     <MESSAGE value="Initial commit." />
@@ -494,6 +493,8 @@
     <MESSAGE value="Added edit topic" />
     <MESSAGE value="Fixed some comments" />
     <MESSAGE value="Init gone,&#10;clearConfig ready!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Init gone,&#10;clearConfig ready!" />
+    <MESSAGE value="Corrected one mistake" />
+    <MESSAGE value="yj" />
+    <option name="LAST_COMMIT_MESSAGE" value="yj" />
   </component>
 </project>
