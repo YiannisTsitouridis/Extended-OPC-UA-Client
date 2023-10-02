@@ -99,15 +99,16 @@ def startClient(num):
         treejs = json.dumps(tree)
 
         print(treejs)
-        client.agent.publish('arc', "Connected with server")
+        print("\n","\n")
+        client.agent.publish('arc', "Connected with server"+"\n"+"\n")
 
-        client.agent.publish('arc', treejs)
+        client.agent.publish('arc', treejs+"\n"+"\n")
 
         embed()
 
 def stop(numOfServers):
     print("All client instances are terminated.")
-    for i in range(0, numOfServers):
+    for i in range(0, numOfServers - 1):
         if clientsList[i].is_alive:
             clientsList[i].stop()
 

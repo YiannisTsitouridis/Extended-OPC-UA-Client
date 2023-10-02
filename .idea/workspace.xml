@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Problem spotted">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Now it worked for the first time!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/generalManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/generalManager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/opcUaClientClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/opcUaClientClass.py" afterDir="false" />
@@ -63,14 +63,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Found the bug in method_call.&#10;It's all ready!">
-      <option name="closed" value="true" />
-      <created>1690357521809</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1690357521809</updated>
     </task>
     <task id="LOCAL-00013" summary="Read function also fixed.">
       <option name="closed" value="true" />
@@ -456,7 +448,15 @@
       <option name="project" value="LOCAL" />
       <updated>1696245262392</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="Now it worked for the first time!">
+      <option name="closed" value="true" />
+      <created>1696247899126</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1696247899126</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -471,7 +471,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Read message fixed." />
     <MESSAGE value="Before I go" />
     <MESSAGE value="Comments complete." />
     <MESSAGE value="Last commit on this branch" />
@@ -496,6 +495,7 @@
     <MESSAGE value="2nd server" />
     <MESSAGE value="2nd server!" />
     <MESSAGE value="Problem spotted" />
-    <option name="LAST_COMMIT_MESSAGE" value="Problem spotted" />
+    <MESSAGE value="Now it worked for the first time!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Now it worked for the first time!" />
   </component>
 </project>

@@ -232,7 +232,7 @@ class opcuaClient(Client):
         children = []
         for child in syncnode.get_children():
             if child.read_node_class() in [ua.NodeClass.Object, ua.NodeClass.Variable, ua.NodeClass.Method, ua.NodeClass.ObjectType, ua.Argument]:
-                if child.read_node_class() in [ua.NodeClass.Method]:
+                if child.read_node_class() in [ua.NodeClass.Method] and child.get_children.__sizeof__() > 0:
                     input_arguments_property = child.get_child("InputArguments")
                     if input_arguments_property is not None:
                         input_arguments = input_arguments_property.get_value()
