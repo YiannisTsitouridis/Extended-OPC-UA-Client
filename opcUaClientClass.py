@@ -233,20 +233,26 @@ class opcuaClient(Client):
         for child in syncnode.get_children():
             if child.read_node_class() in [ua.NodeClass.Object, ua.NodeClass.Variable, ua.NodeClass.Method, ua.NodeClass.ObjectType, ua.Argument]:
                 if child.read_node_class() in [ua.NodeClass.Method] and child.get_children.__sizeof__() > 0:
-                    input_arguments_property = child.get_child("InputArguments")
-                    if input_arguments_property is not None:
-                        input_arguments = input_arguments_property.get_value()
-                        arguments = []
-                        for arg in input_arguments:
-                            arguments.append(str(arg))
-                            # print(arg)
-                            # print("Argument Name:", arg.Name)
-                            # print("Argument DataType:", arg.data_type)
-                            # print("Argument ValueRank:", arg.ValueRank)
-                            # print("Argument Description:", arg.Description)
-                        args = json.dumps(arguments)
+                    if hasattr(child, "InputArguments"):
+                        input_arguments_property = child.get_child("InputArguments")
+                        if input_arguments_property is not None:
+                            input_arguments = input_arguments_property.get_value()
+                            arguments = []
+                            for arg in input_arguments:
+                                arguments.append(str(arg))
+                                # print(arg)
+                                # print("Argument Name:", arg.Name)
+                                # print("Argument DataType:", arg.data_type)
+                                # print("Argument ValueRank:", arg.ValueRank)
+                                # print("Argument Description:", arg.Description)
+                            args = json.dumps(arguments)
+                        else:
+                            args = None
                     else:
-                        args = None
+                        arguments = []
+                        for arg in child.get_input_arguments:
+                            arguments.append(arg)
+                        args = json.dumps(arguments)
                 children.append(
                     self.browse_node_tree(child)
                 )
