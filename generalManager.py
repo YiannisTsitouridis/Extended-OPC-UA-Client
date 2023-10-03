@@ -66,6 +66,7 @@ def startClient(num):
     serversData = configparser.ConfigParser()
     serversData.read("clientData.ini")
     localurl = serversData.get('Server' + str(num), 'url')
+    localtype = serversData.get(('Server' + str(num)), 'type')
     localname = serversData.get(('Server' + str(num)), 'name')
     localmqttUrl = serversData.get(('Server' + str(num)), 'mqtturl')
     localmqttPort = serversData.get('Server' + str(num), 'mqttport')
@@ -80,7 +81,7 @@ def startClient(num):
     localsubscribeTopic = serversData.get('Server' + str(num), 'subscriptiontopic')
     localconnectDisconnectTopic = serversData.get('Server' + str(num), 'connectdisconnecttopic')
     print("Where does this print?")
-    with opcuaClient(localurl, localname, localmqttUrl, int(localmqttPort), localarchitectureTopic,
+    with opcuaClient(localurl, localname, localtype, localmqttUrl, int(localmqttPort), localarchitectureTopic,
                      localconsoleTopic, localreadTopic, localmethrequestTopic, localreadRequestTopic,
                      localwriteRequestTopic, localsubrequestTopic, localunsubrequestTopic, localsubscribeTopic,
                      localconnectDisconnectTopic) as client:

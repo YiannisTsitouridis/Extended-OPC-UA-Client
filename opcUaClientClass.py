@@ -233,82 +233,27 @@ class opcuaClient(Client):
         global args
         node_class = syncnode.read_node_class()
         children = []
-        def arguementHandling(methnode):
-            if self.type == 'quasar':
-                input_arguments_property = methnode.get_child("InputArguments")
-                if input_arguments_property is not None:
-                    input_arguments = input_arguments_property.get_value()
-                    arguments = []
-                    for arg in input_arguments:
-                        arguments.append(arg)
-                    args = json.dumps(arguments)
-                else:
-                    args = None
-
-                children.append(
-                    self.browse_node_tree(child)
-                )
-
-
+        def quasarArguementHandling(methnode):
+            input_arguments_property = methnode.get_child("InputArguments")
+            if input_arguments_property is not None:
+                input_arguments = input_arguments_property.get_value()
+                arguments = []
+                for arg in input_arguments:
+                    arguments.append(arg)
+                args = str(arguments)
             else:
-                arguuments = []
-                for arg in methnode.get_input_arguments:
-                    pass
-
-            return {
-                'id': syncnode.nodeid.to_string(),
-                'name': (syncnode.read_display_name()).Text,
-                'cls': node_class.value,
-                'children': children,
-                'typeOfNode': str(node_class),
-                'arguments': str(args),
-                'type': var_type,
-            }
-
-            # print(arg)
-            # print("Argument Name:", arg.Name)
-            # print("Argument DataType:", arg.data_type)
-            # print("Argument ValueRank:", arg.ValueRank)
-            # print("Argument Description:", arg.Description)
+                args = None
+            return args
 
         for child in syncnode.get_children():
             if child.read_node_class() in [ua.NodeClass.Object, ua.NodeClass.Variable, ua.NodeClass.Method,
                                            ua.NodeClass.ObjectType, ua.Argument]:
-                if child.read_node_class() in [ua.NodeClass.Method]:
-                    arguementHandling(child)
+                if child.read_node_class() in [ua.NodeClass.Method] and self.type == 'quasar':
+                    args = quasarArguementHandling(child)
                 else:
-                    for arg in child.get_input_arguments:
-                        arguments.append(arg)
-                    args = json.dumps(arguments)
-            children.append(
-                self.browse_node_tree(child)
-            )
-
-
-
-
-
-        # for child in syncnode.get_children():
-        #     if child.read_node_class() in [ua.NodeClass.Object, ua.NodeClass.Variable, ua.NodeClass.Method, ua.NodeClass.ObjectType, ua.Argument]:
-        #         if child.read_node_class() in [ua.NodeClass.Method]:
-        #             input_arguments_property = child.get_child("InputArguments")
-        #             if input_arguments_property is not None:
-        #                 input_arguments = input_arguments_property.get_value()
-        #                 arguments = []
-        #                 for arg in input_arguments:
-        #                     arguments.append(str(arg))
-        #                     # print(arg)
-        #                     # print("Argument Name:", arg.Name)
-        #                     # print("Argument DataType:", arg.data_type)
-        #                     # print("Argument ValueRank:", arg.ValueRank)
-        #                     # print("Argument Description:", arg.Description)
-        #                 args = json.dumps(arguments)
-        #             else:
-        #                 args = None
-        #         children.append(
-        #             self.browse_node_tree(child)
-        #         )
-
+                    children.append(
+                        self.browse_node_tree(child)
+                    )
         if node_class != ua.NodeClass.Variable:
             var_type = node_class
         else:
@@ -317,7 +262,7 @@ class opcuaClient(Client):
             except ua.UaError:
                 _logger.warning('Node Variable Type could not be determined for %r', syncnode)
                 var_type = None
-        if syncnode.read_node_class() in [ua.NodeClass.Method]:
+        if syncnode.read_node_class() in [ua.NodeClass.Method] and self.type == 'quasar':
             return {
                 'id': syncnode.nodeid.to_string(),
                 'name': (syncnode.read_display_name()).Text,
@@ -335,7 +280,7 @@ class opcuaClient(Client):
                 'children': children,
                 'typeOfNode': str(node_class),
                 'type': var_type,
-              }
+            }
 
     def browse_server(self):
         """
