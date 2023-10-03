@@ -15,6 +15,7 @@ def addserver():
     # Taking console inputs for the new server. #
     serverUrl = input("Type the Url of the new server: ")
     serverName = input("Type the name of the new server: ")
+    serverType = input("Type the type of the server: ")
     mqttUrl = input("Type the Url or username of the mqtt Broker: ")
     mqttPort = input("Type the port of the mqtt Broker: ")
     architectureTopic = input("Type the name of the architecture topic: ")
@@ -33,6 +34,7 @@ def addserver():
     initial_configfile.add_section("Server" + str(numOfServers))
     initial_configfile.set('Server' + str(numOfServers), 'url', serverUrl)
     initial_configfile.set('Server' + str(numOfServers), 'name', serverName)
+    initial_configfile.set('Server' + str(numOfServers), 'type', serverType)
     initial_configfile.set('Server' + str(numOfServers), 'mqtturl', mqttUrl)
     initial_configfile.set('Server' + str(numOfServers), 'mqttport', mqttPort)
     initial_configfile.set('Server' + str(numOfServers), 'architecturetopic', architectureTopic)
@@ -57,6 +59,7 @@ def edit_server(num):
     # Taking console inputs for the new server. #
     serverUrl = input("Type the new Url of the server: ")
     serverName = input("Type the new name of the new server: ")
+    serverType = input("Type the type of the server: ")
     mqttUrl = input("Type the new Url or username of the mqtt Broker: ")
     mqttPort = input("Type the new port of the mqtt Broker: ")
     architectureTopic = input("Type the new name of the architecture topic: ")
@@ -73,6 +76,7 @@ def edit_server(num):
     # Setting the taken inputs in the clientConfig.ini file, in the new server's section. #
     initial_configfile.set('Server' + str(num), 'url', serverUrl)
     initial_configfile.set('Server' + str(num), 'name', serverName)
+    initial_configfile.set('Server' + str(num), 'type', serverType)
     initial_configfile.set('Server' + str(num), 'mqtturl', mqttUrl)
     initial_configfile.set('Server' + str(num), 'mqttport', mqttPort)
     initial_configfile.set('Server' + str(num), 'architecturetopic', architectureTopic)
@@ -105,6 +109,7 @@ def addserver_from_UI(dataFromUI):
     # Taking console inputs for the new server. #
     serverUrl = dataObject["serverUrl"]
     serverName = dataObject["serverName"]
+    serverType = dataObject["serverType"]
     mqttUrl = dataObject["mqttUrl"]
     mqttPort = dataObject["mqttPort"]
     architectureTopic = dataObject["architectureTopic"]
@@ -121,6 +126,7 @@ def addserver_from_UI(dataFromUI):
     # Setting the taken inputs in the clientConfig.ini file, in the new server's section. #
     initial_configfile.set('Server' + str(numOfServers), 'url', serverUrl)
     initial_configfile.set('Server' + str(numOfServers), 'name', serverName)
+    initial_configfile.set('Server' + str(numOfServers), 'type', serverType)
     initial_configfile.set('Server' + str(numOfServers), 'mqtturl', mqttUrl)
     initial_configfile.set('Server' + str(numOfServers), 'mqttport', mqttPort)
     initial_configfile.set('Server' + str(numOfServers), 'architecturetopic', architectureTopic)
@@ -145,6 +151,7 @@ def edit_server_from_UI(dataFromUI):
 
     serverUrl = dataObject["serverUrl"]
     serverName = dataObject["serverName"]
+    serverType = dataObject["serverType"]
     mqttUrl = dataObject["mqttUrl"]
     mqttPort = dataObject["mqttPort"]
     architectureTopic = dataObject["architectureTopic"]
@@ -160,6 +167,7 @@ def edit_server_from_UI(dataFromUI):
 
     initial_configfile.set('Server' + str(i), 'url', serverUrl)
     initial_configfile.set('Server' + str(i), 'name', serverName)
+    initial_configfile.set('Server' + str(i), 'type', serverType)
     initial_configfile.set('Server' + str(i), 'mqtturl', mqttUrl)
     initial_configfile.set('Server' + str(i), 'mqttport', mqttPort)
     initial_configfile.set('Server' + str(i), 'architecturetopic', architectureTopic)

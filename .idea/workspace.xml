@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Fixed broker url">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Beautiful">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opcUaClientClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/opcUaClientClass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clientConfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/clientConfig.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,14 +62,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Added global flag to stop all threads">
-      <option name="closed" value="true" />
-      <created>1691654461867</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1691654461867</updated>
     </task>
     <task id="LOCAL-00019" summary="define stop function in startUp">
       <option name="closed" value="true" />
@@ -455,7 +447,15 @@
       <option name="project" value="LOCAL" />
       <updated>1696332103257</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="Beautiful">
+      <option name="closed" value="true" />
+      <created>1696332689590</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1696332689590</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -470,7 +470,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="2" />
     <MESSAGE value="some things corrected from config" />
     <MESSAGE value="Some more corrections" />
     <MESSAGE value="Last corrections!" />
@@ -495,6 +494,7 @@
     <MESSAGE value="Working with 2 servers, only browse problem with method arguements" />
     <MESSAGE value="Works all good but problem with broker, probably traffic" />
     <MESSAGE value="Fixed broker url" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed broker url" />
+    <MESSAGE value="Beautiful" />
+    <option name="LAST_COMMIT_MESSAGE" value="Beautiful" />
   </component>
 </project>
