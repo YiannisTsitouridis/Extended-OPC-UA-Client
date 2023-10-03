@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Browse problem:&#10;Quasar works with InputArguements Object but error in NodeOPCUA server">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Last commit for today">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/opcUaClientClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/opcUaClientClass.py" afterDir="false" />
     </list>
@@ -62,14 +62,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Write function also fixed.">
-      <option name="closed" value="true" />
-      <created>1690362913554</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1690362913554</updated>
     </task>
     <task id="LOCAL-00015" summary="Clean and fine!">
       <option name="closed" value="true" />
@@ -455,7 +447,15 @@
       <option name="project" value="LOCAL" />
       <updated>1696250259163</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="Last commit for today">
+      <option name="closed" value="true" />
+      <created>1696251705539</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1696251705539</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -470,7 +470,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Comments complete." />
     <MESSAGE value="Last commit on this branch" />
     <MESSAGE value="First commit in branch" />
     <MESSAGE value="1" />
@@ -495,6 +494,7 @@
     <MESSAGE value="Problem spotted" />
     <MESSAGE value="Now it worked for the first time!" />
     <MESSAGE value="Browse problem:&#10;Quasar works with InputArguements Object but error in NodeOPCUA server" />
-    <option name="LAST_COMMIT_MESSAGE" value="Browse problem:&#10;Quasar works with InputArguements Object but error in NodeOPCUA server" />
+    <MESSAGE value="Last commit for today" />
+    <option name="LAST_COMMIT_MESSAGE" value="Last commit for today" />
   </component>
 </project>
