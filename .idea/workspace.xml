@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Working with 2 servers, only browse problem with method arguements">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clientData.ini" beforeDir="false" afterPath="$PROJECT_DIR$/clientData.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/opcUaClientClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/opcUaClientClass.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -15,7 +17,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Seperate-start-stop" />
+        <entry key="$PROJECT_DIR$" value="Deleting-initialize" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -45,14 +47,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Deleting-initialize&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/yiannis/eclipse-workspace/extraServer.py&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Case-Browse",
+    "last_opened_file_path": "/home/yiannis/eclipse-workspace/extraServer.py"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

@@ -35,11 +35,12 @@ class opcuaClient(Client):
     # This class is a child class to the Client Class from asyncua package.
     # When you add the __init__() function, the child class will no longer inherit the parent's __init__() function.
     # Unless you run the super().__init__ function
-    def __init__(self, url: str, name: str, mqtturl: str, mqttport: int, architecturetopic: str, consoletopic: str,
+    def __init__(self, url: str, name: str, type: str, mqtturl: str, mqttport: int, architecturetopic: str, consoletopic: str,
                  readtopic: str, methRequestTopic: str, readRequestTopic: str, writeRequestTopic: str,
                  subRequestTopic: str, unSubRequestTopic:str, subscribeTopic:str, connectDisconnectTopic:str):
         super().__init__(url)
         self.name = name
+        self.type = type
         self.brokerURL = mqtturl
         self.brokerPort = mqttport
         time.sleep(2)
@@ -55,6 +56,8 @@ class opcuaClient(Client):
         self.connectDisconnectTopic = connectDisconnectTopic
         # TO DO!
         # Add fields that have to do with server's security policy.
+        # TO DO!
+        # Add field for the server implementation.
         # self.set_security(policy = , certificate = , private_key = , private_key_password = , server_certificate = , mode = )
         self.agent:mqtt.Client = self.createMqttAgent()
         self.initial_subscriptions()
@@ -230,32 +233,81 @@ class opcuaClient(Client):
         global args
         node_class = syncnode.read_node_class()
         children = []
-        for child in syncnode.get_children():
-            if child.read_node_class() in [ua.NodeClass.Object, ua.NodeClass.Variable, ua.NodeClass.Method, ua.NodeClass.ObjectType, ua.Argument]:
-                if child.read_node_class() in [ua.NodeClass.Method] and child.get_children.__sizeof__() > 0:
-                    if hasattr(child, "InputArguments"):
-                        input_arguments_property = child.get_child("InputArguments")
-                        if input_arguments_property is not None:
-                            input_arguments = input_arguments_property.get_value()
-                            arguments = []
-                            for arg in input_arguments:
-                                arguments.append(str(arg))
-                                # print(arg)
-                                # print("Argument Name:", arg.Name)
-                                # print("Argument DataType:", arg.data_type)
-                                # print("Argument ValueRank:", arg.ValueRank)
-                                # print("Argument Description:", arg.Description)
-                            args = json.dumps(arguments)
-                        else:
-                            args = None
-                    else:
-                        arguments = []
-                        for arg in child.get_input_arguments:
-                            arguments.append(arg)
-                        args = json.dumps(arguments)
+        def arguementHandling(methnode):
+            if self.type == 'quasar':
+                input_arguments_property = methnode.get_child("InputArguments")
+                if input_arguments_property is not None:
+                    input_arguments = input_arguments_property.get_value()
+                    arguments = []
+                    for arg in input_arguments:
+                        arguments.append(arg)
+                    args = json.dumps(arguments)
+                else:
+                    args = None
+
                 children.append(
                     self.browse_node_tree(child)
                 )
+
+
+            else:
+                arguuments = []
+                for arg in methnode.get_input_arguments:
+                    pass
+
+            return {
+                'id': syncnode.nodeid.to_string(),
+                'name': (syncnode.read_display_name()).Text,
+                'cls': node_class.value,
+                'children': children,
+                'typeOfNode': str(node_class),
+                'arguments': str(args),
+                'type': var_type,
+            }
+
+            # print(arg)
+            # print("Argument Name:", arg.Name)
+            # print("Argument DataType:", arg.data_type)
+            # print("Argument ValueRank:", arg.ValueRank)
+            # print("Argument Description:", arg.Description)
+
+        for child in syncnode.get_children():
+            if child.read_node_class() in [ua.NodeClass.Object, ua.NodeClass.Variable, ua.NodeClass.Method,
+                                           ua.NodeClass.ObjectType, ua.Argument]:
+                if child.read_node_class() in [ua.NodeClass.Method]:
+                    arguementHandling(child)
+                else:
+                    for arg in child.get_input_arguments:
+                        arguments.append(arg)
+                    args = json.dumps(arguments)
+            children.append(
+                self.browse_node_tree(child)
+            )
+
+
+
+
+
+        # for child in syncnode.get_children():
+        #     if child.read_node_class() in [ua.NodeClass.Object, ua.NodeClass.Variable, ua.NodeClass.Method, ua.NodeClass.ObjectType, ua.Argument]:
+        #         if child.read_node_class() in [ua.NodeClass.Method]:
+        #             input_arguments_property = child.get_child("InputArguments")
+        #             if input_arguments_property is not None:
+        #                 input_arguments = input_arguments_property.get_value()
+        #                 arguments = []
+        #                 for arg in input_arguments:
+        #                     arguments.append(str(arg))
+        #                     # print(arg)
+        #                     # print("Argument Name:", arg.Name)
+        #                     # print("Argument DataType:", arg.data_type)
+        #                     # print("Argument ValueRank:", arg.ValueRank)
+        #                     # print("Argument Description:", arg.Description)
+        #                 args = json.dumps(arguments)
+        #             else:
+        #                 args = None
+        #         children.append(
+        #             self.browse_node_tree(child)
+        #         )
 
         if node_class != ua.NodeClass.Variable:
             var_type = node_class
