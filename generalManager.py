@@ -158,7 +158,7 @@ def main():
     generalAgent = mqtt.Client("general")
     generalAgent.on_connect = on_connect
     generalAgent.on_message = on_message
-    generalAgent.connect(host="localhost", port=1883)
+    generalAgent.connect(host="test.mosquitto.org", port=1883)
     generalAgent.subscribe("startStop")
     generalAgent.loop_forever()
 
