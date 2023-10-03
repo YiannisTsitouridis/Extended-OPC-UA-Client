@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Works all good but problem with broker, probably traffic">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Fixed broker url">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientData.ini" beforeDir="false" afterPath="$PROJECT_DIR$/clientData.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/generalManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/generalManager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/opcUaClientClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/opcUaClientClass.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -64,14 +62,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Added a clue of general Manager">
-      <option name="closed" value="true" />
-      <created>1690364673691</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1690364673692</updated>
     </task>
     <task id="LOCAL-00018" summary="Added global flag to stop all threads">
       <option name="closed" value="true" />
@@ -457,7 +447,15 @@
       <option name="project" value="LOCAL" />
       <updated>1696330575758</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="Fixed broker url">
+      <option name="closed" value="true" />
+      <created>1696332103256</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1696332103257</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -472,7 +470,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="1" />
     <MESSAGE value="2" />
     <MESSAGE value="some things corrected from config" />
     <MESSAGE value="Some more corrections" />
@@ -497,6 +494,7 @@
     <MESSAGE value="Last commit for today" />
     <MESSAGE value="Working with 2 servers, only browse problem with method arguements" />
     <MESSAGE value="Works all good but problem with broker, probably traffic" />
-    <option name="LAST_COMMIT_MESSAGE" value="Works all good but problem with broker, probably traffic" />
+    <MESSAGE value="Fixed broker url" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed broker url" />
   </component>
 </project>
