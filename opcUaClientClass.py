@@ -242,7 +242,7 @@ class opcuaClient(Client):
                     arguments.append(arg)
                 args = str(arguments)
             else:
-                args = None
+                args = 'None'
             return args
 
         for child in syncnode.get_children():
@@ -261,7 +261,7 @@ class opcuaClient(Client):
                 var_type = (syncnode.read_data_type_as_variant_type()).value
             except ua.UaError:
                 _logger.warning('Node Variable Type could not be determined for %r', syncnode)
-                var_type = None
+                var_type = 'None'
         if syncnode.read_node_class() in [ua.NodeClass.Method] and self.type == 'quasar':
             return {
                 'id': syncnode.nodeid.to_string(),
@@ -269,7 +269,7 @@ class opcuaClient(Client):
                 'cls': node_class.value,
                 'children': children,
                 'typeOfNode': str(node_class),
-                'arguments': str(args),
+                'arguments': args,
                 'type': var_type,
             }
         else:

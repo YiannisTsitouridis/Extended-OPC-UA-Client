@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Working with 2 servers, only browse problem with method arguements">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Works all good but problem with broker, probably traffic">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clientData.ini" beforeDir="false" afterPath="$PROJECT_DIR$/clientData.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/generalManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/generalManager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/opcUaClientClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/opcUaClientClass.py" afterDir="false" />
     </list>
@@ -63,14 +64,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Clean and fine!2">
-      <option name="closed" value="true" />
-      <created>1690364000164</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1690364000164</updated>
     </task>
     <task id="LOCAL-00017" summary="Added a clue of general Manager">
       <option name="closed" value="true" />
@@ -456,7 +449,15 @@
       <option name="project" value="LOCAL" />
       <updated>1696321097606</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="Works all good but problem with broker, probably traffic">
+      <option name="closed" value="true" />
+      <created>1696330575758</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1696330575758</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -471,7 +472,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="First commit in branch" />
     <MESSAGE value="1" />
     <MESSAGE value="2" />
     <MESSAGE value="some things corrected from config" />
@@ -496,6 +496,7 @@
     <MESSAGE value="Browse problem:&#10;Quasar works with InputArguements Object but error in NodeOPCUA server" />
     <MESSAGE value="Last commit for today" />
     <MESSAGE value="Working with 2 servers, only browse problem with method arguements" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working with 2 servers, only browse problem with method arguements" />
+    <MESSAGE value="Works all good but problem with broker, probably traffic" />
+    <option name="LAST_COMMIT_MESSAGE" value="Works all good but problem with broker, probably traffic" />
   </component>
 </project>
