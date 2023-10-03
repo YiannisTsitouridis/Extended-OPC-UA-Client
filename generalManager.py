@@ -88,11 +88,10 @@ def startClient(num):
         try:
             client.__enter__()
             print("Server with name " + str(client.name) + " detected")
-            client.agent.publish("Server with name " + str(client.name) + " detected")
         except:
             print("Error occurred while trying to connect to server" + str(client.name) + "with url:" + str(
                 client.url))
-            client.agent.publish("Topic", "Error occurred while trying to connect to server" + str(
+            client.agent.publish(client.consoleTopic, "Error occurred while trying to connect to server" + str(
                 client.name) + " with url: " + str(client.url))
 
         print("Inside the client ", num, "loop")
@@ -101,9 +100,8 @@ def startClient(num):
 
         print(treejs)
         print("\n","\n")
-        client.agent.publish('arc', "Connected with server"+"\n"+"\n")
 
-        client.agent.publish('arc', treejs+"\n"+"\n")
+        client.agent.publish(client.architectureTopic, treejs)
 
         embed()
 
