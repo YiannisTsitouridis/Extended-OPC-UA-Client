@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Beautiful">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Checking with Miltos">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientConfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/clientConfig.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/clientData.ini" beforeDir="false" afterPath="$PROJECT_DIR$/clientData.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/generalManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/generalManager.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,14 +62,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00019" summary="define stop function in startUp">
-      <option name="closed" value="true" />
-      <created>1691658948055</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1691658948055</updated>
     </task>
     <task id="LOCAL-00020" summary="Before try">
       <option name="closed" value="true" />
@@ -458,7 +447,15 @@
       <option name="project" value="LOCAL" />
       <updated>1696332689590</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="Checking with Miltos">
+      <option name="closed" value="true" />
+      <created>1696508324353</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1696508324353</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -473,7 +470,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="some things corrected from config" />
     <MESSAGE value="Some more corrections" />
     <MESSAGE value="Last corrections!" />
     <MESSAGE value="First branch commit" />
@@ -498,6 +494,7 @@
     <MESSAGE value="Works all good but problem with broker, probably traffic" />
     <MESSAGE value="Fixed broker url" />
     <MESSAGE value="Beautiful" />
-    <option name="LAST_COMMIT_MESSAGE" value="Beautiful" />
+    <MESSAGE value="Checking with Miltos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Checking with Miltos" />
   </component>
 </project>
