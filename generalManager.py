@@ -133,6 +133,7 @@ def main():
 
     def on_message(agent, userdata, msg):
         mess = str(msg.payload.decode("utf-8"))
+        print("message recieved!")
         if msg.topic == "startStop":
             if mess == "stop":
                 print("stop ordered")
@@ -160,6 +161,12 @@ def main():
     generalAgent.on_message = on_message
     generalAgent.connect(host="test.mosquitto.org", port=1883)
     generalAgent.subscribe("startStop")
+    generalAgent.subscribe("refreshClient")
+    generalAgent.subscribe("killClient")
+    generalAgent.subscribe("startClient")
+    generalAgent.subscribe("clearConfig")
+    generalAgent.subscribe("addServer")
+    generalAgent.subscribe("editServer")
     generalAgent.loop_forever()
 
 

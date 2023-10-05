@@ -103,7 +103,7 @@ def addserver_from_UI(dataFromUI):
 
     # Updating the number of the servers value in the clientConfig.ini file #
     numOfServers = initial_configfile.getint('NumberOfServers', 'serversNum')
-    newNumOfServers = numOfServers + 1
+    newNumOfServers = str(numOfServers + 1)
     initial_configfile.set('NumberOfServers', 'serversNum', newNumOfServers)
 
     # Taking console inputs for the new server. #
@@ -124,6 +124,7 @@ def addserver_from_UI(dataFromUI):
     connectDisconnectTopic = dataObject["connectDisconnectTopic"]
 
     # Setting the taken inputs in the clientConfig.ini file, in the new server's section. #
+    initial_configfile.add_section("Server" + str(numOfServers))
     initial_configfile.set('Server' + str(numOfServers), 'url', serverUrl)
     initial_configfile.set('Server' + str(numOfServers), 'name', serverName)
     initial_configfile.set('Server' + str(numOfServers), 'type', serverType)
