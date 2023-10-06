@@ -130,9 +130,7 @@ class opcuaClient(Client):
                     self.connect()
 
         self.agent = mqtt.Client(self.name)
-        print("Here?")
         self.agent.on_connect = on_connect
-        print("or here?")
         self.agent.on_message = on_message
         self.agent.connect(host=self.brokerURL)
         self.agent.loop_start()
