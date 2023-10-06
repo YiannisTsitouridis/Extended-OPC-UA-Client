@@ -143,11 +143,11 @@ class opcuaClient(Client):
     def initial_subscriptions(self):
         # From the birth of mqtt agent, we want it to subscribe to the following topics.
         self.agent.subscribe(self.consoleTopic)
-        self.agent.subscribe(str(self.name) + "/Subscribe")
-        self.agent.subscribe(str(self.name) + "/Method_calls")
-        self.agent.subscribe(str(self.name) + "/Unsubscribe")
-        self.agent.subscribe(str(self.name) + "/Read")
-        self.agent.subscribe(str(self.name) + "/Write")
+        self.agent.subscribe(self.subRequestTopic)
+        self.agent.subscribe(self.methRequestTopic)
+        self.agent.subscribe(self.unSubRequestTopic)
+        self.agent.subscribe(self.readRequestTopic)
+        self.agent.subscribe(self.writeRequestTopic)
 
         return 0
 

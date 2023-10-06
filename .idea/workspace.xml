@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Checking with Miltos">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Ok with Miltos">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientData.ini" beforeDir="false" afterPath="$PROJECT_DIR$/clientData.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/opcUaClientClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/opcUaClientClass.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,14 +62,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Before try">
-      <option name="closed" value="true" />
-      <created>1691659011022</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1691659011022</updated>
     </task>
     <task id="LOCAL-00021" summary="Before I merge startUp with generalManager">
       <option name="closed" value="true" />
@@ -455,7 +447,15 @@
       <option name="project" value="LOCAL" />
       <updated>1696508324353</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="Ok with Miltos">
+      <option name="closed" value="true" />
+      <created>1696510531983</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1696510531984</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -470,7 +470,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Some more corrections" />
     <MESSAGE value="Last corrections!" />
     <MESSAGE value="First branch commit" />
     <MESSAGE value="new functions" />
@@ -495,6 +494,7 @@
     <MESSAGE value="Fixed broker url" />
     <MESSAGE value="Beautiful" />
     <MESSAGE value="Checking with Miltos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Checking with Miltos" />
+    <MESSAGE value="Ok with Miltos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ok with Miltos" />
   </component>
 </project>
