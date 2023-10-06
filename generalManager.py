@@ -2,6 +2,7 @@
 import sys
 import os
 import asyncio
+import time
 
 import clientConfig
 sys.path.insert(0, "..")
@@ -19,7 +20,7 @@ from opcUaClientClass import opcuaClient
 ########################################################################################################################
 # For every client uses the following MQTT Topics:                                                                     #
 # startStop:            Sending "startUp" on this topic, the system starts to operate all the clients for the servers  #
-#                       registered at the clientData.ini file. Sending "stop" will stop all the client instances running #
+#                       registered at the clientData.ini file. Sending "stop" will stop all the client instances running#
 # refreshClient:        Sending the number of the server you want to delete thread and create again                    #
 # killClient:           Sending the number of the server whose client thread you want to kill                          #
 # startClient:          Sending the number of the server you want to start a client thread for                         #
@@ -80,30 +81,33 @@ def startClient(num):
     localunsubrequestTopic = serversData.get('Server' + str(num), 'unsubrequesttopic')
     localsubscribeTopic = serversData.get('Server' + str(num), 'subscriptiontopic')
     localconnectDisconnectTopic = serversData.get('Server' + str(num), 'connectdisconnecttopic')
-    print("Where does this print?")
-    with opcuaClient(localurl, localname, localtype, localmqttUrl, int(localmqttPort), localarchitectureTopic,
-                     localconsoleTopic, localreadTopic, localmethrequestTopic, localreadRequestTopic,
-                     localwriteRequestTopic, localsubrequestTopic, localunsubrequestTopic, localsubscribeTopic,
-                     localconnectDisconnectTopic) as client:
-        try:
-            client.__enter__()
-            print("Server with name " + str(client.name) + " detected")
-        except:
-            print("Error occurred while trying to connect to server" + str(client.name) + "with url:" + str(
-                client.url))
-            client.agent.publish(client.consoleTopic, "Error occurred while trying to connect to server" + str(
-                client.name) + " with url: " + str(client.url))
+    try:
+        with opcuaClient(localurl, localname, localtype, localmqttUrl, int(localmqttPort), localarchitectureTopic,
+                         localconsoleTopic, localreadTopic, localmethrequestTopic, localreadRequestTopic,
+                         localwriteRequestTopic, localsubrequestTopic, localunsubrequestTopic, localsubscribeTopic,
+                         localconnectDisconnectTopic) as client:
+            client.agent.publish(client.consoleTopic, "Server " + str(client.name) + " created")
+            try:
+                client.__enter__()
+                print("Server with name " + str(client.name) + " connected")
+                client.agent.publish(client.consoleTopic, "Server " + str(client.name) + " connected")
+                print("Inside the client ", num, "loop")
+                tree = client.browse_server()
+                treejs = json.dumps(tree)
+                print(treejs + "\n" + "\n")
+                client.agent.publish(client.architectureTopic, treejs)
+            except:
+                print("Error while connecting to " + str(client.name) + "with url:" + str(client.url))
+                client.agent.publish(client.consoleTopic, "Error while connecting to " + str(client.name) + "with url:"
+                                     + str(client.url))
+                client.agent.publish(client.architectureTopic, "Error with url: "+ str(client.url))
 
-        print("Inside the client ", num, "loop")
-        tree = client.browse_server()
-        treejs = json.dumps(tree)
+            embed()
 
-        print(treejs)
-        print("\n","\n")
+    except Exception as e:
+        return e
 
-        client.agent.publish(client.architectureTopic, treejs)
 
-        embed()
 
 def stop(numOfServers):
     print("All client instances are terminated.")
@@ -145,14 +149,19 @@ def main():
             refreshClient(int(mess))
         elif msg.topic == "killClient":
             killClient(int(mess))
+            generalAgent.publish('generalConsole', "Deleted Server"+str(mess))
         elif msg.topic == "startClient":
-            startClient(int(mess))
+            result = startClient(int(mess))
+            if result != 'all good':
+                generalAgent.publish('generalConsole', str(result))
         elif msg.topic == "clearConfig":
             clientConfig.clearConfig()
         elif msg.topic == "addServer":
             clientConfig.addserver_from_UI(mess)
         elif msg.topic == "editServer":
             clientConfig.edit_server_from_UI(mess)
+            time.sleep(1)
+            # refreshClient(mess)
 
 
 

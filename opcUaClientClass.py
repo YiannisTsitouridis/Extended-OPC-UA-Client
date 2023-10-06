@@ -45,7 +45,6 @@ class opcuaClient(Client):
         self.type = type
         self.brokerURL = mqtturl
         self.brokerPort = mqttport
-        time.sleep(2)
         self.architectureTopic = architecturetopic
         self.consoleTopic = consoletopic
         self.readTopic = readtopic
