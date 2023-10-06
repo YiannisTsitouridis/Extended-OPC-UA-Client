@@ -63,6 +63,7 @@ class opcuaClient(Client):
         # self.set_security(policy = , certificate = , private_key = , private_key_password = , server_certificate = , mode = )
         self.agent:mqtt.Client = self.createMqttAgent()
         self.initial_subscriptions()
+        print("OK?")
 
     def createMqttAgent(self):
         def on_connect(agent, userdata, flags, rc):

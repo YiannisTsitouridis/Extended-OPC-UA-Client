@@ -69,7 +69,7 @@ def startClient(num):
     localtype = serversData.get(('Server' + str(num)), 'type')
     localname = serversData.get(('Server' + str(num)), 'name')
     localmqttUrl = serversData.get(('Server' + str(num)), 'mqtturl')
-    localmqttPort = serversData.get('Server' + str(num), 'mqttport')
+    localmqttPort = str(serversData.getint('Server' + str(num), 'mqttport')
     localarchitectureTopic = serversData.get('Server' + str(num), 'architecturetopic')
     localconsoleTopic = serversData.get('Server' + str(num), 'consoletopic')
     localreadTopic = serversData.get('Server' + str(num), 'readtopic')
