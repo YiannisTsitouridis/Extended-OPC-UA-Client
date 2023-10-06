@@ -30,7 +30,7 @@ readRequestTopic:       the mqtt topic where the UI publishes to request to read
 writeRequestTopic:      the mqtt topic where the UI publishes to request to write the value of a variable               
 subRequestTopic:        the mqtt topic where the UI publishes to request to monitor the value changes of a variable     
 unSubRequestTopic:      the mqtt topic where the UI publishes to request to stop monitoring variable's value changes    
-connectDisconnectTopic: the mqtt topic where the UI publishes to request to stop monitoring variable's value changes    
+connectDisconnectTopic: the mqtt topic where the UI publishes to request client-server disconnection and reconnection    
 
 '''
 class opcuaClient(Client):
@@ -146,6 +146,7 @@ class opcuaClient(Client):
         self.agent.subscribe(self.unSubRequestTopic)
         self.agent.subscribe(self.readRequestTopic)
         self.agent.subscribe(self.writeRequestTopic)
+        self.agent.subscribe(self.connectDisconnectTopic)
 
         return 0
 

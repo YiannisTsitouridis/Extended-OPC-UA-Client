@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Ok with Miltos">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Fixed initial_subscriptions!">
       <change beforePath="$PROJECT_DIR$/opcUaClientClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/opcUaClientClass.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,14 +61,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00021" summary="Before I merge startUp with generalManager">
-      <option name="closed" value="true" />
-      <created>1691668466517</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1691668466517</updated>
     </task>
     <task id="LOCAL-00022" summary="Last commit">
       <option name="closed" value="true" />
@@ -455,7 +446,15 @@
       <option name="project" value="LOCAL" />
       <updated>1696510531984</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="Fixed initial_subscriptions!">
+      <option name="closed" value="true" />
+      <created>1696573513999</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1696573513999</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -470,7 +469,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Last corrections!" />
     <MESSAGE value="First branch commit" />
     <MESSAGE value="new functions" />
     <MESSAGE value="Functions complete." />
@@ -495,6 +493,7 @@
     <MESSAGE value="Beautiful" />
     <MESSAGE value="Checking with Miltos" />
     <MESSAGE value="Ok with Miltos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ok with Miltos" />
+    <MESSAGE value="Fixed initial_subscriptions!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed initial_subscriptions!" />
   </component>
 </project>
