@@ -17,19 +17,18 @@ import configparser
 import threading
 from opcUaClientClass import opcuaClient
 
-########################################################################################################################
-# For every client uses the following MQTT Topics:                                                                     #
-# startStop:            Sending "startUp" on this topic, the system starts to operate all the clients for the servers  #
-#                       registered at the clientData.ini file. Sending "stop" will stop all the client instances running#
-# refreshClient:        Sending the number of the server you want to delete thread and create again                    #
-# killClient:           Sending the number of the server whose client thread you want to kill                          #
-# startClient:          Sending the number of the server you want to start a client thread for                         #
-# initialize:           Sending a JSON string with the list of servers and arguments                                   #
-# addServer:            Sending a JSON string with the list of arguments for the new server                            #
-# editServer:           Sending a JSON string with the number of the server you want to edit and the list of arguments #
-#                       for the new server                                                                             #
-########################################################################################################################
-
+'''
+For every client uses the following MQTT Topics:                                                                     
+startStop:            Sending "startUp" on this topic, the system starts to operate all the clients for the servers  
+                      registered at the clientData.ini file. Sending "stop" will stop all the client instances running
+refreshClient:        Sending the number of the server you want to delete thread and create again                    
+killClient:           Sending the number of the server whose client thread you want to kill                          
+startClient:          Sending the number of the server you want to start a client thread for                         
+initialize:           Sending a JSON string with the list of servers and arguments                                   
+addServer:            Sending a JSON string with the list of arguments for the new server                            
+editServer:           Sending a JSON string with the number of the server you want to edit and the list of arguments 
+                      for the new server                                                                             
+'''
 
 # This part of code is for importing the appropriate console
 try:
