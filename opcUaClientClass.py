@@ -170,7 +170,7 @@ class opcuaClient(Client):
             """
             def datachange_notification(self, node, val, data):
                 print("Python: New data change for", node.nodeid, ", ", val)
-                me = dict(varID = varID, value = val)
+                me = dict(varID=varID, value=val)
                 agent.publish(topic=Topic, payload=json.dumps(me))
             def event_notification(self, event):
                 print("Python: New event", event)
