@@ -37,12 +37,6 @@ try:
 except ImportError:
     import code
 
-    def embed():
-        vars = globals()
-        vars.update(locals())
-        shell = code.InteractiveConsole(vars)
-        shell.interact()
-        print("Code module imported")
 
 clientsList = []    # List with the threads of all the client instances.
 
@@ -94,18 +88,17 @@ def startClient(num):
                 tree = client.browse_server()
                 treejs = json.dumps(tree)
                 print(treejs + "\n" + "\n")
-                client.agent.publish(client.architectureTopic, treejs)
+                time.sleep(2)
+                client.agent.publish(topic=client.architectureTopic, payload=treejs)
             except:
                 print("Error while connecting to " + str(client.name) + "with url:" + str(client.url))
                 client.agent.publish(client.consoleTopic, "Error while connecting to " + str(client.name) + "with url:"
                                      + str(client.url))
                 client.agent.publish(client.architectureTopic, "Error with url: "+ str(client.url))
 
-            embed()
 
     except Exception as e:
         return e
-
 
 
 def stop(numOfServers):

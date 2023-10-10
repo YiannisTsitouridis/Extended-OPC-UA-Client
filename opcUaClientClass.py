@@ -95,8 +95,9 @@ class opcuaClient(Client):
                 mess = json.loads(msg.payload)
                 mesg = str(msg.payload.decode("utf-8"))
                 print("Subscription on the variable " + mesg + " was ordered.")
+                print(str(mess), str(mesg))
                 agent.publish(str(self.consoleTopic), "Subscription on the variable " + mesg + " was ordered.")
-                subvar = self.subToVarID(mess["varID"], mess["SubscriptionPeriod"], self.subscribeTopic)
+                subvar = self.subToVarID(mess["varID"], int(mess["SubscriptionPeriod"]), self.subscribeTopic)
                 return subvar
 
             if (msg.topic == self.unSubRequestTopic):
