@@ -2,6 +2,7 @@ import sys
 sys.path.insert(0, "..")
 import logging
 import time
+import asyncio
 from pathlib import Path
 import numpy as np
 import json
@@ -62,6 +63,7 @@ class opcuaClient(Client):
         # self.set_security(policy = , certificate = , private_key = , private_key_password = , server_certificate = , mode = )
         self.agent:mqtt.Client = self.createMqttAgent()
         self.initial_subscriptions()
+        print(self.subRequestTopic)
         print("OK?")
 
     def createMqttAgent(self):
@@ -79,7 +81,7 @@ class opcuaClient(Client):
             # logger = logging.getLogger("KeepAlive")
             # logger.setLevel(logging.DEBUG)
 
-            if (msg.topic == self.methRequestTopic):
+            if msg.topic == self.methRequestTopic:
                 mess = json.loads(msg.payload)
                 print("Call of method", mess["methodID"], " was ordered.")
                 agent.publish(str(self.consoleTopic), "Call of method " + mess["methodID"] + " was ordered.")
@@ -90,29 +92,29 @@ class opcuaClient(Client):
                 elif len(mess) == 3:
                     callMeth = self.callMethodFromNodeID(str(mess["methodID"]), mess["arg1"], mess["arg2"])
 
-            if (msg.topic == self.subRequestTopic):
+            if msg.topic == self.subRequestTopic:
                 print("we've got something here")
+                agent.publish(str(self.subscribeTopic), "start subscribing!")
                 mess = json.loads(msg.payload)
                 mesg = str(msg.payload.decode("utf-8"))
                 print("Subscription on the variable " + mesg + " was ordered.")
                 print(str(mess), str(mesg))
                 agent.publish(str(self.consoleTopic), "Subscription on the variable " + mesg + " was ordered.")
-                subvar = self.subToVarID(mess["varID"], int(mess["SubscriptionPeriod"]), self.subscribeTopic)
-                return subvar
+                subvar = self.subToVarID(varID=mess["varID"], period=mess["SubscriptionPeriod"], Topic=self.subscribeTopic)
 
-            if (msg.topic == self.unSubRequestTopic):
+            if msg.topic == self.unSubRequestTopic:
                 mess = str(msg.payload.decode("utf-8"))
                 unsu = self.unsubFromVarID(mess)
                 print("Ending subscription on the variable ", mess, " was ordered.")
                 agent.publish(self.consoleTopic, "Ending subscription on the variable " + mess + " was ordered.")
 
-            if (msg.topic == self.readRequestTopic):
+            if msg.topic == self.readRequestTopic:
                 mess = str(msg.payload.decode("utf-8"))
                 retMess = self.readValue(mess)
                 agent.publish(self.readTopic, retMess)
                 return retMess
 
-            if (msg.topic == self.writeRequestTopic):
+            if msg.topic == self.writeRequestTopic:
                 mess = json.loads(msg.payload)
                 if len(mess) != 2:
                     agent.publish(self.consoleTopic, "Wrong number of arguements")
@@ -123,7 +125,7 @@ class opcuaClient(Client):
                     var.set_value(mess["value"])
                     print("var written")
 
-            if (msg.topic == self.connectDisconnectTopic):
+            if msg.topic == self.connectDisconnectTopic:
                 mess = str(msg.payload.decode("utf-8"))
                 if mess == "disconnect":
                     self.disconnect()
@@ -135,7 +137,6 @@ class opcuaClient(Client):
         self.agent.on_message = on_message
         self.agent.connect(host=self.brokerURL)
         self.agent.loop_start()
-        time.sleep(2)
 
         return self.agent
 
@@ -161,6 +162,7 @@ class opcuaClient(Client):
     def subToVarID(self, varID, period, Topic):
 
         agent = self.agent
+        print("Asked sub")
         class SubHandler(object):
             """
             Subscription Handler. To receive events from server for a subscription

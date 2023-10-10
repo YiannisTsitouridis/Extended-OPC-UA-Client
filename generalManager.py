@@ -15,6 +15,7 @@ import paho.mqtt.client as mqtt
 import codecs
 import configparser
 import threading
+from asyncua.sync import ThreadLoop
 from opcUaClientClass import opcuaClient
 
 '''
@@ -56,6 +57,13 @@ def startUp(numOfServers):
         #startClient(i)
         print("Thread ", i, "has started")
 
+def startClientThread(num):
+    t = threading.Thread(target=startClient, args=(num,))
+    print("Thread "+str(num)+" reated.")
+    clientsList.append(t)
+    clientsList[num].start()
+
+
 def startClient(num):
     serversData = configparser.ConfigParser()
     serversData.read("clientData.ini")
@@ -88,7 +96,6 @@ def startClient(num):
                 tree = client.browse_server()
                 treejs = json.dumps(tree)
                 print(treejs + "\n" + "\n")
-                time.sleep(2)
                 client.agent.publish(topic=client.architectureTopic, payload=treejs)
             except:
                 print("Error while connecting to " + str(client.name) + "with url:" + str(client.url))
@@ -143,16 +150,15 @@ def main():
             killClient(int(mess))
             generalAgent.publish('generalConsole', "Deleted Server"+str(mess))
         elif msg.topic == "startClient":
-            result = startClient(int(mess))
-            if result != 'all good':
-                generalAgent.publish('generalConsole', str(result))
+            startClientThread(int(mess))
+            # if result != 'all good':
+            #     generalAgent.publish('generalConsole', str(result))
         elif msg.topic == "clearConfig":
             clientConfig.clearConfig()
         elif msg.topic == "addServer":
             clientConfig.addserver_from_UI(mess)
         elif msg.topic == "editServer":
             clientConfig.edit_server_from_UI(mess)
-            time.sleep(1)
             # refreshClient(mess)
 
 
