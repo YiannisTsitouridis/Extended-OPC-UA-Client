@@ -1,4 +1,6 @@
 import sys
+import threading
+
 sys.path.insert(0, "..")
 import logging
 import time
@@ -7,7 +9,8 @@ from pathlib import Path
 import numpy as np
 import json
 from asyncua import ua, common, sync, Client
-from asyncua.sync import DataTypeDictionaryBuilder
+from asyncua.sync import DataTypeDictionaryBuilder, syncmethod, SyncNode
+from asyncua.sync import syncfunc, Subscription
 import xml.etree.ElementTree as ET
 from xml.etree.ElementTree import Element, tostring
 from dict2xml import dict2xml
@@ -63,6 +66,7 @@ class opcuaClient(Client):
         # self.set_security(policy = , certificate = , private_key = , private_key_password = , server_certificate = , mode = )
         self.agent:mqtt.Client = self.createMqttAgent()
         self.initial_subscriptions()
+        print(self.tloop.is_alive())
         print(self.subRequestTopic)
         print("OK?")
 
@@ -100,7 +104,8 @@ class opcuaClient(Client):
                 print("Subscription on the variable " + mesg + " was ordered.")
                 print(str(mess), str(mesg))
                 agent.publish(str(self.consoleTopic), "Subscription on the variable " + mesg + " was ordered.")
-                subvar = self.subToVarID(varID=mess["varID"], period=mess["SubscriptionPeriod"], Topic=self.subscribeTopic)
+                self.startSubscription(varID=mess["varID"], period=mess["SubscriptionPeriod"],
+                                       Topic=self.subscribeTopic)
 
             if msg.topic == self.unSubRequestTopic:
                 mess = str(msg.payload.decode("utf-8"))
@@ -163,6 +168,8 @@ class opcuaClient(Client):
 
         agent = self.agent
         print("Asked sub")
+
+        sync_create_subscription = syncfunc(self.create_subscription)
         class SubHandler(object):
             """
             Subscription Handler. To receive events from server for a subscription
@@ -182,8 +189,12 @@ class opcuaClient(Client):
             self.agent.publish(self.consoleTopic, "There is a subscription to the variable " + varID + " already.")
         else:
             var = self.get_node(varID)
-            handler = SubHandler()
-            sub = self.create_subscription(period, handler)  # First arguement here is period of checking for data.
+            handler = SubHandler
+            sub = self.create_subscription(handler=handler, period=500)
+            # sub = self.create_subscription(period, handler)  # First arguement here is period of checking for data.
+            # sync_create_subscription = syncfunc(Client.create_subscription)
+
+                # sub = Subscription(tloop=self.tloop, sub=)
             handle = sub.subscribe_data_change(var)
 
             self.subscriptionsList.append(sub)
@@ -191,6 +202,9 @@ class opcuaClient(Client):
             print("Subscription on the variable ", varID, " successful.")
             self.agent.publish(self.consoleTopic, "Subscription on the variable " + varID + "successful.")
             return sub
+
+    def startSubscription(self, varID, period, Topic):
+        sub_thread = threading.Thread(target=self.subToVarID, args=(varID, period, Topic))
 
     def unsubFromVarID(self, varID):
         if varID in self.subVarIDList:
@@ -206,19 +220,22 @@ class opcuaClient(Client):
             self.agent.publish(str(self.name) + "/ex/client", "No subscription found to the variable " + varID + ".")
             return "No subscription found to the variable ", varID, "."
 
+
     def callMethodFromNodeID(self, nodeId, *args):
         print("Before set_node function")
         meth = self.get_node(nodeId)
         print("Method with Browse Name ", str(meth.read_browse_name), "is being called")
-        try:
-            methodParent: object = meth.get_parent()
-            print('\n', methodParent, '\n')
-        except:
-            print("Could not find the parent of the method with ID: ", nodeId)
-            self.agent.publish(str(self.consoleTopic), "Could not find the parent of the method with ID: " + nodeId)
-        finally:
-            result = methodParent.call_method(meth, *args)
-            return result
+        methodParent = self.get_node("ns=2;s=controller1.m1")
+
+        #methodParent = meth.get_parent()
+        print('\n', methodParent, '\n')
+        result = methodParent.call_method(meth, *args)
+        # except:
+        #     print("Could not find the parent of the method with ID: ", nodeId)
+        #     self.agent.publish(str(self.consoleTopic), "Could not find the parent of the method with ID: " + nodeId)
+        #     result = "error"
+        # finally:
+        return result
 
     def readValue(self, varID):
         var = self.get_node(varID)

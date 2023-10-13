@@ -38,6 +38,8 @@ try:
 except ImportError:
     import code
 
+from asyncua.sync import ThreadLoop
+
 
 clientsList = []    # List with the threads of all the client instances.
 
@@ -51,6 +53,7 @@ def startUp(numOfServers):
     for i in range(0, numOfServers):
         print("In  startup loop")
         t = threading.Thread(target=startClient, args=(i,))
+        # t = ThreadLoop()
         print("One thread created")
         clientsList.append(t)
         clientsList[i].start()
@@ -59,9 +62,11 @@ def startUp(numOfServers):
 
 def startClientThread(num):
     t = threading.Thread(target=startClient, args=(num,))
-    print("Thread "+str(num)+" reated.")
+    print("Thread "+str(num)+" created.")
     clientsList.append(t)
     clientsList[num].start()
+    print("Thread "+str(num)+" started.")
+
 
 
 def startClient(num):
@@ -101,9 +106,7 @@ def startClient(num):
                 print("Error while connecting to " + str(client.name) + "with url:" + str(client.url))
                 client.agent.publish(client.consoleTopic, "Error while connecting to " + str(client.name) + "with url:"
                                      + str(client.url))
-                client.agent.publish(client.architectureTopic, "Error with url: "+ str(client.url))
-
-
+                client.agent.publish(client.architectureTopic, "Error with url: " + str(client.url))
     except Exception as e:
         return e
 
