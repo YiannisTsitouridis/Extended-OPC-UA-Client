@@ -9,14 +9,13 @@ from pathlib import Path
 import numpy as np
 import json
 from asyncua import ua, common, sync, Client
-from asyncua.sync import DataTypeDictionaryBuilder, syncmethod, SyncNode
+from asyncua.sync import DataTypeDictionaryBuilder, syncmethod, SyncNode, ThreadLoop, Client, _logger
 from asyncua.sync import syncfunc, Subscription
 import xml.etree.ElementTree as ET
 from xml.etree.ElementTree import Element, tostring
 from dict2xml import dict2xml
 from asyncua.crypto.security_policies import SecurityPolicyBasic256Sha256
 import paho.mqtt.client as mqtt
-from asyncua.sync import Client, ThreadLoop, _logger
 
 '''
 
@@ -181,6 +180,7 @@ class opcuaClient(Client):
                 print("Python: New data change for", node.nodeid, ", ", val)
                 me = dict(varID=varID, value=val)
                 agent.publish(topic=Topic, payload=json.dumps(me))
+                print(val)
             def event_notification(self, event):
                 print("Python: New event", event)
 
@@ -220,22 +220,23 @@ class opcuaClient(Client):
             self.agent.publish(str(self.name) + "/ex/client", "No subscription found to the variable " + varID + ".")
             return "No subscription found to the variable ", varID, "."
 
-
+    @syncfunc
     def callMethodFromNodeID(self, nodeId, *args):
         print("Before set_node function")
         meth = self.get_node(nodeId)
         print("Method with Browse Name ", str(meth.read_browse_name), "is being called")
         methodParent = self.get_node("ns=2;s=controller1.m1")
-
+        casualLoop: ThreadLoop = ThreadLoop()
         #methodParent = meth.get_parent()
         print('\n', methodParent, '\n')
-        result = methodParent.call_method(meth, *args)
+        return methodParent.call_method(meth, *args)
+
         # except:
         #     print("Could not find the parent of the method with ID: ", nodeId)
         #     self.agent.publish(str(self.consoleTopic), "Could not find the parent of the method with ID: " + nodeId)
         #     result = "error"
         # finally:
-        return result
+        # return result
 
     def readValue(self, varID):
         var = self.get_node(varID)

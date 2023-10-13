@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Before I go in the middle of nowhere!">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Subscription seems good">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/generalManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/generalManager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/opcUaClientClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/opcUaClientClass.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,14 +46,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "SyncSubClass",
-    "last_opened_file_path": "/home/yiannis/eclipse-workspace/startScreipt.py"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;SyncSubClass&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/yiannis/eclipse-workspace/startScreipt.py&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -63,14 +62,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00026" summary="!">
-      <option name="closed" value="true" />
-      <created>1692260259937</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1692260259937</updated>
     </task>
     <task id="LOCAL-00027" summary="Cannot find solution with arguements">
       <option name="closed" value="true" />
@@ -456,7 +447,15 @@
       <option name="project" value="LOCAL" />
       <updated>1696933434671</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="Subscription seems good">
+      <option name="closed" value="true" />
+      <created>1697193460171</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1697193460172</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -471,7 +470,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed in config and genManager too." />
     <MESSAGE value="Last commit" />
     <MESSAGE value="First version including edit server data" />
     <MESSAGE value="Added edit topic" />
@@ -496,7 +494,8 @@
     <MESSAGE value="New week new me!" />
     <MESSAGE value="Initial Commit" />
     <MESSAGE value="Before I go in the middle of nowhere!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Before I go in the middle of nowhere!" />
+    <MESSAGE value="Subscription seems good" />
+    <option name="LAST_COMMIT_MESSAGE" value="Subscription seems good" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
