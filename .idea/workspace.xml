@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Last Commit!">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientData.ini" beforeDir="false" afterPath="$PROJECT_DIR$/clientData.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/generalManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/generalManager.py" afterDir="false" />
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Kati kalo ginetai!">
       <change beforePath="$PROJECT_DIR$/opcUaClientClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/opcUaClientClass.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,14 +62,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00028" summary="So close to browse!">
-      <option name="closed" value="true" />
-      <created>1692364094710</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1692364094710</updated>
     </task>
     <task id="LOCAL-00029" summary="Printing arguements">
       <option name="closed" value="true" />
@@ -458,7 +447,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697202066343</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="Kati kalo ginetai!">
+      <option name="closed" value="true" />
+      <created>1697531804987</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1697531804987</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -473,7 +470,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="First version including edit server data" />
     <MESSAGE value="Added edit topic" />
     <MESSAGE value="Fixed some comments" />
     <MESSAGE value="Init gone,&#10;clearConfig ready!" />
@@ -498,7 +494,8 @@
     <MESSAGE value="Before I go in the middle of nowhere!" />
     <MESSAGE value="Subscription seems good" />
     <MESSAGE value="Last Commit!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Last Commit!" />
+    <MESSAGE value="Kati kalo ginetai!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Kati kalo ginetai!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
