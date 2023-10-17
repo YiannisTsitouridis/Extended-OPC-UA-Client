@@ -188,12 +188,10 @@ class opcuaClient(Client):
             """
 
             def datachange_notification(self, node, val, data):
-                print("Python: New data change for", node.nodeid, ", ", val)
-                print('X' + '\n')
+                print("Python: New data change for", node.nodeid, ", ", val+ '\n')
                 me = dict(varID=varID, value=val)
                 agent.publish(topic=Topic, payload=json.dumps(me))
                 print(val)
-                logging.warning('new')
 
             def event_notification(self, event):
                 print("Python: New event", event)
@@ -212,8 +210,9 @@ class opcuaClient(Client):
                     sub = client.create_subscription(handler=handler, period=period)
                     handle = sub.subscribe_data_change(myvar)
                     logging.warning("We're here still alive like a storm you can't stop.")
-                    time.sleep(8)
 
+                    while True:
+                        pass
             # self.tloop.start()
             # sub = self.create_subscription(handler=handler, period=500)
             # sub = self.create_subscription(period, handler)  # First arguement here is period of checking for data.
