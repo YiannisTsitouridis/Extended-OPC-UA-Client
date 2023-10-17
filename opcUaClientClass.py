@@ -188,7 +188,7 @@ class opcuaClient(Client):
             """
 
             def datachange_notification(self, node, val, data):
-                print("Python: New data change for", node.nodeid, ", ", val+ '\n')
+                print("Python: New data change for" + str(node.nodeid), ", ", str(val) + '\n')
                 me = dict(varID=varID, value=val)
                 agent.publish(topic=Topic, payload=json.dumps(me))
                 print(val)
@@ -220,28 +220,17 @@ class opcuaClient(Client):
 
             # sub = Subscription(tloop=self.tloop, sub=)
 
-            self.subscriptionsList.append(sub)
-            self.subVarIDList.append(varID)
-            print("Subscription on the variable ", varID, " successful.")
-            self.agent.publish(self.consoleTopic, "Subscription on the variable " + varID + "successful.")
-            return sub
+            # self.subscriptionsList.append(sub)
+            # self.subVarIDList.append(varID)
+            # print("Subscription on the variable ", varID, " successful.")
+            # self.agent.publish(self.consoleTopic, "Subscription on the variable " + varID + "successful.")
+            # return sub
 
     # def startSubscription(self, varID, period, Topic):
     #     print('in startSub')
     #     sub_thread = ThreadLoop(target=self.subToVarID, args=(varID, period, Topic))
     #     sub_thread.start()
     #     print('after calling Subthread')
-
-    class MyThread(threading.Thread):
-        def __init__(self, varID, period, Topic):
-            threading.Thread.__init__(self)
-            self.varID = varID
-            self.period = period
-            self.Topic = Topic
-
-        def run(self):
-            # Call of existing
-            self.subToVarID(self.varID, self.period, self.Topic)
 
     def unsubFromVarID(self, varID):
         if varID in self.subVarIDList:
@@ -257,17 +246,24 @@ class opcuaClient(Client):
             self.agent.publish(str(self.name) + "/ex/client", "No subscription found to the variable " + varID + ".")
             return "No subscription found to the variable ", varID, "."
 
-    @syncfunc
     def callMethodFromNodeID(self, nodeId, *args):
-        print("Before set_node function")
-        meth = self.get_node(nodeId)
-        print("Method with Browse Name ", str(meth.read_browse_name), "is being called")
+        with ThreadLoop() as tloop:
+            with Client(self.url, tloop=tloop) as client:
+                meth = client.get_node(nodeId)
+                print("Method with Browse Name ", str(meth.read_browse_name), "is being called")
+                methodParent = meth.get_parent()
+                print("Method with Browse Name ", str(meth.read_browse_name), "is being called")
+                res = methodParent.call_method(meth, *args)
+
+        # print("Before set_node function")
+        # meth = self.get_node(nodeId)
+        # print("Method with Browse Name ", str(meth.read_browse_name), "is being called")
         # casualLoop: ThreadLoop = ThreadLoop()
-        methodParent = meth.get_parent()
+        # methodParent = meth.get_parent()
         # methodParent = self.get_node("ns=2;s=controller1.m1")
         # methodParent = meth.get_parent()
-        print('\n', methodParent, '\n')
-        return methodParent.call_method(meth, *args)
+        # print('\n', methodParent, '\n')
+        # return methodParent.call_method(meth, *args)
 
         # except:
         #     print("Could not find the parent of the method with ID: ", nodeId)
