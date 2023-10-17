@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Subscription seems good">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Last Commit!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clientData.ini" beforeDir="false" afterPath="$PROJECT_DIR$/clientData.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generalManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/generalManager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/opcUaClientClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/opcUaClientClass.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,6 +29,7 @@
     <setting file="file://$PROJECT_DIR$/../.local/lib/python3.10/site-packages/asyncua/common/__init__.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/../.local/lib/python3.10/site-packages/asyncua/common/node.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/../.local/lib/python3.10/site-packages/asyncua/common/shortcuts.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/../.local/lib/python3.10/site-packages/asyncua/common/subscription.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/../.local/lib/python3.10/site-packages/asyncua/sync.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/../.local/lib/python3.10/site-packages/asyncua/ua/uatypes.py" root0="SKIP_INSPECTION" />
     <setting file="file:///usr/lib/python3.10/json/__init__.py" root0="SKIP_INSPECTION" />
@@ -62,14 +65,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Cannot find solution with arguements">
-      <option name="closed" value="true" />
-      <created>1692276790125</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1692276790126</updated>
     </task>
     <task id="LOCAL-00028" summary="So close to browse!">
       <option name="closed" value="true" />
@@ -455,7 +450,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697193460172</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="Last Commit!">
+      <option name="closed" value="true" />
+      <created>1697202066343</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1697202066343</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -470,7 +473,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Last commit" />
     <MESSAGE value="First version including edit server data" />
     <MESSAGE value="Added edit topic" />
     <MESSAGE value="Fixed some comments" />
@@ -495,7 +497,8 @@
     <MESSAGE value="Initial Commit" />
     <MESSAGE value="Before I go in the middle of nowhere!" />
     <MESSAGE value="Subscription seems good" />
-    <option name="LAST_COMMIT_MESSAGE" value="Subscription seems good" />
+    <MESSAGE value="Last Commit!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Last Commit!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

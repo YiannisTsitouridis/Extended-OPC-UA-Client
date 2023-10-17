@@ -36,14 +36,18 @@ unSubRequestTopic:      the mqtt topic where the UI publishes to request to stop
 connectDisconnectTopic: the mqtt topic where the UI publishes to request client-server disconnection and reconnection    
 
 '''
+
+
 class opcuaClient(Client):
     # This class is a child class to the Client Class from asyncua package.
     # When you add the __init__() function, the child class will no longer inherit the parent's __init__() function.
     # Unless you run the super().__init__ function
-    def __init__(self, url: str, name: str, type: str, mqtturl: str, mqttport: int, architecturetopic: str, consoletopic: str,
+    def __init__(self, url: str, name: str, type: str, mqtturl: str, mqttport: int, architecturetopic: str,
+                 consoletopic: str,
                  readtopic: str, methRequestTopic: str, readRequestTopic: str, writeRequestTopic: str,
-                 subRequestTopic: str, unSubRequestTopic:str, subscribeTopic:str, connectDisconnectTopic:str):
+                 subRequestTopic: str, unSubRequestTopic: str, subscribeTopic: str, connectDisconnectTopic: str):
         super().__init__(url)
+        self.url = url
         self.name = name
         self.type = type
         self.brokerURL = mqtturl
@@ -63,11 +67,12 @@ class opcuaClient(Client):
         # TO DO!
         # Add field for the server implementation.
         # self.set_security(policy = , certificate = , private_key = , private_key_password = , server_certificate = , mode = )
-        self.agent:mqtt.Client = self.createMqttAgent()
+        self.agent: mqtt.Client = self.createMqttAgent()
         self.initial_subscriptions()
         print(self.tloop.is_alive())
         print(self.subRequestTopic)
         print("OK?")
+        logging.warn("jUST A RANDOM ONE")
 
     def createMqttAgent(self):
         def on_connect(agent, userdata, flags, rc):
@@ -80,9 +85,6 @@ class opcuaClient(Client):
 
         def on_message(agent, userdata, msg):
             print(msg.topic + " " + str(msg.payload))
-            logging.basicConfig(level=logging.WARN)
-            # logger = logging.getLogger("KeepAlive")
-            # logger.setLevel(logging.DEBUG)
 
             if msg.topic == self.methRequestTopic:
                 mess = json.loads(msg.payload)
@@ -103,8 +105,14 @@ class opcuaClient(Client):
                 print("Subscription on the variable " + mesg + " was ordered.")
                 print(str(mess), str(mesg))
                 agent.publish(str(self.consoleTopic), "Subscription on the variable " + mesg + " was ordered.")
-                self.startSubscription(varID=mess["varID"], period=mess["SubscriptionPeriod"],
-                                       Topic=self.subscribeTopic)
+                varID = mess["varID"]
+                period = mess["SubscriptionPeriod"]
+                Topic = self.subscribeTopic
+                sub_thread = threading.Thread(target=self.subToVarID, args=(varID, period, Topic))
+                sub_thread.start()
+                # self.startSubscription(varID=mess["varID"], period=mess["SubscriptionPeriod"],
+                #                        Topic=self.subscribeTopic)
+                print('Just after sub call')
 
             if msg.topic == self.unSubRequestTopic:
                 mess = str(msg.payload.decode("utf-8"))
@@ -166,9 +174,11 @@ class opcuaClient(Client):
     def subToVarID(self, varID, period, Topic):
 
         agent = self.agent
-        print("Asked sub")
+        logging.warning("Asked sub")
+        agent.publish(self.consoleTopic, 'Asked sub')
 
         sync_create_subscription = syncfunc(self.create_subscription)
+
         class SubHandler(object):
             """
             Subscription Handler. To receive events from server for a subscription
@@ -176,26 +186,40 @@ class opcuaClient(Client):
             Do not do expensive, slow or network operation there. Create another
             thread if you need to do such a thing
             """
+
             def datachange_notification(self, node, val, data):
                 print("Python: New data change for", node.nodeid, ", ", val)
+                print('X' + '\n')
                 me = dict(varID=varID, value=val)
                 agent.publish(topic=Topic, payload=json.dumps(me))
                 print(val)
+                logging.warning('new')
+
             def event_notification(self, event):
                 print("Python: New event", event)
 
         if varID in self.subVarIDList:
+            logging.warning("We are in if case")
             print("There is a subscription to the variable " + varID + " already.")
             self.agent.publish(self.consoleTopic, "There is a subscription to the variable " + varID + " already.")
         else:
-            var = self.get_node(varID)
-            handler = SubHandler
-            sub = self.create_subscription(handler=handler, period=500)
+            logging.warning("We are in else case")
+            # var = self.get_node(varID)
+            with ThreadLoop() as tloop:
+                with Client(url=self.url, tloop=tloop) as client:
+                    myvar = client.get_node(varID)
+                    handler = SubHandler()
+                    sub = client.create_subscription(handler=handler, period=period)
+                    handle = sub.subscribe_data_change(myvar)
+                    logging.warning("We're here still alive like a storm you can't stop.")
+                    time.sleep(8)
+
+            # self.tloop.start()
+            # sub = self.create_subscription(handler=handler, period=500)
             # sub = self.create_subscription(period, handler)  # First arguement here is period of checking for data.
             # sync_create_subscription = syncfunc(Client.create_subscription)
 
-                # sub = Subscription(tloop=self.tloop, sub=)
-            handle = sub.subscribe_data_change(var)
+            # sub = Subscription(tloop=self.tloop, sub=)
 
             self.subscriptionsList.append(sub)
             self.subVarIDList.append(varID)
@@ -203,8 +227,22 @@ class opcuaClient(Client):
             self.agent.publish(self.consoleTopic, "Subscription on the variable " + varID + "successful.")
             return sub
 
-    def startSubscription(self, varID, period, Topic):
-        sub_thread = threading.Thread(target=self.subToVarID, args=(varID, period, Topic))
+    # def startSubscription(self, varID, period, Topic):
+    #     print('in startSub')
+    #     sub_thread = ThreadLoop(target=self.subToVarID, args=(varID, period, Topic))
+    #     sub_thread.start()
+    #     print('after calling Subthread')
+
+    class MyThread(threading.Thread):
+        def __init__(self, varID, period, Topic):
+            threading.Thread.__init__(self)
+            self.varID = varID
+            self.period = period
+            self.Topic = Topic
+
+        def run(self):
+            # Call of existing
+            self.subToVarID(self.varID, self.period, self.Topic)
 
     def unsubFromVarID(self, varID):
         if varID in self.subVarIDList:
@@ -225,9 +263,10 @@ class opcuaClient(Client):
         print("Before set_node function")
         meth = self.get_node(nodeId)
         print("Method with Browse Name ", str(meth.read_browse_name), "is being called")
-        methodParent = self.get_node("ns=2;s=controller1.m1")
-        casualLoop: ThreadLoop = ThreadLoop()
-        #methodParent = meth.get_parent()
+        # casualLoop: ThreadLoop = ThreadLoop()
+        methodParent = meth.get_parent()
+        # methodParent = self.get_node("ns=2;s=controller1.m1")
+        # methodParent = meth.get_parent()
         print('\n', methodParent, '\n')
         return methodParent.call_method(meth, *args)
 
@@ -241,12 +280,11 @@ class opcuaClient(Client):
     def readValue(self, varID):
         var = self.get_node(varID)
         val = var.read_value()
-        d = dict(varId = var, value = val)
+        d = dict(varId=var, value=val)
         ret = json.dumps(d)
         return ret
         # except:
         #     print("Couldn't read the value with ID ", varID)
-
 
     def browse_node_tree(self, syncnode):
         """
@@ -255,6 +293,7 @@ class opcuaClient(Client):
         global args
         node_class = syncnode.read_node_class()
         children = []
+
         def quasarArguementHandling(methnode):
             input_arguments_property = methnode.get_child("InputArguments")
             if input_arguments_property is not None:

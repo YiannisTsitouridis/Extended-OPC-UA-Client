@@ -131,6 +131,13 @@ def refreshClient(num):
 ####                     DEFINING MAIN FUNCTION                         ####
 ############################################################################
 def main():
+    logging.basicConfig(
+        level=logging.INFO,  # Set the minimum level for messages to be recorded
+        format='%(asctime)s [%(levelname)s]: %(message)s',  # Define the format of log messages
+        handlers=[
+            logging.StreamHandler()  # Send log messages to the console
+        ]
+    )
     serversData = configparser.ConfigParser()
     serversData.read("clientData.ini")
     numOfServers = serversData.getint('NumberOfServers', 'serversNum')
@@ -163,8 +170,6 @@ def main():
         elif msg.topic == "editServer":
             clientConfig.edit_server_from_UI(mess)
             # refreshClient(mess)
-
-
 
     generalAgent = mqtt.Client("general")
     generalAgent.on_connect = on_connect
