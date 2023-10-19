@@ -74,6 +74,10 @@ class opcuaClient(Client):
         print("OK?")
         logging.warn("jUST A RANDOM ONE")
 
+    # Defining the dynamic list for the IDs of the variables that are to be subscribed.
+    subVarIDList: list[str] = []
+    subThreadList: list[threading.Thread] = []
+
     def createMqttAgent(self):
         def on_connect(agent, userdata, flags, rc):
             if rc == 0:
@@ -109,6 +113,9 @@ class opcuaClient(Client):
                 period = mess["SubscriptionPeriod"]
                 Topic = self.subscribeTopic
                 sub_thread = threading.Thread(target=self.subToVarID, args=(varID, period, Topic))
+                self.subThreadList.append(sub_thread)
+                self.subVarIDList.append(varID)
+                print('check check')
                 sub_thread.start()
                 # self.startSubscription(varID=mess["varID"], period=mess["SubscriptionPeriod"],
                 #                        Topic=self.subscribeTopic)
@@ -167,9 +174,7 @@ class opcuaClient(Client):
     def __str__(self):
         return f"{self.name} with url :{self.name} and tloop = {self.tloop}"
 
-    # Defining the dynamic list for the IDs of the variables that are to be subscribed.
-    subVarIDList: list[str] = []
-    subscriptionsList: list[object] = []
+
 
     def subToVarID(self, varID, period, Topic):
 
@@ -233,12 +238,14 @@ class opcuaClient(Client):
     #     print('after calling Subthread')
 
     def unsubFromVarID(self, varID):
+        def deleteTogether(i):
+            del self.subVarIDList[i]
+            del self.subThreadList[i]
+
         if varID in self.subVarIDList:
             ind = self.subVarIDList.index(varID)
-            sub = self.subscriptionsList[ind]
-            sub.delete()
-            del self.subscriptionsList[ind]
-            del self.subVarIDList[ind]
+            self.subThreadList[ind]._delete()
+            deleteTogether(ind)
             print("Ending subscription on the variable ", varID, " successfully.")
             return "Ending subscription on the variable ", varID, " successfully."
         else:

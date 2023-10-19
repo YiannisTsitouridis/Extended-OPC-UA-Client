@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Loop forever!">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Both subscribe and call_method threads start and work!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/opcUaClientClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/opcUaClientClass.py" afterDir="false" />
     </list>
@@ -63,14 +63,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00031" summary="Done!">
-      <option name="closed" value="true" />
-      <created>1692705455943</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1692705455943</updated>
     </task>
     <task id="LOCAL-00032" summary="Done!">
       <option name="closed" value="true" />
@@ -456,7 +448,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697532480525</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="Both subscribe and call_method threads start and work!">
+      <option name="closed" value="true" />
+      <created>1697533619890</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1697533619890</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -471,7 +471,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed some comments" />
     <MESSAGE value="Init gone,&#10;clearConfig ready!" />
     <MESSAGE value="Corrected one mistake" />
     <MESSAGE value="yj" />
@@ -496,7 +495,8 @@
     <MESSAGE value="Last Commit!" />
     <MESSAGE value="Kati kalo ginetai!" />
     <MESSAGE value="Loop forever!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Loop forever!" />
+    <MESSAGE value="Both subscribe and call_method threads start and work!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Both subscribe and call_method threads start and work!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
