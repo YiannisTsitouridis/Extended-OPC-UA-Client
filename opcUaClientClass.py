@@ -78,6 +78,10 @@ class opcuaClient(Client):
     subVarIDList: list[str] = []
     subThreadList: list[threading.Thread] = []
 
+    def appendTogether(self, id, thread):
+        self.subVarIDList.append(id)
+        self.subThreadList.append(thread)
+
     def createMqttAgent(self):
         def on_connect(agent, userdata, flags, rc):
             if rc == 0:
@@ -112,6 +116,16 @@ class opcuaClient(Client):
                 varID = mess["varID"]
                 period = mess["SubscriptionPeriod"]
                 Topic = self.subscribeTopic
+
+                if varID in self.subVarIDList:
+                    logging.warning("We are in if case")
+                    print("There is a subscription to the variable " + varID + " already.")
+                    self.agent.publish(self.consoleTopic,
+                                       "There is a subscription to the variable " + varID + " already.")
+                else:
+                    sub_thread = threading.Thread(target=self.subToVarID, args=(varID, period, Topic))
+                    self.appendTogether(varID, sub_thread)
+
                 sub_thread = threading.Thread(target=self.subToVarID, args=(varID, period, Topic))
                 self.subThreadList.append(sub_thread)
                 self.subVarIDList.append(varID)
@@ -122,6 +136,7 @@ class opcuaClient(Client):
                 print('Just after sub call')
 
             if msg.topic == self.unSubRequestTopic:
+                print('Unsubscribe ordered\n')
                 mess = str(msg.payload.decode("utf-8"))
                 unsu = self.unsubFromVarID(mess)
                 print("Ending subscription on the variable ", mess, " was ordered.")
@@ -201,23 +216,18 @@ class opcuaClient(Client):
             def event_notification(self, event):
                 print("Python: New event", event)
 
-        if varID in self.subVarIDList:
-            logging.warning("We are in if case")
-            print("There is a subscription to the variable " + varID + " already.")
-            self.agent.publish(self.consoleTopic, "There is a subscription to the variable " + varID + " already.")
-        else:
-            logging.warning("We are in else case")
-            # var = self.get_node(varID)
-            with ThreadLoop() as tloop:
-                with Client(url=self.url, tloop=tloop) as client:
-                    myvar = client.get_node(varID)
-                    handler = SubHandler()
-                    sub = client.create_subscription(handler=handler, period=period)
-                    handle = sub.subscribe_data_change(myvar)
-                    logging.warning("We're here still alive like a storm you can't stop.")
+        logging.warning("We are in else case")
+        with ThreadLoop() as tloop:
+            with Client(url=self.url, tloop=tloop) as client:
+                myvar = client.get_node(varID)
+                handler = SubHandler()
+                sub = client.create_subscription(handler=handler, period=period)
+                handle = sub.subscribe_data_change(myvar)
+                logging.warning("We're here still alive like a storm you can't stop.")
 
-                    while True:
-                        pass
+                while True:
+                    pass
+
             # self.tloop.start()
             # sub = self.create_subscription(handler=handler, period=500)
             # sub = self.create_subscription(period, handler)  # First arguement here is period of checking for data.
