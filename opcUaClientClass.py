@@ -319,8 +319,7 @@ class opcuaClient(Client):
             return args
 
         for child in syncnode.get_children():
-            if child.read_node_class() in [ua.NodeClass.Object, ua.NodeClass.Variable, ua.NodeClass.Method,
-                                           ua.NodeClass.ObjectType, ua.Argument]:
+            if child.read_node_class() in [ua.NodeClass.Object, ua.NodeClass.Variable, ua.NodeClass.Method, ua.Argument]:
                 if child.read_node_class() in [ua.NodeClass.Method] and self.type == 'quasar':
                     args = quasarArguementHandling(child)
                 else:

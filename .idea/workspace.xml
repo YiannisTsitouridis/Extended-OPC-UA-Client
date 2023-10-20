@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Fixed Thread control but subscribe doesn't print.&#10;Why?">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Seems all fixed!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clientData.ini" beforeDir="false" afterPath="$PROJECT_DIR$/clientData.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generalManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/generalManager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/opcUaClientClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/opcUaClientClass.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,14 +49,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;SyncSubClass&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/yiannis/eclipse-workspace/startScreipt.py&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "SyncSubClass",
+    "last_opened_file_path": "/home/yiannis/asyncuaServer"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -63,14 +65,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00033" summary="Initial commit.">
-      <option name="closed" value="true" />
-      <created>1694432382905</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1694432382909</updated>
     </task>
     <task id="LOCAL-00034" summary="Read message fixed.">
       <option name="closed" value="true" />
@@ -456,7 +450,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697708853099</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="Seems all fixed!">
+      <option name="closed" value="true" />
+      <created>1697710084003</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1697710084003</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -471,7 +473,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Corrected one mistake" />
     <MESSAGE value="yj" />
     <MESSAGE value="2nd server" />
     <MESSAGE value="2nd server!" />
@@ -496,7 +497,8 @@
     <MESSAGE value="Loop forever!" />
     <MESSAGE value="Both subscribe and call_method threads start and work!" />
     <MESSAGE value="Fixed Thread control but subscribe doesn't print.&#10;Why?" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed Thread control but subscribe doesn't print.&#10;Why?" />
+    <MESSAGE value="Seems all fixed!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Seems all fixed!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

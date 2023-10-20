@@ -64,7 +64,7 @@ def startClientThread(num):
     t = threading.Thread(target=startClient, args=(num,))
     print("Thread "+str(num)+" created.")
     clientsList.append(t)
-    clientsList[num].start()
+    t.start()
     print("Thread "+str(num)+" started.")
 
 
@@ -92,11 +92,13 @@ def startClient(num):
                          localconsoleTopic, localreadTopic, localmethrequestTopic, localreadRequestTopic,
                          localwriteRequestTopic, localsubrequestTopic, localunsubrequestTopic, localsubscribeTopic,
                          localconnectDisconnectTopic) as client:
-            client.agent.publish(client.consoleTopic, "Server " + str(client.name) + " created")
+            mes = json.dumps({"message" : "Server " + str(client.name) + " created"})
+            client.agent.publish(client.consoleTopic, payload=mes)
             try:
                 client.__enter__()
                 print("Server with name " + str(client.name) + " connected")
-                client.agent.publish(client.consoleTopic, "Server " + str(client.name) + " connected")
+                mes = json.dumps({"message": "Server " + str(client.name) + " connected"})
+                client.agent.publish(client.consoleTopic, mes)
                 print("Inside the client ", num, "loop")
                 tree = client.browse_server()
                 treejs = json.dumps(tree)
