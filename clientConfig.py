@@ -2,15 +2,26 @@
 import sys
 import configparser
 import json
+from generalManager import createClientThread
 
+
+
+def giveCount(file):
+    for i in (0, file.getint('NumberOfServers', 'serversNum')+1):
+        if file.has_section("Server"+str(i)):
+            pass
+        else:
+            return i
 def addserver():
     initial_configfile = configparser.ConfigParser()
     initial_configfile.read("clientData.ini")
 
     # Updating the number of the servers value in the clientConfig.ini file #
-    numOfServers = initial_configfile.getint('NumberOfServers', 'serversNum')
-    newNumOfServers = numOfServers + 1
-    initial_configfile.set('NumberOfServers', 'serversNum', str(newNumOfServers))
+    i = giveCount(initial_configfile)
+
+    # Updating the number of the servers value in the clientConfig.ini file #
+    initial_configfile.set('NumberOfServers', 'serversNum', i)
+    initial_configfile.set('NumberOfServers', 'serversNum', str(i))
 
     # Taking console inputs for the new server. #
     serverUrl = input("Type the Url of the new server: ")
@@ -31,26 +42,27 @@ def addserver():
 
 
     # Setting the taken inputs in the clientConfig.ini file, in the new server's section. #
-    initial_configfile.add_section("Server" + str(numOfServers))
-    initial_configfile.set('Server' + str(numOfServers), 'url', serverUrl)
-    initial_configfile.set('Server' + str(numOfServers), 'name', serverName)
-    initial_configfile.set('Server' + str(numOfServers), 'type', serverType)
-    initial_configfile.set('Server' + str(numOfServers), 'mqtturl', mqttUrl)
-    initial_configfile.set('Server' + str(numOfServers), 'mqttport', mqttPort)
-    initial_configfile.set('Server' + str(numOfServers), 'architecturetopic', architectureTopic)
-    initial_configfile.set('Server' + str(numOfServers), 'consoletopic', consoleTopic)
-    initial_configfile.set('Server' + str(numOfServers), 'readtopic', readTopic)
-    initial_configfile.set('Server' + str(numOfServers), 'methrequesttopic', methRequestTopic)
-    initial_configfile.set('Server' + str(numOfServers), 'readrequesttopic', readRequestTopic)
-    initial_configfile.set('Server' + str(numOfServers), 'writerequesttopic', writeRequestTopic)
-    initial_configfile.set('Server' + str(numOfServers), 'subrequesttopic', subRequestTopic)
-    initial_configfile.set('Server' + str(numOfServers), 'unsubrequesttopic', unSubRequestTopic)
-    initial_configfile.set('Server' + str(numOfServers), 'subscriptiontopic', subscriptionTopic)
-    initial_configfile.set('Server' + str(numOfServers), 'connectdisconnecttopic', connectDisconnectTopic)
+    initial_configfile.add_section("Server" + str(i))
+    initial_configfile.set('Server' + str(i), 'url', serverUrl)
+    initial_configfile.set('Server' + str(i), 'name', serverName)
+    initial_configfile.set('Server' + str(i), 'type', serverType)
+    initial_configfile.set('Server' + str(i), 'mqtturl', mqttUrl)
+    initial_configfile.set('Server' + str(i), 'mqttport', mqttPort)
+    initial_configfile.set('Server' + str(i), 'architecturetopic', architectureTopic)
+    initial_configfile.set('Server' + str(i), 'consoletopic', consoleTopic)
+    initial_configfile.set('Server' + str(i), 'readtopic', readTopic)
+    initial_configfile.set('Server' + str(i), 'methrequesttopic', methRequestTopic)
+    initial_configfile.set('Server' + str(i), 'readrequesttopic', readRequestTopic)
+    initial_configfile.set('Server' + str(i), 'writerequesttopic', writeRequestTopic)
+    initial_configfile.set('Server' + str(i), 'subrequesttopic', subRequestTopic)
+    initial_configfile.set('Server' + str(i), 'unsubrequesttopic', unSubRequestTopic)
+    initial_configfile.set('Server' + str(i), 'subscriptiontopic', subscriptionTopic)
+    initial_configfile.set('Server' + str(i), 'connectdisconnecttopic', connectDisconnectTopic)
 
     with open(r"clientData.ini", 'w') as configfile:
         initial_configfile.write(configfile)
 
+    createClientThread(i)
 
 def edit_server(num):
     initial_configfile = configparser.ConfigParser()
@@ -101,10 +113,10 @@ def addserver_from_UI(dataFromUI):
     initial_configfile = configparser.ConfigParser()
     initial_configfile.read("clientData.ini")
 
+    i = giveCount(initial_configfile)
+
     # Updating the number of the servers value in the clientConfig.ini file #
-    numOfServers = initial_configfile.getint('NumberOfServers', 'serversNum')
-    newNumOfServers = str(numOfServers + 1)
-    initial_configfile.set('NumberOfServers', 'serversNum', newNumOfServers)
+    initial_configfile.set('NumberOfServers', 'serversNum', i)
 
     # Taking console inputs for the new server. #
     serverUrl = dataObject["serverUrl"]
@@ -124,25 +136,28 @@ def addserver_from_UI(dataFromUI):
     connectDisconnectTopic = dataObject["connectDisconnectTopic"]
 
     # Setting the taken inputs in the clientConfig.ini file, in the new server's section. #
-    initial_configfile.add_section("Server" + str(numOfServers))
-    initial_configfile.set('Server' + str(numOfServers), 'url', serverUrl)
-    initial_configfile.set('Server' + str(numOfServers), 'name', serverName)
-    initial_configfile.set('Server' + str(numOfServers), 'type', serverType)
-    initial_configfile.set('Server' + str(numOfServers), 'mqtturl', mqttUrl)
-    initial_configfile.set('Server' + str(numOfServers), 'mqttport', mqttPort)
-    initial_configfile.set('Server' + str(numOfServers), 'architecturetopic', architectureTopic)
-    initial_configfile.set('Server' + str(numOfServers), 'consoletopic', consoleTopic)
-    initial_configfile.set('Server' + str(numOfServers), 'readtopic', readTopic)
-    initial_configfile.set('Server' + str(numOfServers), 'methrequesttopic', methRequestTopic)
-    initial_configfile.set('Server' + str(numOfServers), 'readrequesttopic', readRequestTopic)
-    initial_configfile.set('Server' + str(numOfServers), 'writerequesttopic', writeRequestTopic)
-    initial_configfile.set('Server' + str(numOfServers), 'subrequesttopic', subRequestTopic)
-    initial_configfile.set('Server' + str(numOfServers), 'unsubrequesttopic', unSubRequestTopic)
-    initial_configfile.set('Server' + str(numOfServers), 'subscriptiontopic', subscriptionTopic)
-    initial_configfile.set('Server' + str(numOfServers), 'connectdisconnecttopic', connectDisconnectTopic)
+    initial_configfile.add_section("Server" + str(i))
+    initial_configfile.set('Server' + str(i), 'url', serverUrl)
+    initial_configfile.set('Server' + str(i), 'name', serverName)
+    initial_configfile.set('Server' + str(i), 'type', serverType)
+    initial_configfile.set('Server' + str(i), 'mqtturl', mqttUrl)
+    initial_configfile.set('Server' + str(i), 'mqttport', mqttPort)
+    initial_configfile.set('Server' + str(i), 'architecturetopic', architectureTopic)
+    initial_configfile.set('Server' + str(i), 'consoletopic', consoleTopic)
+    initial_configfile.set('Server' + str(i), 'readtopic', readTopic)
+    initial_configfile.set('Server' + str(i), 'methrequesttopic', methRequestTopic)
+    initial_configfile.set('Server' + str(i), 'readrequesttopic', readRequestTopic)
+    initial_configfile.set('Server' + str(i), 'writerequesttopic', writeRequestTopic)
+    initial_configfile.set('Server' + str(i), 'subrequesttopic', subRequestTopic)
+    initial_configfile.set('Server' + str(i), 'unsubrequesttopic', unSubRequestTopic)
+    initial_configfile.set('Server' + str(i), 'subscriptiontopic', subscriptionTopic)
+    initial_configfile.set('Server' + str(i), 'connectdisconnecttopic', connectDisconnectTopic)
 
     with open(r"clientData.ini", 'w') as configfile:
         initial_configfile.write(configfile)
+    fed = {"servername": serverName, "count": i}
+    feedback = json.dumps(fed)
+    return feedback
 
 def edit_server_from_UI(dataFromUI):
     dataObject = json.loads(dataFromUI)

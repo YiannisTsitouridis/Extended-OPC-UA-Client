@@ -61,12 +61,11 @@ def startUp(numOfServers):
         print("Thread ", i, "has started")
 
 def startClientThread(num):
-    t = threading.Thread(target=startClient, args=(num,))
-    print("Thread "+str(num)+" created.")
-    clientsList.append(t)
-    t.start()
+    clientsList[num].start()
     print("Thread "+str(num)+" started.")
 
+def deleteServer():
+    pass
 
 
 def startClient(num):
@@ -118,6 +117,12 @@ def stop(numOfServers):
     for i in range(0, numOfServers - 1):
         if clientsList[i].is_alive:
             clientsList[i].stop()
+def createClientThread(i):
+    t = threading.Thread(target=startClient, args=(i,))
+    clientsList.append(t)
+    if i != len(clientsList):
+        print("Error at client numbering")
+
 
 def killClient(num):
     clientsList[num]._stop()
@@ -168,10 +173,20 @@ def main():
         elif msg.topic == "clearConfig":
             clientConfig.clearConfig()
         elif msg.topic == "addServer":
-            clientConfig.addserver_from_UI(mess)
+            feedback = clientConfig.addserver_from_UI(mess)
+            fed = json.loads(feedback)
+            count = fed["count"]
+            createClientThread(count)
+            print("Thread " + str(mess) + " created.")
+            generalAgent.publish(feedback)
         elif msg.topic == "editServer":
-            clientConfig.edit_server_from_UI(mess)
+            if clientsList[mess].is_alive:
+                clientConfig.edit_server_from_UI(mess)
+                createClientThread(mess)
+                # Here calling the function that creates the Thread without running it.
             # refreshClient(mess)
+        elif msg.topic == "deleteServer":
+            deleteServer(int(msg.payload))
 
     generalAgent = mqtt.Client("general")
     generalAgent.on_connect = on_connect

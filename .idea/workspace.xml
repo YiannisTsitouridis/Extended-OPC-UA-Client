@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Seems all fixed!">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Take object types out of browse">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientData.ini" beforeDir="false" afterPath="$PROJECT_DIR$/clientData.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clientConfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/clientConfig.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/generalManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/generalManager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opcUaClientClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/opcUaClientClass.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,7 +17,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="New_subscription" />
+        <entry key="$PROJECT_DIR$" value="SyncSubClass" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -53,7 +52,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "SyncSubClass",
+    "git-widget-placeholder": "Dynamic-Server-List",
     "last_opened_file_path": "/home/yiannis/asyncuaServer"
   }
 }]]></component>
@@ -65,14 +64,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00034" summary="Read message fixed.">
-      <option name="closed" value="true" />
-      <created>1694433144704</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1694433144704</updated>
     </task>
     <task id="LOCAL-00035" summary="Before I go">
       <option name="closed" value="true" />
@@ -458,7 +449,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697710084003</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="Take object types out of browse">
+      <option name="closed" value="true" />
+      <created>1697798767181</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1697798767182</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -473,7 +472,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="yj" />
     <MESSAGE value="2nd server" />
     <MESSAGE value="2nd server!" />
     <MESSAGE value="Problem spotted" />
@@ -498,7 +496,8 @@
     <MESSAGE value="Both subscribe and call_method threads start and work!" />
     <MESSAGE value="Fixed Thread control but subscribe doesn't print.&#10;Why?" />
     <MESSAGE value="Seems all fixed!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Seems all fixed!" />
+    <MESSAGE value="Take object types out of browse" />
+    <option name="LAST_COMMIT_MESSAGE" value="Take object types out of browse" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
