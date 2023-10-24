@@ -198,6 +198,15 @@ def edit_server_from_UI(dataFromUI):
     initial_configfile.set('Server' + str(i), 'connectdisconnecttopic', connectDisconnectTopic)
 
 
+def deleteServer(i):
+    initial_configfile = configparser.ConfigParser()
+    initial_configfile.read("clientData.ini")
+
+    initial_configfile.remove_section('Server'+str(i))
+
+    with open(r"clientData.ini", 'w') as configfile:
+        initial_configfile.write(configfile)
+
 def clearConfig():
     initial_configfile = configparser.ConfigParser()
     initial_configfile.read("clientData.ini")

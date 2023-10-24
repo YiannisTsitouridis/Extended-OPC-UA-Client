@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Take object types out of browse">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="First commit in branch">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/clientConfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/clientConfig.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/generalManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/generalManager.py" afterDir="false" />
@@ -48,14 +48,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Dynamic-Server-List",
-    "last_opened_file_path": "/home/yiannis/asyncuaServer"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Dynamic-Server-List&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/yiannis/asyncuaServer&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -64,14 +64,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00035" summary="Before I go">
-      <option name="closed" value="true" />
-      <created>1694436977030</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1694436977030</updated>
     </task>
     <task id="LOCAL-00036" summary="Comments complete.">
       <option name="closed" value="true" />
@@ -457,7 +449,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697798767182</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="First commit in branch">
+      <option name="closed" value="true" />
+      <created>1698069991065</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1698069991065</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -472,7 +472,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="2nd server" />
     <MESSAGE value="2nd server!" />
     <MESSAGE value="Problem spotted" />
     <MESSAGE value="Now it worked for the first time!" />
@@ -497,7 +496,8 @@
     <MESSAGE value="Fixed Thread control but subscribe doesn't print.&#10;Why?" />
     <MESSAGE value="Seems all fixed!" />
     <MESSAGE value="Take object types out of browse" />
-    <option name="LAST_COMMIT_MESSAGE" value="Take object types out of browse" />
+    <MESSAGE value="First commit in branch" />
+    <option name="LAST_COMMIT_MESSAGE" value="First commit in branch" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

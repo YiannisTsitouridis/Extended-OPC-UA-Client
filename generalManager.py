@@ -60,12 +60,12 @@ def startUp(numOfServers):
         #startClient(i)
         print("Thread ", i, "has started")
 
-def startClientThread(num):
+def runClientThread(num):
     clientsList[num].start()
     print("Thread "+str(num)+" started.")
 
-def deleteServer():
-    pass
+def deleteServer(num):
+    killClient(num)
 
 
 def startClient(num):
@@ -123,15 +123,14 @@ def createClientThread(i):
     if i != len(clientsList):
         print("Error at client numbering")
 
+def remakeClientThread(i):
+    clientsList[i] = threading.Thread(target=startClient, args=(i,))
+
 
 def killClient(num):
     clientsList[num]._stop()
     clientsList[num]._delete()
 
-
-def refreshClient(num):
-    killClient(num)
-    startClient(num)
 
 
 ############################################################################
@@ -167,7 +166,7 @@ def main():
             killClient(int(mess))
             generalAgent.publish('generalConsole', "Deleted Server"+str(mess))
         elif msg.topic == "startClient":
-            startClientThread(int(mess))
+            runClientThread(int(mess))
             # if result != 'all good':
             #     generalAgent.publish('generalConsole', str(result))
         elif msg.topic == "clearConfig":
@@ -181,10 +180,10 @@ def main():
             generalAgent.publish(feedback)
         elif msg.topic == "editServer":
             if clientsList[mess].is_alive:
+                print("This is a thread running, cannot edit.")
+            else:
                 clientConfig.edit_server_from_UI(mess)
-                createClientThread(mess)
-                # Here calling the function that creates the Thread without running it.
-            # refreshClient(mess)
+                remakeClientThread(mess)
         elif msg.topic == "deleteServer":
             deleteServer(int(msg.payload))
 
