@@ -175,7 +175,7 @@ def main():
             count = fed["count"]
             createClientThread(count)
             print("Thread " + str(mess) + " created.")
-            generalAgent.publish(feedback)
+            generalAgent.publish('feedback', feedback)
         elif msg.topic == "editServer":
             if clientsList[mess].is_alive:
                 print("This is a thread running, cannot edit.")

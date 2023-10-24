@@ -155,7 +155,9 @@ def addserver_from_UI(dataFromUI):
 
     with open(r"clientData.ini", 'w') as configfile:
         initial_configfile.write(configfile)
-    fed = {"servername": serverName, "count": i}
+    splt = architectureTopic.split(splitter='/')
+    uuid = splt[1]
+    fed = {"serveruuid": uuid, "count": i}
     feedback = json.dumps(fed)
     return feedback
 

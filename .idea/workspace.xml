@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="First commit in branch">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Com">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/clientConfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/clientConfig.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/generalManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/generalManager.py" afterDir="false" />
@@ -64,30 +64,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00036" summary="Comments complete.">
-      <option name="closed" value="true" />
-      <created>1694498867835</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1694498867835</updated>
-    </task>
-    <task id="LOCAL-00037" summary="Last commit on this branch">
-      <option name="closed" value="true" />
-      <created>1694522040957</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1694522040957</updated>
-    </task>
-    <task id="LOCAL-00038" summary="First commit in branch">
-      <option name="closed" value="true" />
-      <created>1694523364139</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1694523364139</updated>
     </task>
     <task id="LOCAL-00039" summary="First commit in branch">
       <option name="closed" value="true" />
@@ -457,7 +433,31 @@
       <option name="project" value="LOCAL" />
       <updated>1698069991065</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="Commit with changes">
+      <option name="closed" value="true" />
+      <created>1698129829962</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1698129829963</updated>
+    </task>
+    <task id="LOCAL-00086" summary="Commit with changes">
+      <option name="closed" value="true" />
+      <created>1698129860953</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1698129860953</updated>
+    </task>
+    <task id="LOCAL-00087" summary="Com">
+      <option name="closed" value="true" />
+      <created>1698132292536</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1698132292536</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -472,8 +472,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="2nd server!" />
-    <MESSAGE value="Problem spotted" />
     <MESSAGE value="Now it worked for the first time!" />
     <MESSAGE value="Browse problem:&#10;Quasar works with InputArguements Object but error in NodeOPCUA server" />
     <MESSAGE value="Last commit for today" />
@@ -497,7 +495,9 @@
     <MESSAGE value="Seems all fixed!" />
     <MESSAGE value="Take object types out of browse" />
     <MESSAGE value="First commit in branch" />
-    <option name="LAST_COMMIT_MESSAGE" value="First commit in branch" />
+    <MESSAGE value="Commit with changes" />
+    <MESSAGE value="Com" />
+    <option name="LAST_COMMIT_MESSAGE" value="Com" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
