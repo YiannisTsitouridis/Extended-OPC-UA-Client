@@ -111,7 +111,6 @@ def startClient(num):
     except Exception as e:
         return e
 
-
 def stop(numOfServers):
     print("All client instances are terminated.")
     for i in range(0, numOfServers - 1):
@@ -185,10 +184,14 @@ def main():
         elif msg.topic == "deleteServer":
             deleteServer(int(msg.payload))
 
+    file = configparser.ConfigParser()
+    file.read("startingData.ini")
+    host = file.get("BasicInfo", "host")
+    port = file.get("BasicInfo", "port")
     generalAgent = mqtt.Client("general")
     generalAgent.on_connect = on_connect
     generalAgent.on_message = on_message
-    generalAgent.connect(host="test.mosquitto.org", port=1883)
+    generalAgent.connect(host=host, port=port)
     generalAgent.subscribe("startStop")
     generalAgent.subscribe("refreshClient")
     generalAgent.subscribe("killClient")
