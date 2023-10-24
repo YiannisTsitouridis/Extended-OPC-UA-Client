@@ -160,8 +160,6 @@ def main():
             elif mess == "startUp":
                 print("startUp ordered")
                 startUp(numOfServers)
-        elif msg.topic == "refreshClient":
-            refreshClient(int(mess))
         elif msg.topic == "killClient":
             killClient(int(mess))
             generalAgent.publish('generalConsole', "Deleted Server"+str(mess))
