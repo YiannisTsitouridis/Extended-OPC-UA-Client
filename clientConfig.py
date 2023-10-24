@@ -207,7 +207,7 @@ def deleteServer(i):
     with open(r"clientData.ini", 'w') as configfile:
         initial_configfile.write(configfile)
 
-def clearConfig():
+def cleanConfig():
     initial_configfile = configparser.ConfigParser()
     initial_configfile.read("clientData.ini")
     num = initial_configfile.getint('NumberOfServers', 'serversNum')
@@ -218,6 +218,8 @@ def clearConfig():
     with open(r"clientData.ini", 'w') as configfile:
         initial_configfile.write(configfile)
 
+def deleteAll():
+    pass
 
 if __name__=='__main__':
     args = sys.argv
@@ -232,7 +234,7 @@ if __name__=='__main__':
             edit_server(args[2])
         elif function_name == edit_server_from_UI.__name__:
             edit_server_from_UI(args[2])
-        elif function_name == clearConfig.__name__:
-            clearConfig()
+        elif function_name == cleanConfig().__name__:
+            cleanConfig()
         else:
             print("Invalid function name.")
