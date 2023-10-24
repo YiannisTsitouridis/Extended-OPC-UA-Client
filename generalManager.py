@@ -168,7 +168,7 @@ def main():
             # if result != 'all good':
             #     generalAgent.publish('generalConsole', str(result))
         elif msg.topic == "clearConfig":
-            clientConfig.clearConfig()
+            clientConfig.cleanConfig()
         elif msg.topic == "addServer":
             feedback = clientConfig.addserver_from_UI(mess)
             fed = json.loads(feedback)
