@@ -19,6 +19,8 @@ def main():
         file.add_section("BasicInfo")
         file.set("BasicInfo","host", input('Mqtt url: '))
         file.set("BasicInfo", "port", input('Mqtt port: '))
+        with open(r"startingData.ini", 'w') as configfile:
+            file.write(configfile)
         generalManager.main()
 
 if __name__ == "__main__":

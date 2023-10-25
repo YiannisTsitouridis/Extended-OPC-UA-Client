@@ -114,8 +114,9 @@ def addserver_from_UI(dataFromUI):
 
     i = giveCount(initial_configfile)
 
+    num = initial_configfile.getint('NumberOfServers','serversNum')
     # Updating the number of the servers value in the clientConfig.ini file #
-    initial_configfile.set('NumberOfServers', 'serversNum', i)
+    initial_configfile.set('NumberOfServers', 'serversNum', str(num+1))
 
     # Taking console inputs for the new server. #
     serverUrl = dataObject["serverUrl"]
@@ -140,7 +141,7 @@ def addserver_from_UI(dataFromUI):
     initial_configfile.set('Server' + str(i), 'name', serverName)
     initial_configfile.set('Server' + str(i), 'type', serverType)
     initial_configfile.set('Server' + str(i), 'mqtturl', mqttUrl)
-    initial_configfile.set('Server' + str(i), 'mqttport', mqttPort)
+    initial_configfile.set('Server' + str(i), 'mqttport', str(mqttPort))
     initial_configfile.set('Server' + str(i), 'architecturetopic', architectureTopic)
     initial_configfile.set('Server' + str(i), 'consoletopic', consoleTopic)
     initial_configfile.set('Server' + str(i), 'readtopic', readTopic)
@@ -154,7 +155,7 @@ def addserver_from_UI(dataFromUI):
 
     with open(r"clientData.ini", 'w') as configfile:
         initial_configfile.write(configfile)
-    splt = architectureTopic.split(splitter='/')
+    splt = architectureTopic.split('/')
     uuid = splt[1]
     fed = {"serveruuid": uuid, "count": i}
     feedback = json.dumps(fed)

@@ -119,7 +119,7 @@ def stop(numOfServers):
 def createClientThread(i):
     t = threading.Thread(target=startClient, args=(i,))
     clientsList.append(t)
-    if i != len(clientsList):
+    if i != len(clientsList)-1:
         print("Error at client numbering")
 
 def remakeClientThread(i):
@@ -187,7 +187,7 @@ def main():
     file = configparser.ConfigParser()
     file.read("startingData.ini")
     host = file.get("BasicInfo", "host")
-    port = file.get("BasicInfo", "port")
+    port = file.getint("BasicInfo", "port")
     generalAgent = mqtt.Client("general")
     generalAgent.on_connect = on_connect
     generalAgent.on_message = on_message
