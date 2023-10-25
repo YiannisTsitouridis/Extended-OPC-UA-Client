@@ -66,6 +66,7 @@ def runClientThread(num):
 
 def deleteServer(num):
     killClient(num)
+    clientConfig.deleteServer(num)
 
 
 def startClient(num):
@@ -171,7 +172,7 @@ def main():
             count = fed["count"]
             createClientThread(count)
             print("Thread " + str(mess) + " created.")
-            generalAgent.publish('feedback', feedback)
+            generalAgent.publish('i4bydesign/counting/feed/back', feedback)
         elif msg.topic == "editServer":
             if clientsList[mess].is_alive:
                 print("This is a thread running, cannot edit.")
@@ -213,7 +214,7 @@ def main():
             count = fed["count"]
             createClientThread(count)
             print("Thread " + str(a) + " created.")
-            generalAgent.publish('feedback', feedback)
+            generalAgent.publish('i4bydesign/counting/feed/back', feedback)
     generalAgent.loop_forever()
 
 
