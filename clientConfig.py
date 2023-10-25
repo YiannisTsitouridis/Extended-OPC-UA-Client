@@ -3,8 +3,6 @@ import sys
 import configparser
 import json
 
-
-
 def giveCount(file):
     for i in (0, file.getint('NumberOfServers', 'serversNum')+1):
         if file.has_section("Server"+str(i)):

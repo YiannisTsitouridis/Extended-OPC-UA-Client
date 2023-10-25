@@ -106,8 +106,8 @@ def startClient(num):
                 client.agent.publish(topic=client.architectureTopic, payload=treejs)
             except:
                 print("Error while connecting to " + str(client.name) + "with url:" + str(client.url))
-                client.agent.publish(client.consoleTopic, "Error while connecting to " + str(client.name) + "with url:"
-                                     + str(client.url))
+                mes = json.dumps({"message":"Error while connecting to " + str(client.name) + "with url:"})
+                client.agent.publish(client.consoleTopic, mes)
                 client.agent.publish(client.architectureTopic, "Error with url: " + str(client.url))
     except Exception as e:
         return e
@@ -153,6 +153,8 @@ def main():
         if msg.topic == "startStop":
             if mess == "stop":
                 print("stop ordered")
+                mes = {"message":"stop ordered"}
+                me = json.dumps("generalConsole", mes)
                 stop(maxNumOfServers)
             elif mess == "startUp":
                 print("startUp ordered")
