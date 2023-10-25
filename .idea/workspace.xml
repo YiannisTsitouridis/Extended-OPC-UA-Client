@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Seems good!">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Perfectly fine!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/generalManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/generalManager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/startingData.ini" beforeDir="false" afterPath="$PROJECT_DIR$/startingData.ini" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,22 +65,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00047" summary="Functions complete.">
-      <option name="closed" value="true" />
-      <created>1695207065809</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1695207065809</updated>
-    </task>
-    <task id="LOCAL-00048" summary="Fixed connect-disconnect topic">
-      <option name="closed" value="true" />
-      <created>1695212870919</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1695212870919</updated>
     </task>
     <task id="LOCAL-00049" summary="Fixed in config and genManager too.">
       <option name="closed" value="true" />
@@ -456,7 +442,23 @@
       <option name="project" value="LOCAL" />
       <updated>1698228398410</updated>
     </task>
-    <option name="localTasksCounter" value="96" />
+    <task id="LOCAL-00096" summary="Perfectly fine!">
+      <option name="closed" value="true" />
+      <created>1698230154543</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1698230154545</updated>
+    </task>
+    <task id="LOCAL-00097" summary="Perfectly fine!">
+      <option name="closed" value="true" />
+      <created>1698231291708</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1698231291708</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -471,7 +473,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Beautiful" />
     <MESSAGE value="Checking with Miltos" />
     <MESSAGE value="Ok with Miltos" />
     <MESSAGE value="Fixed initial_subscriptions!" />
@@ -496,7 +497,8 @@
     <MESSAGE value="Perfect!&#10;Connecting to server!" />
     <MESSAGE value="Let's see!" />
     <MESSAGE value="Seems good!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Seems good!" />
+    <MESSAGE value="Perfectly fine!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Perfectly fine!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

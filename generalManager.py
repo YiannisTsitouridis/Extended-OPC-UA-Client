@@ -172,7 +172,7 @@ def main():
             count = fed["count"]
             createClientThread(count)
             print("Thread " + str(mess) + " created.")
-            generalAgent.publish('i4bydesign/counting/feed/back', feedback)
+            generalAgent.publish(feedtop, feedback)
         elif msg.topic == "editServer":
             if clientsList[mess].is_alive:
                 print("This is a thread running, cannot edit.")
@@ -186,6 +186,7 @@ def main():
     file.read("startingData.ini")
     host = file.get("BasicInfo", "host")
     port = file.getint("BasicInfo", "port")
+    feedtop = file.get("BasicInfo", "feedbackTopic")
     generalAgent = mqtt.Client("general")
     generalAgent.on_connect = on_connect
     generalAgent.on_message = on_message
@@ -214,7 +215,7 @@ def main():
             count = fed["count"]
             createClientThread(count)
             print("Thread " + str(a) + " created.")
-            generalAgent.publish('i4bydesign/counting/feed/back', feedback)
+            generalAgent.publish(feedtop, feedback)
     generalAgent.loop_forever()
 
 
