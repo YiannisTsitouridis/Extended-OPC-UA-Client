@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="New idea!">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Perfect!&#10;Connecting to server!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientConfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/clientConfig.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientData.ini" beforeDir="false" afterPath="$PROJECT_DIR$/clientData.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/generalManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/generalManager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/startingData.ini" beforeDir="false" afterPath="$PROJECT_DIR$/startingData.ini" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,14 +63,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00044" summary="Last corrections!">
-      <option name="closed" value="true" />
-      <created>1695115000217</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1695115000217</updated>
     </task>
     <task id="LOCAL-00045" summary="First branch commit">
       <option name="closed" value="true" />
@@ -460,7 +448,15 @@
       <option name="project" value="LOCAL" />
       <updated>1698216670383</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="Perfect!&#10;Connecting to server!">
+      <option name="closed" value="true" />
+      <created>1698224297002</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1698224297002</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -475,7 +471,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Working with 2 servers, only browse problem with method arguements" />
     <MESSAGE value="Works all good but problem with broker, probably traffic" />
     <MESSAGE value="Fixed broker url" />
     <MESSAGE value="Beautiful" />
@@ -500,7 +495,8 @@
     <MESSAGE value="Commit before testing" />
     <MESSAGE value="Let's see how this will go" />
     <MESSAGE value="New idea!" />
-    <option name="LAST_COMMIT_MESSAGE" value="New idea!" />
+    <MESSAGE value="Perfect!&#10;Connecting to server!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Perfect!&#10;Connecting to server!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

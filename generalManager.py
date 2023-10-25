@@ -143,9 +143,6 @@ def main():
             logging.StreamHandler()  # Send log messages to the console
         ]
     )
-    serversData = configparser.ConfigParser()
-    serversData.read("clientData.ini")
-    numOfServers = serversData.getint('NumberOfServers', 'serversNum')
     def on_connect(agent, userdata, flags, rc):
         print("Connected!")
 
@@ -155,10 +152,10 @@ def main():
         if msg.topic == "startStop":
             if mess == "stop":
                 print("stop ordered")
-                stop(numOfServers)
+                stop(maxNumOfServers)
             elif mess == "startUp":
                 print("startUp ordered")
-                startUp(numOfServers)
+                startUp(maxNumOfServers)
         elif msg.topic == "killClient":
             killClient(int(mess))
             generalAgent.publish('generalConsole', "Deleted Server"+str(mess))
@@ -200,6 +197,24 @@ def main():
     generalAgent.subscribe("addServer")
     generalAgent.subscribe("editServer")
     generalAgent.loop_forever()
+
+
+    serversData = configparser.ConfigParser()
+    serversData.read("clientData.ini")
+    maxNumOfServers = serversData.getint('NumberOfServers', 'serversNum')
+    for a in (0, maxNumOfServers):
+        if serversData.has_section("Server"+str(a)):
+            createClientThread(a)
+            architectureTopic = serversData.get("Server"+str(a),"architectureTopic")
+            splt = architectureTopic.split('/')
+            uuid = splt[1]
+            fed = {"serveruuid": uuid, "count": a}
+            feedback = json.dumps(fed)
+            fed = json.loads(feedback)
+            count = fed["count"]
+            createClientThread(count)
+            print("Thread " + str(a) + " created.")
+            generalAgent.publish('feedback', feedback)
 
 
 
