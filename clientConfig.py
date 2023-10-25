@@ -2,7 +2,6 @@
 import sys
 import configparser
 import json
-from generalManager import createClientThread
 
 
 
@@ -62,8 +61,8 @@ def addserver():
     with open(r"clientData.ini", 'w') as configfile:
         initial_configfile.write(configfile)
 
-    createClientThread(i)
-
+    return i
+    # HERE we must find a way to create the thread
 def edit_server(num):
     initial_configfile = configparser.ConfigParser()
     initial_configfile.read("clientData.ini")
@@ -228,12 +227,8 @@ if __name__=='__main__':
     # if len(args)
     function_name = args[1]
     if args:
-        if function_name == addserver.__name__:
-            addserver()
-        elif function_name == addserver_from_UI.__name__:
+        if function_name == addserver_from_UI.__name__:
             addserver_from_UI(args[2])
-        elif function_name == edit_server.__name__:
-            edit_server(args[2])
         elif function_name == edit_server_from_UI.__name__:
             edit_server_from_UI(args[2])
         elif function_name == cleanConfig().__name__:

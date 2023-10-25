@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Commit before testing">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Let's see how this will go">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/generalManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/generalManager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clientConfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/clientConfig.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,22 +64,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00041" summary="2">
-      <option name="closed" value="true" />
-      <created>1695041916126</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1695041916126</updated>
-    </task>
-    <task id="LOCAL-00042" summary="some things corrected from config">
-      <option name="closed" value="true" />
-      <created>1695113121693</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1695113121693</updated>
     </task>
     <task id="LOCAL-00043" summary="Some more corrections">
       <option name="closed" value="true" />
@@ -456,7 +441,23 @@
       <option name="project" value="LOCAL" />
       <updated>1698140072435</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="Let's see how this will go">
+      <option name="closed" value="true" />
+      <created>1698151796581</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1698151796581</updated>
+    </task>
+    <task id="LOCAL-00091" summary="Let's see how this will go">
+      <option name="closed" value="true" />
+      <created>1698152227879</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1698152227881</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -471,7 +472,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Browse problem:&#10;Quasar works with InputArguements Object but error in NodeOPCUA server" />
     <MESSAGE value="Last commit for today" />
     <MESSAGE value="Working with 2 servers, only browse problem with method arguements" />
     <MESSAGE value="Works all good but problem with broker, probably traffic" />
@@ -496,7 +496,8 @@
     <MESSAGE value="Commit with changes" />
     <MESSAGE value="Com" />
     <MESSAGE value="Commit before testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit before testing" />
+    <MESSAGE value="Let's see how this will go" />
+    <option name="LAST_COMMIT_MESSAGE" value="Let's see how this will go" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
