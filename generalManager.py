@@ -196,13 +196,12 @@ def main():
     generalAgent.subscribe("clearConfig")
     generalAgent.subscribe("addServer")
     generalAgent.subscribe("editServer")
-    generalAgent.loop_forever()
-
-
+    print("pass from here")
     serversData = configparser.ConfigParser()
     serversData.read("clientData.ini")
     maxNumOfServers = serversData.getint('NumberOfServers', 'serversNum')
     for a in (0, maxNumOfServers):
+        print("in here1")
         if serversData.has_section("Server"+str(a)):
             createClientThread(a)
             architectureTopic = serversData.get("Server"+str(a),"architectureTopic")
@@ -215,6 +214,7 @@ def main():
             createClientThread(count)
             print("Thread " + str(a) + " created.")
             generalAgent.publish('feedback', feedback)
+    generalAgent.loop_forever()
 
 
 
