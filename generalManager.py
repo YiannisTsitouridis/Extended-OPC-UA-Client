@@ -153,17 +153,21 @@ def main():
         if msg.topic == "startStop":
             if mess == "stop":
                 print("stop ordered")
-                mes = {"message":"stop ordered"}
-                me = json.dumps("generalConsole", mes)
+                con = json.dumps({"message":"stop ordered"})
+                generalAgent.publish("generalConsole", con)
                 stop(maxNumOfServers)
             elif mess == "startUp":
                 print("startUp ordered")
                 startUp(maxNumOfServers)
         elif msg.topic == "killClient":
             killClient(int(mess))
-            generalAgent.publish('generalConsole', "Deleted Server"+str(mess))
+            con = json.dumps({"message":"Deleted Server"+str(mess)})
+            generalAgent.publish('generalConsole', con)
         elif msg.topic == "startClient":
             runClientThread(int(mess))
+            con = json.dumps({"message":"Server "+str(mess)+" started running"})
+            generalAgent.publish("generalConsole", con)
+
             # if result != 'all good':
             #     generalAgent.publish('generalConsole', str(result))
         elif msg.topic == "clearConfig":

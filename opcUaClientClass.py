@@ -97,7 +97,8 @@ class opcuaClient(Client):
             if msg.topic == self.methRequestTopic:
                 mess = json.loads(msg.payload)
                 print("Call of method", mess["methodID"], " was ordered.")
-                agent.publish(str(self.consoleTopic), "Call of method " + mess["methodID"] + " was ordered.")
+                cons = json.dumps({"message":"Call of method " + mess["methodID"] + " was ordered."})
+                agent.publish(str(self.consoleTopic), cons)
                 if len(mess) == 1:
                     callMeth = self.callMethodFromNodeID(mess["methodID"])
                 elif len(mess) == 2:
@@ -107,12 +108,14 @@ class opcuaClient(Client):
 
             if msg.topic == self.subRequestTopic:
                 print("we've got something here")
-                agent.publish(str(self.subscribeTopic), "start subscribing!")
                 mess = json.loads(msg.payload)
                 mesg = str(msg.payload.decode("utf-8"))
                 print("Subscription on the variable " + mesg + " was ordered.")
                 print(str(mess), str(mesg))
-                agent.publish(str(self.consoleTopic), "Subscription on the variable " + mesg + " was ordered.")
+
+                cons = json.dumps({"message":"Subscription on the variable " + mesg + " was ordered."})
+                agent.publish(str(self.consoleTopic), cons)
+
                 varID = mess["varID"]
                 period = mess["SubscriptionPeriod"]
                 Topic = self.subscribeTopic
@@ -120,8 +123,8 @@ class opcuaClient(Client):
                 if varID in self.subVarIDList:
                     logging.warning("We are in if case")
                     print("There is a subscription to the variable " + varID + " already.")
-                    self.agent.publish(self.consoleTopic,
-                                       "There is a subscription to the variable " + varID + " already.")
+                    cons = json.dumps({"message": "There is a subscription to the variable " + varID + " already."})
+                    self.agent.publish(self.consoleTopic, cons)
                 else:
                     sub_thread = threading.Thread(target=self.subToVarID, args=(varID, period, Topic))
                     self.appendTogether(varID, sub_thread)
@@ -140,7 +143,8 @@ class opcuaClient(Client):
                 mess = str(msg.payload.decode("utf-8"))
                 unsu = self.unsubFromVarID(mess)
                 print("Ending subscription on the variable ", mess, " was ordered.")
-                agent.publish(self.consoleTopic, "Ending subscription on the variable " + mess + " was ordered.")
+                cons = json.dumps({"message":"Ending subscription on the variable " + mess + " was ordered."})
+                agent.publish(self.consoleTopic, cons)
 
             if msg.topic == self.readRequestTopic:
                 mess = str(msg.payload.decode("utf-8"))
@@ -151,7 +155,8 @@ class opcuaClient(Client):
             if msg.topic == self.writeRequestTopic:
                 mess = json.loads(msg.payload)
                 if len(mess) != 2:
-                    agent.publish(self.consoleTopic, "Wrong number of arguements")
+                    cons = json.dumps({"message": "Wrong number of arguements"})
+                    agent.publish(self.consoleTopic, cons)
                     print("Wrong number of arguements")
                     return "Wrong number of arguements"
                 else:
@@ -195,8 +200,6 @@ class opcuaClient(Client):
 
         agent = self.agent
         logging.warning("Asked sub")
-        agent.publish(self.consoleTopic, 'Asked sub')
-
         sync_create_subscription = syncfunc(self.create_subscription)
 
         class SubHandler(object):
@@ -260,7 +263,8 @@ class opcuaClient(Client):
             return "Ending subscription on the variable ", varID, " successfully."
         else:
             print("No subscription found to the variable ", varID, ".")
-            self.agent.publish(str(self.name) + "/ex/client", "No subscription found to the variable " + varID + ".")
+            cons = json.dumps({"message":"No subscription found to the variable " + varID + "."})
+            self.agent.publish(self.consoleTopic, cons)
             return "No subscription found to the variable ", varID, "."
 
     def callMethodFromNodeID(self, nodeId, *args):
@@ -296,7 +300,6 @@ class opcuaClient(Client):
         ret = json.dumps(d)
         return ret
         # except:
-        #     print("Couldn't read the value with ID ", varID)
 
     def browse_node_tree(self, syncnode):
         """

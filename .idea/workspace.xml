@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Perfectly fine!">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Started fixing console">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/generalManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/generalManager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/startingData.ini" beforeDir="false" afterPath="$PROJECT_DIR$/startingData.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/opcUaClientClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/opcUaClientClass.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,22 +64,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00049" summary="Fixed in config and genManager too.">
-      <option name="closed" value="true" />
-      <created>1695213400150</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1695213400150</updated>
-    </task>
-    <task id="LOCAL-00050" summary="Last commit">
-      <option name="closed" value="true" />
-      <created>1695214921244</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1695214921244</updated>
     </task>
     <task id="LOCAL-00051" summary="Last commit">
       <option name="closed" value="true" />
@@ -458,7 +441,23 @@
       <option name="project" value="LOCAL" />
       <updated>1698231291708</updated>
     </task>
-    <option name="localTasksCounter" value="98" />
+    <task id="LOCAL-00098" summary="Perfectly fine!">
+      <option name="closed" value="true" />
+      <created>1698232086514</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1698232086514</updated>
+    </task>
+    <task id="LOCAL-00099" summary="Started fixing console">
+      <option name="closed" value="true" />
+      <created>1698238528528</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1698238528528</updated>
+    </task>
+    <option name="localTasksCounter" value="100" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -473,7 +472,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Checking with Miltos" />
     <MESSAGE value="Ok with Miltos" />
     <MESSAGE value="Fixed initial_subscriptions!" />
     <MESSAGE value="Last commit." />
@@ -498,7 +496,8 @@
     <MESSAGE value="Let's see!" />
     <MESSAGE value="Seems good!" />
     <MESSAGE value="Perfectly fine!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Perfectly fine!" />
+    <MESSAGE value="Started fixing console" />
+    <option name="LAST_COMMIT_MESSAGE" value="Started fixing console" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
