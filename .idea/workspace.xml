@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Started fixing console">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/generalManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/generalManager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/opcUaClientClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/opcUaClientClass.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -17,7 +16,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="SyncSubClass" />
+        <entry key="$PROJECT_DIR$" value="Dynamic-Server-List" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -48,14 +47,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Dynamic-Server-List&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/yiannis/asyncuaServer&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Try-with-flags",
+    "last_opened_file_path": "/home/yiannis/asyncuaServer"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -64,22 +63,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00051" summary="Last commit">
-      <option name="closed" value="true" />
-      <created>1695641875934</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1695641875934</updated>
-    </task>
-    <task id="LOCAL-00052" summary="First version including edit server data">
-      <option name="closed" value="true" />
-      <created>1695885562138</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1695885562139</updated>
     </task>
     <task id="LOCAL-00053" summary="Added edit topic">
       <option name="closed" value="true" />
@@ -457,7 +440,23 @@
       <option name="project" value="LOCAL" />
       <updated>1698238528528</updated>
     </task>
-    <option name="localTasksCounter" value="100" />
+    <task id="LOCAL-00100" summary="Perfect project">
+      <option name="closed" value="true" />
+      <created>1698393639349</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1698393639350</updated>
+    </task>
+    <task id="LOCAL-00101" summary="console messages fixed">
+      <option name="closed" value="true" />
+      <created>1698393659452</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1698393659452</updated>
+    </task>
+    <option name="localTasksCounter" value="102" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -472,8 +471,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Ok with Miltos" />
-    <MESSAGE value="Fixed initial_subscriptions!" />
     <MESSAGE value="Last commit." />
     <MESSAGE value="New week new me!" />
     <MESSAGE value="Initial Commit" />
@@ -497,7 +494,9 @@
     <MESSAGE value="Seems good!" />
     <MESSAGE value="Perfectly fine!" />
     <MESSAGE value="Started fixing console" />
-    <option name="LAST_COMMIT_MESSAGE" value="Started fixing console" />
+    <MESSAGE value="Perfect project" />
+    <MESSAGE value="console messages fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="console messages fixed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

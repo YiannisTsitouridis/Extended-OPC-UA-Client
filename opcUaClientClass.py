@@ -76,11 +76,13 @@ class opcuaClient(Client):
 
     # Defining the dynamic list for the IDs of the variables that are to be subscribed.
     subVarIDList: list[str] = []
-    subThreadList: list[threading.Thread] = []
+    # subThreadList: list[threading.Thread] = []
+    threadFlaglist: list[bool] = []
 
-    def appendTogether(self, id, thread):
-        self.subVarIDList.append(id)
-        self.subThreadList.append(thread)
+    def appendTogether(self, id, flag):
+        print(str(id)+" is the value of varid")
+        self.subVarIDList.append(str(id))
+        self.threadFlaglist.append(flag)
 
     def createMqttAgent(self):
         def on_connect(agent, userdata, flags, rc):
@@ -116,7 +118,7 @@ class opcuaClient(Client):
                 cons = json.dumps({"message":"Subscription on the variable " + mesg + " was ordered."})
                 agent.publish(str(self.consoleTopic), cons)
 
-                varID = mess["varID"]
+                varID = str(mess["varID"])
                 period = mess["SubscriptionPeriod"]
                 Topic = self.subscribeTopic
 
@@ -127,21 +129,25 @@ class opcuaClient(Client):
                     self.agent.publish(self.consoleTopic, cons)
                 else:
                     sub_thread = threading.Thread(target=self.subToVarID, args=(varID, period, Topic))
+                    # subcount =
                     self.appendTogether(varID, sub_thread)
+                    print("the first element of subVarIDlist is " + self.subVarIDList[0])
+                    # self.subThreadList.append(sub_thread)
+                    # self.subVarIDList.append(varID)
+                    print('check check')
+                    sub_thread.start()
 
-                sub_thread = threading.Thread(target=self.subToVarID, args=(varID, period, Topic))
-                self.subThreadList.append(sub_thread)
-                self.subVarIDList.append(varID)
-                print('check check')
-                sub_thread.start()
+
                 # self.startSubscription(varID=mess["varID"], period=mess["SubscriptionPeriod"],
                 #                        Topic=self.subscribeTopic)
                 print('Just after sub call')
 
             if msg.topic == self.unSubRequestTopic:
                 print('Unsubscribe ordered\n')
+                varid = str(json.loads(msg.payload))
                 mess = str(msg.payload.decode("utf-8"))
-                unsu = self.unsubFromVarID(mess)
+                print("the unsubscribe mess is " + mess)
+                self.unsubFromVarID(varid)
                 print("Ending subscription on the variable ", mess, " was ordered.")
                 cons = json.dumps({"message":"Ending subscription on the variable " + mess + " was ordered."})
                 agent.publish(self.consoleTopic, cons)
@@ -195,13 +201,8 @@ class opcuaClient(Client):
         return f"{self.name} with url :{self.name} and tloop = {self.tloop}"
 
 
-
     def subToVarID(self, varID, period, Topic):
-
         agent = self.agent
-        logging.warning("Asked sub")
-        sync_create_subscription = syncfunc(self.create_subscription)
-
         class SubHandler(object):
             """
             Subscription Handler. To receive events from server for a subscription
@@ -212,14 +213,18 @@ class opcuaClient(Client):
 
             def datachange_notification(self, node, val, data):
                 print("Python: New data change for" + str(node.nodeid), ", ", str(val) + '\n')
-                me = dict(varID=varID, value=val)
+                dt = data.monitored_item.Value.ServerTimestamp
+                st = data.monitored_item.Value.SourceTimestamp
+                me = dict(varID=varID, value=val, ServerTimestamp=dt.isoformat(), SourceTimestamp=st.isoformat())
                 agent.publish(topic=Topic, payload=json.dumps(me))
                 print(val)
 
             def event_notification(self, event):
                 print("Python: New event", event)
 
-        logging.warning("We are in else case")
+        localFlag = True
+        self.appendTogether(varID, localFlag)
+
         with ThreadLoop() as tloop:
             with Client(url=self.url, tloop=tloop) as client:
                 myvar = client.get_node(varID)
@@ -228,41 +233,31 @@ class opcuaClient(Client):
                 handle = sub.subscribe_data_change(myvar)
                 logging.warning("We're here still alive like a storm you can't stop.")
 
-                while True:
+                while localFlag:
                     pass
-
-            # self.tloop.start()
-            # sub = self.create_subscription(handler=handler, period=500)
-            # sub = self.create_subscription(period, handler)  # First arguement here is period of checking for data.
-            # sync_create_subscription = syncfunc(Client.create_subscription)
-
-            # sub = Subscription(tloop=self.tloop, sub=)
-
-            # self.subscriptionsList.append(sub)
-            # self.subVarIDList.append(varID)
-            # print("Subscription on the variable ", varID, " successful.")
-            # self.agent.publish(self.consoleTopic, "Subscription on the variable " + varID + "successful.")
-            # return sub
-
-    # def startSubscription(self, varID, period, Topic):
-    #     print('in startSub')
-    #     sub_thread = ThreadLoop(target=self.subToVarID, args=(varID, period, Topic))
-    #     sub_thread.start()
-    #     print('after calling Subthread')
 
     def unsubFromVarID(self, varID):
         def deleteTogether(i):
             del self.subVarIDList[i]
-            del self.subThreadList[i]
+            del self.threadFlaglist[i]
 
-        if varID in self.subVarIDList:
-            ind = self.subVarIDList.index(varID)
-            self.subThreadList[ind]._delete()
-            deleteTogether(ind)
-            print("Ending subscription on the variable ", varID, " successfully.")
-            return "Ending subscription on the variable ", varID, " successfully."
-        else:
+        for element in self.subVarIDList:
+            if element == varID:
+                ind = self.subVarIDList.index(varID)
+                self.threadFlaglist[ind] = False
+                deleteTogether(ind)
+                print("Ending subscription on the variable ", varID, " successfully.")
+                return "Ending subscription on the variable ", varID, " successfully."
+
+        # if varID in self.subVarIDList:
+        #     ind = self.subVarIDList.index(varID)
+        #     self.subThreadList[ind]._stop()
+        #     self.subThreadList[ind]._delete()
+        #     deleteTogether(ind)
+        #     print("Ending subscription on the variable ", varID, " successfully.")
+        #     return "Ending subscription on the variable ", varID, " successfully."
             print("No subscription found to the variable ", varID, ".")
+            print("subVarIDlist element is " + self.subVarIDList[0])
             cons = json.dumps({"message":"No subscription found to the variable " + varID + "."})
             self.agent.publish(self.consoleTopic, cons)
             return "No subscription found to the variable ", varID, "."
@@ -275,23 +270,6 @@ class opcuaClient(Client):
                 methodParent = meth.get_parent()
                 print("Method with Browse Name ", str(meth.read_browse_name), "is being called")
                 res = methodParent.call_method(meth, *args)
-
-        # print("Before set_node function")
-        # meth = self.get_node(nodeId)
-        # print("Method with Browse Name ", str(meth.read_browse_name), "is being called")
-        # casualLoop: ThreadLoop = ThreadLoop()
-        # methodParent = meth.get_parent()
-        # methodParent = self.get_node("ns=2;s=controller1.m1")
-        # methodParent = meth.get_parent()
-        # print('\n', methodParent, '\n')
-        # return methodParent.call_method(meth, *args)
-
-        # except:
-        #     print("Could not find the parent of the method with ID: ", nodeId)
-        #     self.agent.publish(str(self.consoleTopic), "Could not find the parent of the method with ID: " + nodeId)
-        #     result = "error"
-        # finally:
-        # return result
 
     def readValue(self, varID):
         var = self.get_node(varID)
