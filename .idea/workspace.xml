@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opcUaClientClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/opcUaClientClass.py" afterDir="false" />
-    </list>
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Unsubscribe working!" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,14 +60,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00053" summary="Added edit topic">
-      <option name="closed" value="true" />
-      <created>1695885791849</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1695885791849</updated>
     </task>
     <task id="LOCAL-00054" summary="Fixed some comments">
       <option name="closed" value="true" />
@@ -456,7 +445,15 @@
       <option name="project" value="LOCAL" />
       <updated>1698393659452</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="Unsubscribe working!">
+      <option name="closed" value="true" />
+      <created>1698673349723</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1698673349724</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -471,7 +468,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Last commit." />
     <MESSAGE value="New week new me!" />
     <MESSAGE value="Initial Commit" />
     <MESSAGE value="Before I go in the middle of nowhere!" />
@@ -496,7 +492,8 @@
     <MESSAGE value="Started fixing console" />
     <MESSAGE value="Perfect project" />
     <MESSAGE value="console messages fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="console messages fixed" />
+    <MESSAGE value="Unsubscribe working!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Unsubscribe working!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
