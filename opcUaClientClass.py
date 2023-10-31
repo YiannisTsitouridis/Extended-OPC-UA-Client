@@ -81,7 +81,7 @@ class opcuaClient(Client):
 
     def appendTogether(self, id, flag):
         print(str(id)+" is the value of varid")
-        self.subVarIDList.append(str(id))
+        self.subVarIDList.append(id)
         self.threadFlaglist.append(flag)
 
     def createMqttAgent(self):
@@ -130,8 +130,8 @@ class opcuaClient(Client):
                 else:
                     sub_thread = threading.Thread(target=self.subToVarID, args=(varID, period, Topic))
                     # subcount =
-                    self.appendTogether(varID, sub_thread)
-                    print("the first element of subVarIDlist is " + self.subVarIDList[0])
+                    # self.appendTogether(varID, sub_thread)
+                    # print("the first element of subVarIDlist is " + self.subVarIDList[0])
                     # self.subThreadList.append(sub_thread)
                     # self.subVarIDList.append(varID)
                     print('check check')
@@ -144,7 +144,8 @@ class opcuaClient(Client):
 
             if msg.topic == self.unSubRequestTopic:
                 print('Unsubscribe ordered\n')
-                varid = str(json.loads(msg.payload))
+                unSubObj = json.loads(msg.payload)
+                varid = str(unSubObj['varID'])
                 mess = str(msg.payload.decode("utf-8"))
                 print("the unsubscribe mess is " + mess)
                 self.unsubFromVarID(varid)
@@ -224,6 +225,8 @@ class opcuaClient(Client):
 
         localFlag = True
         self.appendTogether(varID, localFlag)
+        ind = len(self.threadFlaglist)-1  
+        print(ind)   
 
         with ThreadLoop() as tloop:
             with Client(url=self.url, tloop=tloop) as client:
@@ -233,8 +236,8 @@ class opcuaClient(Client):
                 handle = sub.subscribe_data_change(myvar)
                 logging.warning("We're here still alive like a storm you can't stop.")
 
-                while localFlag:
-                    pass
+                while self.threadFlaglist[ind]:
+                    time.sleep(0.01)
 
     def unsubFromVarID(self, varID):
         def deleteTogether(i):
@@ -245,6 +248,7 @@ class opcuaClient(Client):
             if element == varID:
                 ind = self.subVarIDList.index(varID)
                 self.threadFlaglist[ind] = False
+                time.sleep(0.5)
                 deleteTogether(ind)
                 print("Ending subscription on the variable ", varID, " successfully.")
                 return "Ending subscription on the variable ", varID, " successfully."
