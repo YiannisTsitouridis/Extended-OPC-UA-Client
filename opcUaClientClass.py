@@ -74,15 +74,8 @@ class opcuaClient(Client):
         print("OK?")
         logging.warn("jUST A RANDOM ONE")
 
-    # Defining the dynamic list for the IDs of the variables that are to be subscribed.
-    subVarIDList: list[str] = []
-    # subThreadList: list[threading.Thread] = []
-    threadFlaglist: list[bool] = []
-
-    def appendTogether(self, id, flag):
-        print(str(id)+" is the value of varid")
-        self.subVarIDList.append(id)
-        self.threadFlaglist.append(flag)
+    # Defining a dictionary as a data structure for the IDs and ending flags of the variables under subscription.
+    subscriptionDict = {}
 
     def createMqttAgent(self):
         def on_connect(agent, userdata, flags, rc):
@@ -114,7 +107,6 @@ class opcuaClient(Client):
                 mesg = str(msg.payload.decode("utf-8"))
                 print("Subscription on the variable " + mesg + " was ordered.")
                 print(str(mess), str(mesg))
-
                 cons = json.dumps({"message":"Subscription on the variable " + mesg + " was ordered."})
                 agent.publish(str(self.consoleTopic), cons)
 
@@ -122,18 +114,13 @@ class opcuaClient(Client):
                 period = mess["SubscriptionPeriod"]
                 Topic = self.subscribeTopic
 
-                if varID in self.subVarIDList:
-                    logging.warning("We are in if case")
+                if varID in self.subscriptionDict:
+                    logging.warning("There is a subscription to the variable " + varID + " already.")
                     print("There is a subscription to the variable " + varID + " already.")
                     cons = json.dumps({"message": "There is a subscription to the variable " + varID + " already."})
                     self.agent.publish(self.consoleTopic, cons)
                 else:
                     sub_thread = threading.Thread(target=self.subToVarID, args=(varID, period, Topic))
-                    # subcount =
-                    # self.appendTogether(varID, sub_thread)
-                    # print("the first element of subVarIDlist is " + self.subVarIDList[0])
-                    # self.subThreadList.append(sub_thread)
-                    # self.subVarIDList.append(varID)
                     print('check check')
                     sub_thread.start()
 
@@ -209,7 +196,6 @@ class opcuaClient(Client):
             Subscription Handler. To receive events from server for a subscription
             data_change and event methods are called directly from receiving thread.
             Do not do expensive, slow or network operation there. Create another
-            thread if you need to do such a thing
             """
 
             def datachange_notification(self, node, val, data):
@@ -223,10 +209,8 @@ class opcuaClient(Client):
             def event_notification(self, event):
                 print("Python: New event", event)
 
-        localFlag = True
-        self.appendTogether(varID, localFlag)
-        ind = len(self.threadFlaglist)-1  
-        print(ind)   
+        # Creating a new item in the dictionary for this subscription.
+        self.subscriptionDict[varID] = True
 
         with ThreadLoop() as tloop:
             with Client(url=self.url, tloop=tloop) as client:
@@ -236,32 +220,18 @@ class opcuaClient(Client):
                 handle = sub.subscribe_data_change(myvar)
                 logging.warning("We're here still alive like a storm you can't stop.")
 
-                while self.threadFlaglist[ind]:
+                while self.subscriptionDict[varID]:
                     time.sleep(0.01)
 
     def unsubFromVarID(self, varID):
-        def deleteTogether(i):
-            del self.subVarIDList[i]
-            del self.threadFlaglist[i]
-
-        for element in self.subVarIDList:
-            if element == varID:
-                ind = self.subVarIDList.index(varID)
-                self.threadFlaglist[ind] = False
-                time.sleep(0.5)
-                deleteTogether(ind)
-                print("Ending subscription on the variable ", varID, " successfully.")
-                return "Ending subscription on the variable ", varID, " successfully."
-
-        # if varID in self.subVarIDList:
-        #     ind = self.subVarIDList.index(varID)
-        #     self.subThreadList[ind]._stop()
-        #     self.subThreadList[ind]._delete()
-        #     deleteTogether(ind)
-        #     print("Ending subscription on the variable ", varID, " successfully.")
-        #     return "Ending subscription on the variable ", varID, " successfully."
-            print("No subscription found to the variable ", varID, ".")
-            print("subVarIDlist element is " + self.subVarIDList[0])
+        if varID in self.subscriptionDict:
+            self.subscriptionDict[varID] = False
+            time.sleep(0.5)
+            self.subscriptionDict.pop(varID)
+            print("Ending subscription on the variable ", varID, " successfully.")
+        else:
+            print("No subscription found to the variable ", varID, ". The dictionary is:")
+            print(self.subscriptionDict)
             cons = json.dumps({"message":"No subscription found to the variable " + varID + "."})
             self.agent.publish(self.consoleTopic, cons)
             return "No subscription found to the variable ", varID, "."

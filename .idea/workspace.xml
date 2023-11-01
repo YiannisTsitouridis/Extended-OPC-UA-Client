@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Unsubscribe working!" />
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Commit to change">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clientData.ini" beforeDir="false" afterPath="$PROJECT_DIR$/clientData.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generalManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/generalManager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/opcUaClientClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/opcUaClientClass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/startingData.ini" beforeDir="false" afterPath="$PROJECT_DIR$/startingData.ini" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,7 +54,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Try-with-flags",
+    "git-widget-placeholder": "SharedBranch",
     "last_opened_file_path": "/home/yiannis/asyncuaServer"
   }
 }]]></component>
@@ -60,14 +66,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00054" summary="Fixed some comments">
-      <option name="closed" value="true" />
-      <created>1695887949040</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1695887949040</updated>
     </task>
     <task id="LOCAL-00055" summary="Init gone,&#10;clearConfig ready!">
       <option name="closed" value="true" />
@@ -453,7 +451,15 @@
       <option name="project" value="LOCAL" />
       <updated>1698673349724</updated>
     </task>
-    <option name="localTasksCounter" value="103" />
+    <task id="LOCAL-00103" summary="Commit to change">
+      <option name="closed" value="true" />
+      <created>1698754956520</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1698754956520</updated>
+    </task>
+    <option name="localTasksCounter" value="104" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -468,7 +474,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="New week new me!" />
     <MESSAGE value="Initial Commit" />
     <MESSAGE value="Before I go in the middle of nowhere!" />
     <MESSAGE value="Subscription seems good" />
@@ -493,7 +498,8 @@
     <MESSAGE value="Perfect project" />
     <MESSAGE value="console messages fixed" />
     <MESSAGE value="Unsubscribe working!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Unsubscribe working!" />
+    <MESSAGE value="Commit to change" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit to change" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

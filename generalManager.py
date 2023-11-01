@@ -219,7 +219,6 @@ def main():
             feedback = json.dumps(fed)
             fed = json.loads(feedback)
             count = fed["count"]
-            createClientThread(count)
             print("Thread " + str(a) + " created.")
             generalAgent.publish(feedtop, feedback)
     generalAgent.loop_forever()
