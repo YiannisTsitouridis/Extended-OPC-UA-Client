@@ -119,9 +119,10 @@ def stop(numOfServers):
             clientsList[i].stop()
 def createClientThread(i):
     t = threading.Thread(target=startClient, args=(i,))
-    clientsList.append(t)
-    if i != len(clientsList)-1:
-        print("Error at client numbering")
+    if i >= len(clientsList):
+        clientsList.append(t)
+    else:
+        clientsList[i] = t
 
 def remakeClientThread(i):
     clientsList[i] = threading.Thread(target=startClient, args=(i,))
@@ -212,15 +213,9 @@ def main():
         print("in here1")
         if serversData.has_section("Server"+str(a)):
             createClientThread(a)
-            architectureTopic = serversData.get("Server"+str(a),"architectureTopic")
-            splt = architectureTopic.split('/')
-            uuid = splt[1]
-            fed = {"serveruuid": uuid, "count": a}
-            feedback = json.dumps(fed)
-            fed = json.loads(feedback)
-            count = fed["count"]
             print("Thread " + str(a) + " created.")
-            generalAgent.publish(feedtop, feedback)
+        else:
+            clientsList[a] = None
     generalAgent.loop_forever()
 
 

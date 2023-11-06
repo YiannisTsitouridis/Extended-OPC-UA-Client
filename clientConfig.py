@@ -9,6 +9,7 @@ def giveCount(file):
             pass
         else:
             return i
+
 def addserver():
     initial_configfile = configparser.ConfigParser()
     initial_configfile.read("clientData.ini")
@@ -113,8 +114,10 @@ def addserver_from_UI(dataFromUI):
     i = giveCount(initial_configfile)
 
     num = initial_configfile.getint('NumberOfServers','serversNum')
+
     # Updating the number of the servers value in the clientConfig.ini file #
-    initial_configfile.set('NumberOfServers', 'serversNum', str(num+1))
+    if i > num:
+        initial_configfile.set('NumberOfServers', 'serversNum', i)
 
     # Taking console inputs for the new server. #
     serverUrl = dataObject["serverUrl"]
