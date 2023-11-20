@@ -226,7 +226,7 @@ class opcuaClient(Client):
     def unsubFromVarID(self, varID):
         if varID in self.subscriptionDict:
             self.subscriptionDict[varID] = False
-            time.sleep(0.5)
+            time.sleep(0.2)
             self.subscriptionDict.pop(varID)
             print("Ending subscription on the variable ", varID, " successfully.")
         else:

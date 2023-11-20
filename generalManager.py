@@ -218,7 +218,5 @@ def main():
             clientsList[a] = None
     generalAgent.loop_forever()
 
-
-
 if __name__ == "__main__":
     main()
