@@ -129,6 +129,7 @@ def remakeClientThread(i):
 
 
 def killClient(num):
+    print("in killClient method")
     clientsList[num]._stop()
     clientsList[num]._delete()
 
@@ -187,7 +188,8 @@ def main():
                 clientConfig.edit_server_from_UI(mess)
                 remakeClientThread(mess)
         elif msg.topic == "deleteServer":
-            deleteServer(int(msg.payload))
+            print("kill message is ", mess)
+            deleteServer(int(mess))
 
     file = configparser.ConfigParser()
     file.read("startingData.ini")
@@ -208,13 +210,17 @@ def main():
     print("pass from here")
     serversData = configparser.ConfigParser()
     serversData.read("clientData.ini")
-    maxNumOfServers = serversData.getint('NumberOfServers', 'serversNum')
-    for a in (0, maxNumOfServers):
+    maxNumOfServers = serversData.getint('maxNumberOfServers', 'serversNum')
+    for a in (0, (maxNumOfServers-1)):
         print("in here1")
         if serversData.has_section("Server"+str(a)):
             createClientThread(a)
             print("Thread " + str(a) + " created.")
         else:
+            if a >= len(clientsList):
+                clientsList.append(None)
+            else:
+                clientsList[a] = None
             clientsList[a] = None
     generalAgent.loop_forever()
 

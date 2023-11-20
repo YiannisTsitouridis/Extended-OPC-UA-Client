@@ -4,7 +4,7 @@ import configparser
 import json
 
 def giveCount(file):
-    for i in (0, file.getint('NumberOfServers', 'serversNum')+1):
+    for i in (0, file.getint('maxNumberOfServers', 'serversNum')):
         if file.has_section("Server"+str(i)):
             pass
         else:
@@ -16,10 +16,11 @@ def addserver():
 
     # Updating the number of the servers value in the clientConfig.ini file #
     i = giveCount(initial_configfile)
+    max = initial_configfile.getint('maxNumberOfServers','serversNum')
+    if i == max:
+        initial_configfile.set('maxNumberOfServers', 'serversNum', (i+1))
 
     # Updating the number of the servers value in the clientConfig.ini file #
-    initial_configfile.set('NumberOfServers', 'serversNum', i)
-    initial_configfile.set('NumberOfServers', 'serversNum', str(i))
 
     # Taking console inputs for the new server. #
     serverUrl = input("Type the Url of the new server: ")
@@ -61,7 +62,7 @@ def addserver():
         initial_configfile.write(configfile)
 
     return i
-    # HERE we must find a way to create the thread
+
 def edit_server(num):
     initial_configfile = configparser.ConfigParser()
     initial_configfile.read("clientData.ini")
@@ -112,12 +113,10 @@ def addserver_from_UI(dataFromUI):
     initial_configfile.read("clientData.ini")
 
     i = giveCount(initial_configfile)
-
-    num = initial_configfile.getint('NumberOfServers','serversNum')
-
-    # Updating the number of the servers value in the clientConfig.ini file #
-    if i > num:
-        initial_configfile.set('NumberOfServers', 'serversNum', i)
+    max = initial_configfile.getint('maxNumberOfServers', 'serversNum')
+    if i == max:
+        max = max+1
+        initial_configfile.set('maxNumberOfServers', 'serversNum', str(max))
 
     # Taking console inputs for the new server. #
     serverUrl = dataObject["serverUrl"]
@@ -156,6 +155,7 @@ def addserver_from_UI(dataFromUI):
 
     with open(r"clientData.ini", 'w') as configfile:
         initial_configfile.write(configfile)
+
     splt = architectureTopic.split('/')
     uuid = splt[1]
     fed = {"serveruuid": uuid, "count": i}
@@ -213,10 +213,10 @@ def deleteServer(i):
 def cleanConfig():
     initial_configfile = configparser.ConfigParser()
     initial_configfile.read("clientData.ini")
-    num = initial_configfile.getint('NumberOfServers', 'serversNum')
-    for i in range(0, num):
+    num = initial_configfile.getint('maxNumberOfServers', 'serversNum')
+    for i in range(0, num+1):
         initial_configfile.remove_section('Server' + str(i))
-    initial_configfile.set('NumberOfServers', 'serversNum', '0')
+    initial_configfile.set('maxNumberOfServers', 'serversNum', '0')
 
     with open(r"clientData.ini", 'w') as configfile:
         initial_configfile.write(configfile)
