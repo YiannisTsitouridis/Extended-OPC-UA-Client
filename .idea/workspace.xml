@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Small correction">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Last for today">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientConfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/clientConfig.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientData.ini" beforeDir="false" afterPath="$PROJECT_DIR$/clientData.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/generalManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/generalManager.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,14 +63,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00058" summary="2nd server">
-      <option name="closed" value="true" />
-      <created>1696235023727</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1696235023729</updated>
     </task>
     <task id="LOCAL-00059" summary="2nd server!">
       <option name="closed" value="true" />
@@ -458,7 +448,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700474339152</updated>
     </task>
-    <option name="localTasksCounter" value="107" />
+    <task id="LOCAL-00107" summary="Last for today">
+      <option name="closed" value="true" />
+      <created>1700492434944</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1700492434945</updated>
+    </task>
+    <option name="localTasksCounter" value="108" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -473,7 +471,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Last Commit!" />
     <MESSAGE value="Kati kalo ginetai!" />
     <MESSAGE value="Loop forever!" />
     <MESSAGE value="Both subscribe and call_method threads start and work!" />
@@ -498,7 +495,8 @@
     <MESSAGE value="Working Perfectly!" />
     <MESSAGE value="First Commit" />
     <MESSAGE value="Small correction" />
-    <option name="LAST_COMMIT_MESSAGE" value="Small correction" />
+    <MESSAGE value="Last for today" />
+    <option name="LAST_COMMIT_MESSAGE" value="Last for today" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

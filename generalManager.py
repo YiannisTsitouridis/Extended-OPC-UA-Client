@@ -42,6 +42,7 @@ from asyncua.sync import ThreadLoop
 
 
 clientsList = []    # List with the threads of all the client instances.
+runningList = []    # List with booleans of the running condition of clients.
 
 ############################################################################
 ####                     DEFINING USEFUL FUNCTIONS                      ####
