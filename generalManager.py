@@ -34,36 +34,39 @@ editServer:           Sending a JSON string with the number of the server you wa
 # This part of code is for importing the appropriate console
 try:
     from IPython import embed
+
     print("IPython module imported")
 except ImportError:
     import code
 
-from asyncua.sync import ThreadLoop
 
+clientsList = []  # List with the threads of all the client instances.
+runningList = []  # List with booleans of the running condition of clients.
 
-clientsList = []    # List with the threads of all the client instances.
-runningList = []    # List with booleans of the running condition of clients.
 
 ############################################################################
 ####                     DEFINING USEFUL FUNCTIONS                      ####
 ############################################################################
 
-def startUp(numOfServers):
-    kill = False
-    # with ThreadPool() as pool:
-    for i in range(0, numOfServers):
-        print("In  startup loop")
-        t = threading.Thread(target=startClient, args=(i,))
-        # t = ThreadLoop()
-        print("One thread created")
-        clientsList.append(t)
-        clientsList[i].start()
-        #startClient(i)
-        print("Thread ", i, "has started")
+# def startUp(numOfServers):
+#     kill = False
+#     # with ThreadPool() as pool:
+#     for i in range(0, numOfServers):
+#         print("In  startup loop")
+#         t = threading.Thread(target=startClient, args=(i,))
+#         # t = ThreadLoop()
+#         print("One thread created")
+#         clientsList.append(t)
+#         clientsList[i].start()
+#         # startClient(i)
+#         print("Thread ", i, "has started")
+
 
 def runClientThread(num):
+    createClientThread(num)
     clientsList[num].start()
-    print("Thread "+str(num)+" started.")
+    print("Thread " + str(num) + " started.")
+
 
 def deleteServer(num):
     killClient(num)
@@ -88,42 +91,48 @@ def startClient(num):
     localunsubrequestTopic = serversData.get('Server' + str(num), 'unsubrequesttopic')
     localsubscribeTopic = serversData.get('Server' + str(num), 'subscriptiontopic')
     localconnectDisconnectTopic = serversData.get('Server' + str(num), 'connectdisconnecttopic')
-    try:
-        with opcuaClient(localurl, localname, localtype, localmqttUrl, int(localmqttPort), localarchitectureTopic,
-                         localconsoleTopic, localreadTopic, localmethrequestTopic, localreadRequestTopic,
-                         localwriteRequestTopic, localsubrequestTopic, localunsubrequestTopic, localsubscribeTopic,
-                         localconnectDisconnectTopic) as client:
-            mes = json.dumps({"message" : "Server " + str(client.name) + " created"})
-            client.agent.publish(client.consoleTopic, payload=mes)
-            try:
-                client.__enter__()
-                print("Server with name " + str(client.name) + " connected")
-                mes = json.dumps({"message": "Server " + str(client.name) + " connected"})
-                client.agent.publish(client.consoleTopic, mes)
-                print("Inside the client ", num, "loop")
-                tree = client.browse_server()
-                treejs = json.dumps(tree)
-                print(treejs + "\n" + "\n")
-                client.agent.publish(topic=client.architectureTopic, payload=treejs)
-            except:
-                print("Error while connecting to " + str(client.name) + "with url:" + str(client.url))
-                mes = json.dumps({"message":"Error while connecting to " + str(client.name) + "with url:"})
-                client.agent.publish(client.consoleTopic, mes)
-                client.agent.publish(client.architectureTopic, "Error with url: " + str(client.url))
-    except Exception as e:
-        return e
+
+    # Switching the client's running flag to True
+    runningList[num] = True
+
+    client = opcuaClient(localurl, localname, localtype, localmqttUrl, int(localmqttPort), localarchitectureTopic,
+                     localconsoleTopic, localreadTopic, localmethrequestTopic, localreadRequestTopic,
+                     localwriteRequestTopic, localsubrequestTopic, localunsubrequestTopic, localsubscribeTopic,
+                     localconnectDisconnectTopic)
+    mes = json.dumps({"message": "Server " + str(client.name) + " created"})
+    client.agent.publish(client.consoleTopic, payload=mes)
+    client.connect()
+    print("Server with name " + str(client.name) + " connected")
+    mes = json.dumps({"message": "Server " + str(client.name) + " connected"})
+    client.agent.publish(client.consoleTopic, mes)
+    print("Inside the client ", num, "loop")
+    tree = client.browse_server()
+    treejs = json.dumps(tree)
+    print(treejs + "\n" + "\n")
+    client.agent.publish(topic=client.architectureTopic, payload=treejs)
+
+    while runningList[num]:
+        time.sleep(0.01)
+    client.finish()
+    client.disconnect()
+    print("disconnected")
+
 
 def stop(numOfServers):
     print("All client instances are terminated.")
     for i in range(0, numOfServers - 1):
         if clientsList[i].is_alive:
             clientsList[i].stop()
+
+
 def createClientThread(i):
     t = threading.Thread(target=startClient, args=(i,))
     if i >= len(clientsList):
         clientsList.append(t)
+        runningList.append(False)
     else:
         clientsList[i] = t
+
 
 def remakeClientThread(i):
     clientsList[i] = threading.Thread(target=startClient, args=(i,))
@@ -131,8 +140,7 @@ def remakeClientThread(i):
 
 def killClient(num):
     print("in killClient method")
-    clientsList[num]._stop()
-    clientsList[num]._delete()
+    runningList[num] = False
 
 
 
@@ -147,6 +155,7 @@ def main():
             logging.StreamHandler()  # Send log messages to the console
         ]
     )
+
     def on_connect(agent, userdata, flags, rc):
         print("Connected!")
 
@@ -156,19 +165,19 @@ def main():
         if msg.topic == "startStop":
             if mess == "stop":
                 print("stop ordered")
-                con = json.dumps({"message":"stop ordered"})
+                con = json.dumps({"message": "stop ordered"})
                 generalAgent.publish("generalConsole", con)
                 stop(maxNumOfServers)
             elif mess == "startUp":
                 print("startUp ordered")
-                startUp(maxNumOfServers)
+                # startUp(maxNumOfServers)
         elif msg.topic == "killClient":
             killClient(int(mess))
-            con = json.dumps({"message":"Deleted Server"+str(mess)})
+            con = json.dumps({"message": "Deleted Server" + str(mess)})
             generalAgent.publish('generalConsole', con)
         elif msg.topic == "startClient":
             runClientThread(int(mess))
-            con = json.dumps({"message":"Server "+str(mess)+" started running"})
+            con = json.dumps({"message": "Server " + str(mess) + " started running"})
             generalAgent.publish("generalConsole", con)
 
             # if result != 'all good':
@@ -212,9 +221,9 @@ def main():
     serversData = configparser.ConfigParser()
     serversData.read("clientData.ini")
     maxNumOfServers = serversData.getint('maxNumberOfServers', 'serversNum')
-    for a in (0, (maxNumOfServers-1)):
+    for a in (0, (maxNumOfServers - 1)):
         print("in here1")
-        if serversData.has_section("Server"+str(a)):
+        if serversData.has_section("Server" + str(a)):
             createClientThread(a)
             print("Thread " + str(a) + " created.")
         else:
@@ -224,6 +233,7 @@ def main():
                 clientsList[a] = None
             clientsList[a] = None
     generalAgent.loop_forever()
+
 
 if __name__ == "__main__":
     main()

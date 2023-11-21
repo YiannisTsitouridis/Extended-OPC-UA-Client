@@ -77,6 +77,13 @@ class opcuaClient(Client):
     # Defining a dictionary as a data structure for the IDs and ending flags of the variables under subscription.
     subscriptionDict = {}
 
+    def finish(self):
+        self.agent.loop_stop()
+        self.agent.__del__()
+
+    async def disc(self):
+        await self.disconnect()
+
     def createMqttAgent(self):
         def on_connect(agent, userdata, flags, rc):
             if rc == 0:
