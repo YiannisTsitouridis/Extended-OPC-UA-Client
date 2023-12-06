@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Miracle!">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Last today!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientData.ini" beforeDir="false" afterPath="$PROJECT_DIR$/clientData.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generalManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/generalManager.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,14 +63,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00061" summary="Now it worked for the first time!">
-      <option name="closed" value="true" />
-      <created>1696247899126</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1696247899126</updated>
     </task>
     <task id="LOCAL-00062" summary="Browse problem:&#10;Quasar works with InputArguements Object but error in NodeOPCUA server">
       <option name="closed" value="true" />
@@ -456,7 +448,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700578558798</updated>
     </task>
-    <option name="localTasksCounter" value="110" />
+    <task id="LOCAL-00110" summary="Last today!">
+      <option name="closed" value="true" />
+      <created>1700665363920</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1700665363924</updated>
+    </task>
+    <option name="localTasksCounter" value="111" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -471,7 +471,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Both subscribe and call_method threads start and work!" />
     <MESSAGE value="Fixed Thread control but subscribe doesn't print.&#10;Why?" />
     <MESSAGE value="Seems all fixed!" />
     <MESSAGE value="Take object types out of browse" />
@@ -496,7 +495,8 @@
     <MESSAGE value="Last for today" />
     <MESSAGE value="Good morning!" />
     <MESSAGE value="Miracle!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Miracle!" />
+    <MESSAGE value="Last today!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Last today!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

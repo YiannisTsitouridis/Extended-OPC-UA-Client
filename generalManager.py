@@ -124,14 +124,15 @@ def stop(numOfServers):
         if clientsList[i].is_alive:
             clientsList[i].stop()
 
-
 def createClientThread(i):
     t = threading.Thread(target=startClient, args=(i,))
-    if i >= len(clientsList):
+    if i == len(clientsList):
         clientsList.append(t)
         runningList.append(False)
-    else:
+    elif i < len(clientsList):
         clientsList[i] = t
+    else:
+        print("Error with client threads numbering")
 
 
 def remakeClientThread(i):
