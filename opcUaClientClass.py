@@ -93,8 +93,6 @@ class opcuaClient(Client):
         with open(r"savedSubsriptions", 'w') as configfile:
             subDocument.write(configfile)
 
-        self.subscriptionDict =
-
     def createMqttAgent(self):
         def on_connect(agent, userdata, flags, rc):
             if rc == 0:
