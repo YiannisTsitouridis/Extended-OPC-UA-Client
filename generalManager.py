@@ -230,6 +230,7 @@ def main():
         else:
             if a >= len(clientsList):
                 clientsList.append(None)
+                runningList.append(False)
             else:
                 clientsList[a] = None
             clientsList[a] = None

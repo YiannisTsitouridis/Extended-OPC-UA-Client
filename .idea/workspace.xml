@@ -22,6 +22,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/../.cache/JetBrains/PyCharmCE2023.2/python_stubs/-32419096/builtins.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/../.local/lib/python3.10/site-packages/asyncua/__init__.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/../.local/lib/python3.10/site-packages/asyncua/client/client.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/../.local/lib/python3.10/site-packages/asyncua/common/__init__.py" root0="SKIP_INSPECTION" />
@@ -30,6 +31,7 @@
     <setting file="file://$PROJECT_DIR$/../.local/lib/python3.10/site-packages/asyncua/common/subscription.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/../.local/lib/python3.10/site-packages/asyncua/sync.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/../.local/lib/python3.10/site-packages/asyncua/ua/uatypes.py" root0="SKIP_INSPECTION" />
+    <setting file="file:///usr/lib/python3.10/concurrent/futures/_base.py" root0="SKIP_INSPECTION" />
     <setting file="file:///usr/lib/python3.10/json/__init__.py" root0="SKIP_INSPECTION" />
     <setting file="file:///usr/lib/python3.10/threading.py" root0="SKIP_INSPECTION" />
     <setting file="file:///usr/local/lib/python3.10/dist-packages/asyncua/sync.py" root0="SKIP_INSPECTION" />
@@ -63,14 +65,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00062" summary="Browse problem:&#10;Quasar works with InputArguements Object but error in NodeOPCUA server">
-      <option name="closed" value="true" />
-      <created>1696250259163</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1696250259163</updated>
     </task>
     <task id="LOCAL-00063" summary="Last commit for today">
       <option name="closed" value="true" />
@@ -456,7 +450,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700665363924</updated>
     </task>
-    <option name="localTasksCounter" value="111" />
+    <task id="LOCAL-00111" summary="Last today!">
+      <option name="closed" value="true" />
+      <created>1701855409825</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1701855409825</updated>
+    </task>
+    <option name="localTasksCounter" value="112" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
