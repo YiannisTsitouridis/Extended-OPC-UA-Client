@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Last today!">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Fixed error with runningList">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clientConfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/clientConfig.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/generalManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/generalManager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/opcUaClientClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/opcUaClientClass.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,7 +18,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Null-Threads-In-List" />
+        <entry key="$PROJECT_DIR$" value="Flag-clients-list" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -49,14 +51,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Flag-clients-list&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/yiannis/asyncuaServer&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Last-version",
+    "last_opened_file_path": "/home/yiannis/asyncuaServer"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -65,14 +67,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00063" summary="Last commit for today">
-      <option name="closed" value="true" />
-      <created>1696251705539</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1696251705539</updated>
     </task>
     <task id="LOCAL-00064" summary="Working with 2 servers, only browse problem with method arguements">
       <option name="closed" value="true" />
@@ -458,7 +452,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701855409825</updated>
     </task>
-    <option name="localTasksCounter" value="112" />
+    <task id="LOCAL-00112" summary="Fixed error with runningList">
+      <option name="closed" value="true" />
+      <created>1701940645112</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1701940645112</updated>
+    </task>
+    <option name="localTasksCounter" value="113" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -473,7 +475,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed Thread control but subscribe doesn't print.&#10;Why?" />
     <MESSAGE value="Seems all fixed!" />
     <MESSAGE value="Take object types out of browse" />
     <MESSAGE value="First commit in branch" />
@@ -498,7 +499,8 @@
     <MESSAGE value="Good morning!" />
     <MESSAGE value="Miracle!" />
     <MESSAGE value="Last today!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Last today!" />
+    <MESSAGE value="Fixed error with runningList" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed error with runningList" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

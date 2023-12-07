@@ -4,6 +4,7 @@ import threading
 sys.path.insert(0, "..")
 import logging
 import time
+import configparser
 import asyncio
 from pathlib import Path
 import numpy as np
@@ -16,6 +17,8 @@ from xml.etree.ElementTree import Element, tostring
 from dict2xml import dict2xml
 from asyncua.crypto.security_policies import SecurityPolicyBasic256Sha256
 import paho.mqtt.client as mqtt
+
+import savedSubscriptionConfig
 
 '''
 
@@ -45,11 +48,13 @@ class opcuaClient(Client):
     def __init__(self, url: str, name: str, type: str, mqtturl: str, mqttport: int, architecturetopic: str,
                  consoletopic: str,
                  readtopic: str, methRequestTopic: str, readRequestTopic: str, writeRequestTopic: str,
-                 subRequestTopic: str, unSubRequestTopic: str, subscribeTopic: str, connectDisconnectTopic: str):
+                 subRequestTopic: str, unSubRequestTopic: str, subscribeTopic: str, connectDisconnectTopic: str,
+                 count: int):
         super().__init__(url)
         self.url = url
         self.name = name
         self.type = type
+        self.count = count
         self.brokerURL = mqtturl
         self.brokerPort = mqttport
         self.architectureTopic = architecturetopic
@@ -64,15 +69,10 @@ class opcuaClient(Client):
         self.connectDisconnectTopic = connectDisconnectTopic
         # TO DO!
         # Add fields that have to do with server's security policy.
-        # TO DO!
-        # Add field for the server implementation.
         # self.set_security(policy = , certificate = , private_key = , private_key_password = , server_certificate = , mode = )
         self.agent: mqtt.Client = self.createMqttAgent()
         self.initial_subscriptions()
-        print(self.tloop.is_alive())
-        print(self.subRequestTopic)
-        print("OK?")
-        logging.warn("jUST A RANDOM ONE")
+        self.make_saved_subscriptions()
 
     # Defining a dictionary as a data structure for the IDs and ending flags of the variables under subscription.
     subscriptionDict = {}
@@ -80,9 +80,20 @@ class opcuaClient(Client):
     def finish(self):
         self.agent.loop_stop()
         self.agent.__del__()
+        # TO DO!
+        # Delete the document with the subscriptions saved
 
-    async def disc(self):
-        await self.disconnect()
+
+    def make_saved_subscriptions(self):
+        subDocument = configparser.ConfigParser()
+        subDocument.read("savedSubsriptions.ini")
+
+        self.subscriptionDict = subDocument._sections["Server"+str(self.count)]
+
+        with open(r"savedSubsriptions", 'w') as configfile:
+            subDocument.write(configfile)
+
+        self.subscriptionDict =
 
     def createMqttAgent(self):
         def on_connect(agent, userdata, flags, rc):
@@ -95,7 +106,6 @@ class opcuaClient(Client):
 
         def on_message(agent, userdata, msg):
             print(msg.topic + " " + str(msg.payload))
-
             if msg.topic == self.methRequestTopic:
                 mess = json.loads(msg.payload)
                 print("Call of method", mess["methodID"], " was ordered.")
@@ -128,8 +138,8 @@ class opcuaClient(Client):
                     self.agent.publish(self.consoleTopic, cons)
                 else:
                     sub_thread = threading.Thread(target=self.subToVarID, args=(varID, period, Topic))
-                    print('check check')
                     sub_thread.start()
+                    savedSubscriptionConfig.add_subscription(self.count, varID, period)
 
 
                 # self.startSubscription(varID=mess["varID"], period=mess["SubscriptionPeriod"],
@@ -235,6 +245,7 @@ class opcuaClient(Client):
             self.subscriptionDict[varID] = False
             time.sleep(0.2)
             self.subscriptionDict.pop(varID)
+            savedSubscriptionConfig.delete_subscription(self.count, varID)
             print("Ending subscription on the variable ", varID, " successfully.")
         else:
             print("No subscription found to the variable ", varID, ". The dictionary is:")

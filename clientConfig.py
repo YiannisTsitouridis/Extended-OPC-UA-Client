@@ -57,6 +57,7 @@ def addserver():
     initial_configfile.set('Server' + str(i), 'unsubrequesttopic', unSubRequestTopic)
     initial_configfile.set('Server' + str(i), 'subscriptiontopic', subscriptionTopic)
     initial_configfile.set('Server' + str(i), 'connectdisconnecttopic', connectDisconnectTopic)
+    initial_configfile.set('Server' + str(i), 'count', i)
 
     with open(r"clientData.ini", 'w') as configfile:
         initial_configfile.write(configfile)
@@ -110,30 +111,50 @@ def addserver_from_UI(dataFromUI):
     dataObject = json.loads(dataFromUI)
 
     initial_configfile = configparser.ConfigParser()
+
     initial_configfile.read("clientData.ini")
 
     i = giveCount(initial_configfile)
+
     max = initial_configfile.getint('maxNumberOfServers', 'serversNum')
+
     if i == max:
+
         max = max+1
+
         initial_configfile.set('maxNumberOfServers', 'serversNum', str(max))
 
     # Taking console inputs for the new server. #
     serverUrl = dataObject["serverUrl"]
+
     serverName = dataObject["serverName"]
+
     serverType = dataObject["serverType"]
+
     mqttUrl = dataObject["mqttUrl"]
+
     mqttPort = dataObject["mqttPort"]
+
     architectureTopic = dataObject["architectureTopic"]
+
     consoleTopic = dataObject["consoleTopic"]
+
     readTopic = dataObject["readTopic"]
+
     methRequestTopic = dataObject["methRequestTopic"]
+
     readRequestTopic = dataObject["readRequestTopic"]
+
     writeRequestTopic = dataObject["writeRequestTopic"]
+
     subRequestTopic = dataObject["subRequestTopic"]
+
     unSubRequestTopic = dataObject["unSubRequestTopic"]
+
     subscriptionTopic = dataObject["subscriptionTopic"]
+
     connectDisconnectTopic = dataObject["connectDisconnectTopic"]
+
 
     # Setting the taken inputs in the clientConfig.ini file, in the new server's section. #
     initial_configfile.add_section("Server" + str(i))
@@ -152,6 +173,7 @@ def addserver_from_UI(dataFromUI):
     initial_configfile.set('Server' + str(i), 'unsubrequesttopic', unSubRequestTopic)
     initial_configfile.set('Server' + str(i), 'subscriptiontopic', subscriptionTopic)
     initial_configfile.set('Server' + str(i), 'connectdisconnecttopic', connectDisconnectTopic)
+    initial_configfile.set('Server' + str(i), 'count', i)
 
     with open(r"clientData.ini", 'w') as configfile:
         initial_configfile.write(configfile)

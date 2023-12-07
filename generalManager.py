@@ -3,7 +3,7 @@ import sys
 import os
 import asyncio
 import time
-
+import savedSubscriptionConfig
 import clientConfig
 sys.path.insert(0, "..")
 import logging
@@ -48,30 +48,14 @@ runningList = []  # List with booleans of the running condition of clients.
 ####                     DEFINING USEFUL FUNCTIONS                      ####
 ############################################################################
 
-# def startUp(numOfServers):
-#     kill = False
-#     # with ThreadPool() as pool:
-#     for i in range(0, numOfServers):
-#         print("In  startup loop")
-#         t = threading.Thread(target=startClient, args=(i,))
-#         # t = ThreadLoop()
-#         print("One thread created")
-#         clientsList.append(t)
-#         clientsList[i].start()
-#         # startClient(i)
-#         print("Thread ", i, "has started")
-
-
 def runClientThread(num):
     createClientThread(num)
     clientsList[num].start()
     print("Thread " + str(num) + " started.")
 
-
 def deleteServer(num):
     killClient(num)
     clientConfig.deleteServer(num)
-
 
 def startClient(num):
     serversData = configparser.ConfigParser()
@@ -91,6 +75,7 @@ def startClient(num):
     localunsubrequestTopic = serversData.get('Server' + str(num), 'unsubrequesttopic')
     localsubscribeTopic = serversData.get('Server' + str(num), 'subscriptiontopic')
     localconnectDisconnectTopic = serversData.get('Server' + str(num), 'connectdisconnecttopic')
+    localCount = serversData.get('Server' + str(num), 'count')
 
     # Switching the client's running flag to True
     runningList[num] = True
@@ -98,7 +83,7 @@ def startClient(num):
     client = opcuaClient(localurl, localname, localtype, localmqttUrl, int(localmqttPort), localarchitectureTopic,
                      localconsoleTopic, localreadTopic, localmethrequestTopic, localreadRequestTopic,
                      localwriteRequestTopic, localsubrequestTopic, localunsubrequestTopic, localsubscribeTopic,
-                     localconnectDisconnectTopic)
+                     localconnectDisconnectTopic, localCount)
     mes = json.dumps({"message": "Server " + str(client.name) + " created"})
     client.agent.publish(client.consoleTopic, payload=mes)
     client.connect()
@@ -190,6 +175,7 @@ def main():
             fed = json.loads(feedback)
             count = fed["count"]
             createClientThread(count)
+            savedSubscriptionConfig.create_subscriptions_section(count)
             print("Thread " + str(mess) + " created.")
             generalAgent.publish(feedtop, feedback)
         elif msg.topic == "editServer":
