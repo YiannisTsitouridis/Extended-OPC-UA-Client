@@ -97,7 +97,7 @@ def startClient(num):
     client.agent.publish(topic=client.architectureTopic, payload=treejs)
 
     while runningList[num]:
-        time.sleep(0.01)
+        time.sleep(0.001)
     client.finish()
     client.disconnect()
     print("disconnected")
@@ -165,9 +165,6 @@ def main():
             runClientThread(int(mess))
             con = json.dumps({"message": "Server " + str(mess) + " started running"})
             generalAgent.publish("generalConsole", con)
-
-            # if result != 'all good':
-            #     generalAgent.publish('generalConsole', str(result))
         elif msg.topic == "clearConfig":
             clientConfig.cleanConfig()
         elif msg.topic == "addServer":
@@ -185,7 +182,7 @@ def main():
                 clientConfig.edit_server_from_UI(mess)
                 remakeClientThread(mess)
         elif msg.topic == "deleteServer":
-            print("kill message is ", mess)
+            print("Delete message is ", mess)
             deleteServer(int(mess))
 
     file = configparser.ConfigParser()
@@ -204,6 +201,7 @@ def main():
     generalAgent.subscribe("clearConfig")
     generalAgent.subscribe("addServer")
     generalAgent.subscribe("editServer")
+    generalAgent.subscribe("deleteServer")
     print("pass from here")
     serversData = configparser.ConfigParser()
     serversData.read("clientData.ini")

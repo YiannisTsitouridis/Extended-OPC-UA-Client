@@ -1,6 +1,5 @@
 import sys
 import threading
-
 sys.path.insert(0, "..")
 import logging
 import time
@@ -74,10 +73,15 @@ class opcuaClient(Client):
         self.initial_subscriptions()
         self.make_saved_subscriptions()
 
+    # Defining a dictionary for using the information stored in SavedSubscriptions.ini
+    subscriptionsInfo = {}
+
     # Defining a dictionary as a data structure for the IDs and ending flags of the variables under subscription.
     subscriptionDict = {}
 
     def finish(self):
+        for id in self.subscriptionDict:
+            self.unsubFromVarID(id)
         self.agent.loop_stop()
         self.agent.__del__()
         # TO DO!
@@ -86,12 +90,12 @@ class opcuaClient(Client):
 
     def make_saved_subscriptions(self):
         subDocument = configparser.ConfigParser()
-        subDocument.read("savedSubsriptions.ini")
+        subDocument.read("savedSubscriptions.ini")
 
-        self.subscriptionDict = subDocument.items("Server"+str(self.count))
+        self.subscriptionsInfo = subDocument.items("Server"+str(self.count))
+        for id in self.subscriptionsInfo:
+            self.subToVarID(id, self.subscriptionsInfo[id], self.subscribeTopic)
 
-        with open(r"savedSubsriptions", 'w') as configfile:
-            subDocument.write(configfile)
 
     def createMqttAgent(self):
         def on_connect(agent, userdata, flags, rc):
@@ -142,6 +146,7 @@ class opcuaClient(Client):
 
                 # self.startSubscription(varID=mess["varID"], period=mess["SubscriptionPeriod"],
                 #                        Topic=self.subscribeTopic)
+
                 print('Just after sub call')
 
             if msg.topic == self.unSubRequestTopic:
@@ -150,10 +155,18 @@ class opcuaClient(Client):
                 varid = str(unSubObj['varID'])
                 mess = str(msg.payload.decode("utf-8"))
                 print("the unsubscribe mess is " + mess)
-                self.unsubFromVarID(varid)
-                print("Ending subscription on the variable ", mess, " was ordered.")
-                cons = json.dumps({"message":"Ending subscription on the variable " + mess + " was ordered."})
-                agent.publish(self.consoleTopic, cons)
+
+                if varid in self.subscriptionDict:
+                    self.unsubFromVarID(varid)
+                    savedSubscriptionConfig.delete_subscription(self.count, varid)
+                else:
+                    print("No subscription found to the variable ", varid, ". The dictionary is:")
+                    print(self.subscriptionDict)
+                    cons = json.dumps({"message": "No subscription found to the variable " + varid + "."})
+                    agent.publish(self.consoleTopic, cons)
+
+                    # cons = json.dumps({"message":"Ending subscription on the variable " + mess + " was ordered."})
+                    # agent.publish(self.consoleTopic, cons)
 
             if msg.topic == self.readRequestTopic:
                 mess = str(msg.payload.decode("utf-8"))
@@ -239,18 +252,10 @@ class opcuaClient(Client):
                     time.sleep(0.01)
 
     def unsubFromVarID(self, varID):
-        if varID in self.subscriptionDict:
-            self.subscriptionDict[varID] = False
-            time.sleep(0.2)
-            self.subscriptionDict.pop(varID)
-            savedSubscriptionConfig.delete_subscription(self.count, varID)
-            print("Ending subscription on the variable ", varID, " successfully.")
-        else:
-            print("No subscription found to the variable ", varID, ". The dictionary is:")
-            print(self.subscriptionDict)
-            cons = json.dumps({"message":"No subscription found to the variable " + varID + "."})
-            self.agent.publish(self.consoleTopic, cons)
-            return "No subscription found to the variable ", varID, "."
+        self.subscriptionDict[varID] = False
+        self.subscriptionDict.pop(varID)
+        print("Ending subscription on the variable ", varID, " successfully.")
+
 
     def callMethodFromNodeID(self, nodeId, *args):
         with ThreadLoop() as tloop:

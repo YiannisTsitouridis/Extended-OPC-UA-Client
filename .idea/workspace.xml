@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="First commit last version">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Fixed document name">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientConfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/clientConfig.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientData.ini" beforeDir="false" afterPath="$PROJECT_DIR$/clientData.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generalManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/generalManager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/opcUaClientClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/opcUaClientClass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/savedSubscriptionConfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/savedSubscriptionConfig.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/savedSubscriptions.ini" beforeDir="false" afterPath="$PROJECT_DIR$/savedSubscriptions.ini" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,14 +75,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00067" summary="Beautiful">
-      <option name="closed" value="true" />
-      <created>1696332689590</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1696332689590</updated>
     </task>
     <task id="LOCAL-00068" summary="Checking with Miltos">
       <option name="closed" value="true" />
@@ -467,7 +460,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701960908994</updated>
     </task>
-    <option name="localTasksCounter" value="116" />
+    <task id="LOCAL-00116" summary="Fixed document name">
+      <option name="closed" value="true" />
+      <created>1702026857083</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1702026857084</updated>
+    </task>
+    <option name="localTasksCounter" value="117" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -482,7 +483,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Take object types out of browse" />
     <MESSAGE value="First commit in branch" />
     <MESSAGE value="Commit with changes" />
     <MESSAGE value="Com" />
@@ -507,7 +507,8 @@
     <MESSAGE value="Last today!" />
     <MESSAGE value="Fixed error with runningList" />
     <MESSAGE value="First commit last version" />
-    <option name="LAST_COMMIT_MESSAGE" value="First commit last version" />
+    <MESSAGE value="Fixed document name" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed document name" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
