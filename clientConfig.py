@@ -173,7 +173,7 @@ def addserver_from_UI(dataFromUI):
     initial_configfile.set('Server' + str(i), 'unsubrequesttopic', unSubRequestTopic)
     initial_configfile.set('Server' + str(i), 'subscriptiontopic', subscriptionTopic)
     initial_configfile.set('Server' + str(i), 'connectdisconnecttopic', connectDisconnectTopic)
-    initial_configfile.set('Server' + str(i), 'count', i)
+    initial_configfile.set('Server' + str(i), 'count', str(i))
 
     with open(r"clientData.ini", 'w') as configfile:
         initial_configfile.write(configfile)

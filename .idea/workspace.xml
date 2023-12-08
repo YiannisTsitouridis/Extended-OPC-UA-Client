@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Fixed error with runningList">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="First commit last version">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/clientConfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/clientConfig.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/generalManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/generalManager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clientData.ini" beforeDir="false" afterPath="$PROJECT_DIR$/clientData.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/opcUaClientClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/opcUaClientClass.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,14 +51,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Last-version",
-    "last_opened_file_path": "/home/yiannis/asyncuaServer"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Last-version&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/yiannis/asyncuaServer&quot;
   }
-}]]></component>
+}</component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-67fca87a943a-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.11799.259" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -67,30 +74,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00064" summary="Working with 2 servers, only browse problem with method arguements">
-      <option name="closed" value="true" />
-      <created>1696321097605</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1696321097606</updated>
-    </task>
-    <task id="LOCAL-00065" summary="Works all good but problem with broker, probably traffic">
-      <option name="closed" value="true" />
-      <created>1696330575758</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1696330575758</updated>
-    </task>
-    <task id="LOCAL-00066" summary="Fixed broker url">
-      <option name="closed" value="true" />
-      <created>1696332103256</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1696332103257</updated>
     </task>
     <task id="LOCAL-00067" summary="Beautiful">
       <option name="closed" value="true" />
@@ -460,7 +443,31 @@
       <option name="project" value="LOCAL" />
       <updated>1701940645112</updated>
     </task>
-    <option name="localTasksCounter" value="113" />
+    <task id="LOCAL-00113" summary="First commit last version">
+      <option name="closed" value="true" />
+      <created>1701960865281</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1701960865286</updated>
+    </task>
+    <task id="LOCAL-00114" summary="First commit last version">
+      <option name="closed" value="true" />
+      <created>1701960885586</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1701960885586</updated>
+    </task>
+    <task id="LOCAL-00115" summary="First commit last version">
+      <option name="closed" value="true" />
+      <created>1701960908994</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1701960908994</updated>
+    </task>
+    <option name="localTasksCounter" value="116" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -475,7 +482,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Seems all fixed!" />
     <MESSAGE value="Take object types out of browse" />
     <MESSAGE value="First commit in branch" />
     <MESSAGE value="Commit with changes" />
@@ -500,7 +506,8 @@
     <MESSAGE value="Miracle!" />
     <MESSAGE value="Last today!" />
     <MESSAGE value="Fixed error with runningList" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed error with runningList" />
+    <MESSAGE value="First commit last version" />
+    <option name="LAST_COMMIT_MESSAGE" value="First commit last version" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -88,7 +88,7 @@ class opcuaClient(Client):
         subDocument = configparser.ConfigParser()
         subDocument.read("savedSubsriptions.ini")
 
-        self.subscriptionDict = subDocument._sections["Server"+str(self.count)]
+        self.subscriptionDict = subDocument.items("Server"+str(self.count))
 
         with open(r"savedSubsriptions", 'w') as configfile:
             subDocument.write(configfile)
