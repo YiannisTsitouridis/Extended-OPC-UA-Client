@@ -87,6 +87,7 @@ def startClient(num):
     mes = json.dumps({"message": "Server " + str(client.name) + " created"})
     client.agent.publish(client.consoleTopic, payload=mes)
     client.connect()
+    client.make_saved_subscriptions()
     print("Server with name " + str(client.name) + " connected")
     mes = json.dumps({"message": "Server " + str(client.name) + " connected"})
     client.agent.publish(client.consoleTopic, mes)
@@ -127,6 +128,7 @@ def remakeClientThread(i):
 def killClient(num):
     print("in killClient method")
     runningList[num] = False
+    savedSubscriptionConfig.remove_subscriptions_section(num)
 
 
 
@@ -159,7 +161,7 @@ def main():
                 # startUp(maxNumOfServers)
         elif msg.topic == "killClient":
             killClient(int(mess))
-            con = json.dumps({"message": "Deleted Server" + str(mess)})
+            con = json.dumps({"message": "Stopped Server" + str(mess)})
             generalAgent.publish('generalConsole', con)
         elif msg.topic == "startClient":
             runClientThread(int(mess))

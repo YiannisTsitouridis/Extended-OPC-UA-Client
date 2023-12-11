@@ -66,18 +66,20 @@ class opcuaClient(Client):
         self.unSubRequestTopic = unSubRequestTopic
         self.subscribeTopic = subscribeTopic
         self.connectDisconnectTopic = connectDisconnectTopic
+
+        # Defining a dictionary for using the information stored in SavedSubscriptions.ini
+        self.subscriptionsInfo = {}
+
+        # Defining a dictionary as a data structure for the IDs and ending flags of the variables under subscription.
+        self.subscriptionDict = {}
+
         # TO DO!
         # Add fields that have to do with server's security policy.
         # self.set_security(policy = , certificate = , private_key = , private_key_password = , server_certificate = , mode = )
         self.agent: mqtt.Client = self.createMqttAgent()
         self.initial_subscriptions()
-        self.make_saved_subscriptions()
 
-    # Defining a dictionary for using the information stored in SavedSubscriptions.ini
-    subscriptionsInfo = {}
 
-    # Defining a dictionary as a data structure for the IDs and ending flags of the variables under subscription.
-    subscriptionDict = {}
 
     def finish(self):
         for id in self.subscriptionDict:
@@ -92,7 +94,7 @@ class opcuaClient(Client):
         subDocument = configparser.ConfigParser()
         subDocument.read("savedSubscriptions.ini")
 
-        self.subscriptionsInfo = subDocument.items("Server"+str(self.count))
+        self.subscriptionsInfo = dict(subDocument.items("Server"+str(self.count)))
         for id in self.subscriptionsInfo:
             self.subToVarID(id, self.subscriptionsInfo[id], self.subscribeTopic)
 
@@ -242,6 +244,7 @@ class opcuaClient(Client):
 
         with ThreadLoop() as tloop:
             with Client(url=self.url, tloop=tloop) as client:
+                print(varID)
                 myvar = client.get_node(varID)
                 handler = SubHandler()
                 sub = client.create_subscription(handler=handler, period=period)
