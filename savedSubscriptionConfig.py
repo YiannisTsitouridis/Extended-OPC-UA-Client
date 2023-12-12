@@ -1,39 +1,58 @@
-import configparser
 import json
 
-def create_subscriptions_section(num):
+def add_subscription(num, varID, period, token):
+    try:
+        with open('Subscriptions.json', 'r') as subDocument:
+            subData = json.load(subDocument)
+    except FileNotFoundError:
+        # If the file doesn't exist, initialize an empty list
+        subData = []
 
-    subDocument = configparser.ConfigParser()
-    subDocument.read("savedSubscriptions.ini")
-    subDocument.add_section("Server"+str(num))
-    with open(r"savedSubscriptions.ini", 'w') as configfile:
-        subDocument.write(configfile)
-
-
-def remove_subscriptions_section(num):
-    subDocument = configparser.ConfigParser()
-    subDocument.read("savedSubscriptions.ini")
-    subDocument.remove_section("Server"+str(num))
-    with open(r"savedSubscriptions.ini", 'w') as configfile:
-        subDocument.write(configfile)
-
-def add_subscription(num, varID, period):
-    with open('Subscriptions.json', 'r') as subDocument:
-        subData = json.load(subDocument)
-    newSubscription = {"servercount": num, "id": varID, "period": period}
+    newSubscription = {"servercount": num, "id": varID, "period": period, "assignmenttoken": token}
     subData.append(newSubscription)
 
-    with open('Subscriptions.json','w') as subDocument:
+    with open('Subscriptions.json', 'w') as subDocument:
         json.dump(subData, subDocument, indent=2)
-
 
 def delete_subscription(num, varID):
-    with open('Subscriptions.json', 'r') as subDocument:
-        subData = json.load(subDocument)
+    try:
+        with open('Subscriptions.json', 'r') as subDocument:
+            subData = json.load(subDocument)
+    except FileNotFoundError:
+        # If the file doesn't exist, nothing to delete
+        return
 
-    index = next((index for index, obj in enumerate(subData) if obj.get("servercount") == num), None)
-    subData.pop(index)
-    print("Item popped out!")
+    index = next((index for index, obj in enumerate(subData) if obj.get("id") == varID), None)
+    if index is not None:
+        subData.pop(index)
+        print("Item popped out!")
 
-    with open('Subscriptions.json', 'w'):
+        with open('Subscriptions.json', 'w') as subDocument:
+            json.dump(subData, subDocument, indent=2)
+
+def remove_all_server_subscriptions(num):
+    try:
+        with open('Subscriptions.json', 'r') as subDocument:
+            subData = json.load(subDocument)
+    except FileNotFoundError:
+        # If the file doesn't exist, initialize an empty list
+        subData = []
+
+    for item in subData:
+        if item['servercount'] == num:
+            subData.remove(item)
+
+    with open('Subscriptions.json', 'w') as subDocument:
         json.dump(subData, subDocument, indent=2)
+
+# def create_original_dict(num):
+#     try:
+#         with open('Subscriptions.json', 'r') as subDocument:
+#             subData = json.load(subDocument)
+#     except FileNotFoundError:
+#         # If the file doesn't exist, initialize an empty list
+#         subData = []
+#
+#     subdict = {}
+#     for item in subData:
+#         if item['servercount'] == num:

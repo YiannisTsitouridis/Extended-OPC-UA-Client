@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Fixed document name">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="With Json">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/clientData.ini" beforeDir="false" afterPath="$PROJECT_DIR$/clientData.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/generalManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/generalManager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/opcUaClientClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/opcUaClientClass.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/savedSubscriptionConfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/savedSubscriptionConfig.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/savedSubscriptions.ini" beforeDir="false" afterPath="$PROJECT_DIR$/savedSubscriptions.ini" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +35,7 @@
     <setting file="file://$PROJECT_DIR$/../.local/lib/python3.10/site-packages/asyncua/sync.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/../.local/lib/python3.10/site-packages/asyncua/ua/uatypes.py" root0="SKIP_INSPECTION" />
     <setting file="file:///usr/lib/python3.10/concurrent/futures/_base.py" root0="SKIP_INSPECTION" />
+    <setting file="file:///usr/lib/python3.10/configparser.py" root0="SKIP_INSPECTION" />
     <setting file="file:///usr/lib/python3.10/json/__init__.py" root0="SKIP_INSPECTION" />
     <setting file="file:///usr/lib/python3.10/threading.py" root0="SKIP_INSPECTION" />
     <setting file="file:///usr/local/lib/python3.10/dist-packages/asyncua/sync.py" root0="SKIP_INSPECTION" />
@@ -76,14 +76,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00069" summary="Ok with Miltos">
-      <option name="closed" value="true" />
-      <created>1696510531983</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1696510531984</updated>
     </task>
     <task id="LOCAL-00070" summary="Fixed initial_subscriptions!">
       <option name="closed" value="true" />
@@ -469,7 +461,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702041052216</updated>
     </task>
-    <option name="localTasksCounter" value="118" />
+    <task id="LOCAL-00118" summary="With Json">
+      <option name="closed" value="true" />
+      <created>1702294203474</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1702294203475</updated>
+    </task>
+    <option name="localTasksCounter" value="119" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -484,7 +484,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="First commit in branch" />
     <MESSAGE value="Commit with changes" />
     <MESSAGE value="Com" />
     <MESSAGE value="Commit before testing" />
@@ -509,7 +508,8 @@
     <MESSAGE value="Fixed error with runningList" />
     <MESSAGE value="First commit last version" />
     <MESSAGE value="Fixed document name" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed document name" />
+    <MESSAGE value="With Json" />
+    <option name="LAST_COMMIT_MESSAGE" value="With Json" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

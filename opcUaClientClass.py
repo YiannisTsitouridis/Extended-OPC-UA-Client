@@ -89,15 +89,17 @@ class opcuaClient(Client):
         # TO DO!
         # Delete the document with the subscriptions saved
 
-
     def make_saved_subscriptions(self):
-        subDocument = configparser.ConfigParser()
-        subDocument.read("savedSubscriptions.ini")
+        try:
+            with open('Subscriptions.json', 'r') as subDocument:
+                subData = json.load(subDocument)
+        except:
+            subData = []
 
-        self.subscriptionsInfo = dict(subDocument.items("Server"+str(self.count)))
-        for id in self.subscriptionsInfo:
-            self.subToVarID(id, self.subscriptionsInfo[id], self.subscribeTopic)
-
+        if subData:
+            for item in subData:
+                if item['servercount'] == self.count:
+                    self.subToVarID(varID=item['id'], period=item['period'], Topic=self.subscribeTopic, token=item["assignmenttoken"])
 
     def createMqttAgent(self):
         def on_connect(agent, userdata, flags, rc):
@@ -134,6 +136,7 @@ class opcuaClient(Client):
                 varID = str(mess["varID"])
                 period = mess["SubscriptionPeriod"]
                 Topic = self.subscribeTopic
+                token = mess["assignmenttoken"]
 
                 if varID in self.subscriptionDict:
                     logging.warning("There is a subscription to the variable " + varID + " already.")
@@ -141,9 +144,9 @@ class opcuaClient(Client):
                     cons = json.dumps({"message": "There is a subscription to the variable " + varID + " already."})
                     self.agent.publish(self.consoleTopic, cons)
                 else:
-                    sub_thread = threading.Thread(target=self.subToVarID, args=(varID, period, Topic))
+                    sub_thread = threading.Thread(target=self.subToVarID, args=(varID, period, Topic, token))
                     sub_thread.start()
-                    savedSubscriptionConfig.add_subscription(self.count, varID, period)
+                    savedSubscriptionConfig.add_subscription(self.count, varID, period, token)
 
 
                 # self.startSubscription(varID=mess["varID"], period=mess["SubscriptionPeriod"],
@@ -219,7 +222,7 @@ class opcuaClient(Client):
         return f"{self.name} with url :{self.name} and tloop = {self.tloop}"
 
 
-    def subToVarID(self, varID, period, Topic):
+    def subToVarID(self, varID, period, Topic, token):
         agent = self.agent
         class SubHandler(object):
             """

@@ -56,6 +56,7 @@ def runClientThread(num):
 def deleteServer(num):
     killClient(num)
     clientConfig.deleteServer(num)
+    savedSubscriptionConfig.remove_all_server_subscriptions(num)
 
 def startClient(num):
     serversData = configparser.ConfigParser()
@@ -128,8 +129,6 @@ def remakeClientThread(i):
 def killClient(num):
     print("in killClient method")
     runningList[num] = False
-    savedSubscriptionConfig.remove_subscriptions_section(num)
-
 
 
 ############################################################################
@@ -174,7 +173,6 @@ def main():
             fed = json.loads(feedback)
             count = fed["count"]
             createClientThread(count)
-            savedSubscriptionConfig.create_subscriptions_section(count)
             print("Thread " + str(mess) + " created.")
             generalAgent.publish(feedtop, feedback)
         elif msg.topic == "editServer":
