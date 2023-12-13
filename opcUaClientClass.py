@@ -238,7 +238,7 @@ class opcuaClient(Client):
                 print("Python: New data change for" + str(node.nodeid), ", ", str(val) + '\n')
                 dt = data.monitored_item.Value.ServerTimestamp
                 st = data.monitored_item.Value.SourceTimestamp
-                me = dict(varID=varID, value=val, ServerTimestamp=dt.isoformat(), SourceTimestamp=st.isoformat())
+                me = dict(varID=varID, value=val, ServerTimestamp=dt.isoformat(), SourceTimestamp=st.isoformat(), assignmentToken = token)
                 agent.publish(topic=Topic, payload=json.dumps(me))
                 print(val)
 
