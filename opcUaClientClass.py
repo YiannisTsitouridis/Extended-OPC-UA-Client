@@ -102,7 +102,7 @@ class opcuaClient(Client):
         if subData:
             for item in subData:
                 if item['servercount'] == self.count:
-                    self.subToVarID(varID=item['id'], period=item['period'], Topic=self.subscribeTopic, token=item["assignmenttoken"])
+                    self.subToVarID(varID=item['id'], period=item['period'], Topic=self.subscribeTopic, token=item["assignmentToken"])
 
     def createMqttAgent(self):
         def on_connect(agent, userdata, flags, rc):
@@ -139,7 +139,7 @@ class opcuaClient(Client):
                 varID = str(mess["varID"])
                 period = mess["SubscriptionPeriod"]
                 Topic = self.subscribeTopic
-                token = mess["assignmenttoken"]
+                token = mess["assignmentToken"]
 
                 if varID in self.subscriptionDict:
                     logging.warning("There is a subscription to the variable " + varID + " already.")
