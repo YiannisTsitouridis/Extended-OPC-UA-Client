@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="With Json">
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Latest effort">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientData.ini" beforeDir="false" afterPath="$PROJECT_DIR$/clientData.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Subscriptions.json" beforeDir="false" afterPath="$PROJECT_DIR$/Subscriptions.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/generalManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/generalManager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/opcUaClientClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/opcUaClientClass.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/savedSubscriptionConfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/savedSubscriptionConfig.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/savedSubscriptions.ini" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,22 +77,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00070" summary="Fixed initial_subscriptions!">
-      <option name="closed" value="true" />
-      <created>1696573513999</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1696573513999</updated>
-    </task>
-    <task id="LOCAL-00071" summary="Last commit.">
-      <option name="closed" value="true" />
-      <created>1696595527243</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1696595527243</updated>
     </task>
     <task id="LOCAL-00072" summary="New week new me!">
       <option name="closed" value="true" />
@@ -469,7 +454,23 @@
       <option name="project" value="LOCAL" />
       <updated>1702294203475</updated>
     </task>
-    <option name="localTasksCounter" value="119" />
+    <task id="LOCAL-00119" summary="Latest effort">
+      <option name="closed" value="true" />
+      <created>1702392828983</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1702392828983</updated>
+    </task>
+    <task id="LOCAL-00120" summary="Latest effort">
+      <option name="closed" value="true" />
+      <created>1702392849851</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1702392849851</updated>
+    </task>
+    <option name="localTasksCounter" value="121" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -484,7 +485,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Commit with changes" />
     <MESSAGE value="Com" />
     <MESSAGE value="Commit before testing" />
     <MESSAGE value="Let's see how this will go" />
@@ -509,7 +509,8 @@
     <MESSAGE value="First commit last version" />
     <MESSAGE value="Fixed document name" />
     <MESSAGE value="With Json" />
-    <option name="LAST_COMMIT_MESSAGE" value="With Json" />
+    <MESSAGE value="Latest effort" />
+    <option name="LAST_COMMIT_MESSAGE" value="Latest effort" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

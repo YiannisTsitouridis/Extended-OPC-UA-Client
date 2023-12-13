@@ -82,8 +82,11 @@ class opcuaClient(Client):
 
 
     def finish(self):
-        for id in self.subscriptionDict:
-            self.unsubFromVarID(id)
+        for varid in self.subscriptionDict:
+            self.subscriptionDict[varid] = False
+            savedSubscriptionConfig.delete_subscription(self.count, varid)
+        time.sleep(0.05)
+        self.subscriptionDict.clear()
         self.agent.loop_stop()
         self.agent.__del__()
         # TO DO!
@@ -157,8 +160,8 @@ class opcuaClient(Client):
             if msg.topic == self.unSubRequestTopic:
                 print('Unsubscribe ordered\n')
                 unSubObj = json.loads(msg.payload)
-                varid = str(unSubObj['varID'])
                 mess = str(msg.payload.decode("utf-8"))
+                varid = str(unSubObj['varID'])
                 print("the unsubscribe mess is " + mess)
 
                 if varid in self.subscriptionDict:
@@ -259,6 +262,7 @@ class opcuaClient(Client):
 
     def unsubFromVarID(self, varID):
         self.subscriptionDict[varID] = False
+        time.sleep(0.3)
         self.subscriptionDict.pop(varID)
         print("Ending subscription on the variable ", varID, " successfully.")
 

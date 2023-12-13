@@ -56,7 +56,6 @@ def runClientThread(num):
 def deleteServer(num):
     killClient(num)
     clientConfig.deleteServer(num)
-    savedSubscriptionConfig.remove_all_server_subscriptions(num)
 
 def startClient(num):
     serversData = configparser.ConfigParser()
@@ -88,7 +87,6 @@ def startClient(num):
     mes = json.dumps({"message": "Server " + str(client.name) + " created"})
     client.agent.publish(client.consoleTopic, payload=mes)
     client.connect()
-    client.make_saved_subscriptions()
     print("Server with name " + str(client.name) + " connected")
     mes = json.dumps({"message": "Server " + str(client.name) + " connected"})
     client.agent.publish(client.consoleTopic, mes)
@@ -97,6 +95,8 @@ def startClient(num):
     treejs = json.dumps(tree)
     print(treejs + "\n" + "\n")
     client.agent.publish(topic=client.architectureTopic, payload=treejs)
+    client.make_saved_subscriptions()
+
 
     while runningList[num]:
         time.sleep(0.001)

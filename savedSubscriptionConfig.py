@@ -38,12 +38,13 @@ def remove_all_server_subscriptions(num):
         # If the file doesn't exist, initialize an empty list
         subData = []
 
-    for item in subData:
-        if item['servercount'] == num:
-            subData.remove(item)
+    if subData:
+        for item in subData:
+            if item["servercount"] == num:
+                subData.remove(item)
 
-    with open('Subscriptions.json', 'w') as subDocument:
-        json.dump(subData, subDocument, indent=2)
+        with open('Subscriptions.json', 'w') as subDocument:
+            json.dump(subData, subDocument, indent=2)
 
 # def create_original_dict(num):
 #     try:
