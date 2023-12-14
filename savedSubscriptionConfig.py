@@ -8,7 +8,7 @@ def add_subscription(num, varID, period, token):
         # If the file doesn't exist, initialize an empty list
         subData = []
 
-    newSubscription = {"servercount": num, "id": varID, "period": period, "assignmenttoken": token}
+    newSubscription = {"servercount": num, "id": varID, "period": period, "assignmentToken": token}
     subData.append(newSubscription)
 
     with open('Subscriptions.json', 'w') as subDocument:

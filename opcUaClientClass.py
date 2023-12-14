@@ -102,7 +102,8 @@ class opcuaClient(Client):
         if subData:
             for item in subData:
                 if item['servercount'] == self.count:
-                    self.subToVarID(varID=item['id'], period=item['period'], Topic=self.subscribeTopic, token=item["assignmentToken"])
+                    sub_thread = threading.Thread(target=self.subToVarID, args=(item['id'], item['period'], self.subscribeTopic, item["assignmentToken"]))
+                    sub_thread.start()
 
     def createMqttAgent(self):
         def on_connect(agent, userdata, flags, rc):
@@ -139,7 +140,7 @@ class opcuaClient(Client):
                 varID = str(mess["varID"])
                 period = mess["SubscriptionPeriod"]
                 Topic = self.subscribeTopic
-                token = mess["assignmentToken"]
+                token = str(mess["assignmentToken"])
 
                 if varID in self.subscriptionDict:
                     logging.warning("There is a subscription to the variable " + varID + " already.")
@@ -238,7 +239,7 @@ class opcuaClient(Client):
                 print("Python: New data change for" + str(node.nodeid), ", ", str(val) + '\n')
                 dt = data.monitored_item.Value.ServerTimestamp
                 st = data.monitored_item.Value.SourceTimestamp
-                me = dict(varID=varID, value=val, ServerTimestamp=dt.isoformat(), SourceTimestamp=st.isoformat(), assignmentToken = token)
+                me = dict(varID=varID, value=val, ServerTimestamp=dt.isoformat(), SourceTimestamp=st.isoformat(), assignmentToken=token)
                 agent.publish(topic=Topic, payload=json.dumps(me))
                 print(val)
 
