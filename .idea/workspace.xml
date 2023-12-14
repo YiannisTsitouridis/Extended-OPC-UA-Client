@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="Last problem with delete">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Subscriptions.json" beforeDir="false" afterPath="$PROJECT_DIR$/Subscriptions.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opcUaClientClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/opcUaClientClass.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/savedSubscriptionConfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/savedSubscriptionConfig.py" afterDir="false" />
-    </list>
+    <list default="true" id="870753bc-9538-429a-8dad-37ea3226d404" name="Changes" comment="All ready!" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,7 +13,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Flag-clients-list" />
+        <entry key="$PROJECT_DIR$" value="Last-version" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -52,14 +47,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Last-version&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/yiannis/asyncuaServer&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Latest-version",
+    "last_opened_file_path": "/home/yiannis/asyncuaServer"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -75,14 +70,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689929290762</updated>
-    </task>
-    <task id="LOCAL-00075" summary="Subscription seems good">
-      <option name="closed" value="true" />
-      <created>1697193460171</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1697193460172</updated>
     </task>
     <task id="LOCAL-00076" summary="Last Commit!">
       <option name="closed" value="true" />
@@ -468,7 +455,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702479120353</updated>
     </task>
-    <option name="localTasksCounter" value="124" />
+    <task id="LOCAL-00124" summary="All ready!">
+      <option name="closed" value="true" />
+      <created>1702546146434</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1702546146436</updated>
+    </task>
+    <option name="localTasksCounter" value="125" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -483,7 +478,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Commit before testing" />
     <MESSAGE value="Let's see how this will go" />
     <MESSAGE value="New idea!" />
     <MESSAGE value="Perfect!&#10;Connecting to server!" />
@@ -508,7 +502,8 @@
     <MESSAGE value="With Json" />
     <MESSAGE value="Latest effort" />
     <MESSAGE value="Last problem with delete" />
-    <option name="LAST_COMMIT_MESSAGE" value="Last problem with delete" />
+    <MESSAGE value="All ready!" />
+    <option name="LAST_COMMIT_MESSAGE" value="All ready!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
