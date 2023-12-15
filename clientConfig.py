@@ -4,8 +4,9 @@ import configparser
 import json
 
 def giveCount(file):
+
     for i in (0, file.getint('maxNumberOfServers', 'serversNum')):
-        if file.has_section("Server"+str(i)):
+        if file.has_section("Server" + str(i)):
             pass
         else:
             return i
@@ -13,16 +14,13 @@ def giveCount(file):
 def addserver():
     initial_configfile = configparser.ConfigParser()
     initial_configfile.read("clientData.ini")
-
     # Updating the number of the servers value in the clientConfig.ini file #
     i = giveCount(initial_configfile)
-    max = initial_configfile.getint('maxNumberOfServers','serversNum')
+    max = initial_configfile.getint('maxNumberOfServers', 'serversNum')
+    # Updating the maximum number of the servers value in the clientConfig.ini file
     if i == max:
-        initial_configfile.set('maxNumberOfServers', 'serversNum', (i+1))
-
-    # Updating the number of the servers value in the clientConfig.ini file #
-
-    # Taking console inputs for the new server. #
+        initial_configfile.set('maxNumberOfServers', 'serversNum', (i + 1))
+    # Taking console inputs for the new server.
     serverUrl = input("Type the Url of the new server: ")
     serverName = input("Type the name of the new server: ")
     serverType = input("Type the type of the server: ")
@@ -39,8 +37,7 @@ def addserver():
     subscriptionTopic = input("Subscription Topic: ")
     connectDisconnectTopic = input("Connect-Disconnect Topic: ")
 
-
-    # Setting the taken inputs in the clientConfig.ini file, in the new server's section. #
+    # Setting the taken inputs in the clientConfig.ini file, in the new server's section.
     initial_configfile.add_section("Server" + str(i))
     initial_configfile.set('Server' + str(i), 'url', serverUrl)
     initial_configfile.set('Server' + str(i), 'name', serverName)
@@ -61,14 +58,12 @@ def addserver():
 
     with open(r"clientData.ini", 'w') as configfile:
         initial_configfile.write(configfile)
-
     return i
 
 def edit_server(num):
     initial_configfile = configparser.ConfigParser()
     initial_configfile.read("clientData.ini")
-
-    # Taking console inputs for the new server. #
+    # Taking console inputs for the new server.
     serverUrl = input("Type the new Url of the server: ")
     serverName = input("Type the new name of the new server: ")
     serverType = input("Type the type of the server: ")
@@ -85,7 +80,7 @@ def edit_server(num):
     subscriptionTopic = input("New Subscription Topic: ")
     connectDisconnectTopic = input("New Connect-Disconnect Topic: ")
 
-    # Setting the taken inputs in the clientConfig.ini file, in the new server's section. #
+    # Setting the taken inputs in the clientConfig.ini file, in the new server's section.
     initial_configfile.set('Server' + str(num), 'url', serverUrl)
     initial_configfile.set('Server' + str(num), 'name', serverName)
     initial_configfile.set('Server' + str(num), 'type', serverType)
@@ -105,58 +100,35 @@ def edit_server(num):
     with open(r"clientData.ini", 'w') as configfile:
         initial_configfile.write(configfile)
 
-
 def addserver_from_UI(dataFromUI):
-
     dataObject = json.loads(dataFromUI)
-
     initial_configfile = configparser.ConfigParser()
-
     initial_configfile.read("clientData.ini")
-
     i = giveCount(initial_configfile)
-
     max = initial_configfile.getint('maxNumberOfServers', 'serversNum')
-
+    # Updating the maximum number of the servers value in the clientConfig.ini file
     if i == max:
-
-        max = max+1
-
+        max = max + 1
         initial_configfile.set('maxNumberOfServers', 'serversNum', str(max))
 
-    # Taking console inputs for the new server. #
+    # Taking console inputs for the new server.
     serverUrl = dataObject["serverUrl"]
-
     serverName = dataObject["serverName"]
-
     serverType = dataObject["serverType"]
-
     mqttUrl = dataObject["mqttUrl"]
-
     mqttPort = dataObject["mqttPort"]
-
     architectureTopic = dataObject["architectureTopic"]
-
     consoleTopic = dataObject["consoleTopic"]
-
     readTopic = dataObject["readTopic"]
-
     methRequestTopic = dataObject["methRequestTopic"]
-
     readRequestTopic = dataObject["readRequestTopic"]
-
     writeRequestTopic = dataObject["writeRequestTopic"]
-
     subRequestTopic = dataObject["subRequestTopic"]
-
     unSubRequestTopic = dataObject["unSubRequestTopic"]
-
     subscriptionTopic = dataObject["subscriptionTopic"]
-
     connectDisconnectTopic = dataObject["connectDisconnectTopic"]
 
-
-    # Setting the taken inputs in the clientConfig.ini file, in the new server's section. #
+    # Setting the taken inputs in the clientConfig.ini file, in the new server's section.
     initial_configfile.add_section("Server" + str(i))
     initial_configfile.set('Server' + str(i), 'url', serverUrl)
     initial_configfile.set('Server' + str(i), 'name', serverName)
@@ -177,7 +149,6 @@ def addserver_from_UI(dataFromUI):
 
     with open(r"clientData.ini", 'w') as configfile:
         initial_configfile.write(configfile)
-
     splt = architectureTopic.split('/')
     uuid = splt[1]
     fed = {"serveruuid": uuid, "count": i}
@@ -222,13 +193,13 @@ def edit_server_from_UI(dataFromUI):
     initial_configfile.set('Server' + str(i), 'subscriptiontopic', subscriptionTopic)
     initial_configfile.set('Server' + str(i), 'connectdisconnecttopic', connectDisconnectTopic)
 
-
 def deleteServer(i):
     initial_configfile = configparser.ConfigParser()
     initial_configfile.read("clientData.ini")
-
-    initial_configfile.remove_section('Server'+str(i))
-
+    initial_configfile.remove_section('Server' + str(i))
+    maxNum = initial_configfile.getint('maxNumberOfServers', 'serversnum')
+    maxNum = maxNum - 1
+    initial_configfile.set('maxNumberOfServers', 'serversnum', str(maxNum))
     with open(r"clientData.ini", 'w') as configfile:
         initial_configfile.write(configfile)
 
@@ -236,17 +207,16 @@ def cleanConfig():
     initial_configfile = configparser.ConfigParser()
     initial_configfile.read("clientData.ini")
     num = initial_configfile.getint('maxNumberOfServers', 'serversNum')
-    for i in range(0, num+1):
+    for i in range(0, num + 1):
         initial_configfile.remove_section('Server' + str(i))
     initial_configfile.set('maxNumberOfServers', 'serversNum', '0')
-
     with open(r"clientData.ini", 'w') as configfile:
         initial_configfile.write(configfile)
 
 def deleteAll():
     pass
 
-if __name__=='__main__':
+if __name__ == '__main__':
     args = sys.argv
     # if len(args)
     function_name = args[1]

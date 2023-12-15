@@ -79,8 +79,6 @@ class opcuaClient(Client):
         self.agent: mqtt.Client = self.createMqttAgent()
         self.initial_subscriptions()
 
-
-
     def finish(self):
         for varid in self.subscriptionDict:
             self.subscriptionDict[varid] = False
@@ -89,8 +87,6 @@ class opcuaClient(Client):
         self.subscriptionDict.clear()
         self.agent.loop_stop()
         self.agent.__del__()
-        # TO DO!
-        # Delete the document with the subscriptions saved
 
     def make_saved_subscriptions(self):
         try:
@@ -98,7 +94,6 @@ class opcuaClient(Client):
                 subData = json.load(subDocument)
         except:
             subData = []
-
         if subData:
             for item in subData:
                 if item['servercount'] == self.count:
@@ -111,8 +106,6 @@ class opcuaClient(Client):
                 print("Agent connected OK")
             else:
                 print("Bad agent connection to MQTT Broker with result code " + str(rc))
-            # Subscribing in on_connect() means that if we lose the connection and
-            # reconnect then subscriptions will be renewed.
 
         def on_message(agent, userdata, msg):
             print(msg.topic + " " + str(msg.payload))
@@ -136,7 +129,6 @@ class opcuaClient(Client):
                 print(str(mess), str(mesg))
                 cons = json.dumps({"message":"Subscription on the variable " + mesg + " was ordered."})
                 agent.publish(str(self.consoleTopic), cons)
-
                 varID = str(mess["varID"])
                 period = mess["SubscriptionPeriod"]
                 Topic = self.subscribeTopic
@@ -151,12 +143,6 @@ class opcuaClient(Client):
                     sub_thread = threading.Thread(target=self.subToVarID, args=(varID, period, Topic, token))
                     sub_thread.start()
                     savedSubscriptionConfig.add_subscription(self.count, varID, period, token)
-
-
-                # self.startSubscription(varID=mess["varID"], period=mess["SubscriptionPeriod"],
-                #                        Topic=self.subscribeTopic)
-
-                print('Just after sub call')
 
             if msg.topic == self.unSubRequestTopic:
                 print('Unsubscribe ordered\n')
@@ -173,9 +159,6 @@ class opcuaClient(Client):
                     print(self.subscriptionDict)
                     cons = json.dumps({"message": "No subscription found to the variable " + varid + "."})
                     agent.publish(self.consoleTopic, cons)
-
-                    # cons = json.dumps({"message":"Ending subscription on the variable " + mess + " was ordered."})
-                    # agent.publish(self.consoleTopic, cons)
 
             if msg.topic == self.readRequestTopic:
                 mess = str(msg.payload.decode("utf-8"))
@@ -207,7 +190,6 @@ class opcuaClient(Client):
         self.agent.on_message = on_message
         self.agent.connect(host=self.brokerURL)
         self.agent.loop_start()
-
         return self.agent
 
     def initial_subscriptions(self):
@@ -219,12 +201,10 @@ class opcuaClient(Client):
         self.agent.subscribe(self.readRequestTopic)
         self.agent.subscribe(self.writeRequestTopic)
         self.agent.subscribe(self.connectDisconnectTopic)
-
         return 0
 
     def __str__(self):
         return f"{self.name} with url :{self.name} and tloop = {self.tloop}"
-
 
     def subToVarID(self, varID, period, Topic, token):
         agent = self.agent
@@ -257,7 +237,6 @@ class opcuaClient(Client):
                 sub = client.create_subscription(handler=handler, period=period)
                 handle = sub.subscribe_data_change(myvar)
                 logging.warning("We're here still alive like a storm you can't stop.")
-
                 while self.subscriptionDict[varID]:
                     time.sleep(0.01)
 
@@ -266,7 +245,6 @@ class opcuaClient(Client):
         time.sleep(0.3)
         self.subscriptionDict.pop(varID)
         print("Ending subscription on the variable ", varID, " successfully.")
-
 
     def callMethodFromNodeID(self, nodeId, *args):
         with ThreadLoop() as tloop:
@@ -283,7 +261,6 @@ class opcuaClient(Client):
         d = dict(varId=var, value=val)
         ret = json.dumps(d)
         return ret
-        # except:
 
     def browse_node_tree(self, syncnode):
         """

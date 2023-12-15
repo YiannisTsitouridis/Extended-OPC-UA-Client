@@ -21,7 +21,6 @@ def delete_subscription(num, varID):
     except FileNotFoundError:
         # If the file doesn't exist, nothing to delete
         return
-
     index = next((index for index, obj in enumerate(subData) if obj.get("id") == varID), None)
     if index is not None:
         subData.pop(index)
@@ -37,23 +36,9 @@ def remove_all_server_subscriptions(num):
     except FileNotFoundError:
         # If the file doesn't exist, initialize an empty list
         subData = []
-
     if subData:
         for item in subData:
             if item["servercount"] == num:
                 subData.remove(item)
-
         with open('Subscriptions.json', 'w') as subDocument:
             json.dump(subData, subDocument, indent=2)
-
-# def create_original_dict(num):
-#     try:
-#         with open('Subscriptions.json', 'r') as subDocument:
-#             subData = json.load(subDocument)
-#     except FileNotFoundError:
-#         # If the file doesn't exist, initialize an empty list
-#         subData = []
-#
-#     subdict = {}
-#     for item in subData:
-#         if item['servercount'] == num:

@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 import sys
-import os
-import asyncio
 import time
 import savedSubscriptionConfig
 import clientConfig
@@ -28,7 +26,9 @@ startClient:          Sending the number of the server you want to start a clien
 initialize:           Sending a JSON string with the list of servers and arguments                                   
 addServer:            Sending a JSON string with the list of arguments for the new server                            
 editServer:           Sending a JSON string with the number of the server you want to edit and the list of arguments 
-                      for the new server                                                                             
+                      for the new server 
+deleteServer:         Sending the number of the server you want to delete 
+clearConfig:          By sending any message the file with Servers' data will be cleared
 '''
 
 # This part of code is for importing the appropriate console
@@ -121,19 +121,13 @@ def createClientThread(i):
     else:
         print("Error with client threads numbering")
 
-
 def remakeClientThread(i):
     clientsList[i] = threading.Thread(target=startClient, args=(i,))
-
 
 def killClient(num):
     print("in killClient method")
     runningList[num] = False
 
-
-############################################################################
-####                     DEFINING MAIN FUNCTION                         ####
-############################################################################
 def main():
     logging.basicConfig(
         level=logging.INFO,  # Set the minimum level for messages to be recorded
@@ -219,7 +213,6 @@ def main():
                 clientsList[a] = None
             clientsList[a] = None
     generalAgent.loop_forever()
-
 
 if __name__ == "__main__":
     main()
