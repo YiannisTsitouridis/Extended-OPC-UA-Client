@@ -58,6 +58,10 @@ def deleteServer(num):
     clientConfig.deleteServer(num)
 
 def startClient(num):
+    '''
+    The main function of each OPC UA Client. Creating an instance of opcUaClientClass and runs it till the flag from
+    the runningList turns to False.
+    '''
     serversData = configparser.ConfigParser()
     serversData.read("clientData.ini")
     localurl = serversData.get('Server' + str(num), 'url')
