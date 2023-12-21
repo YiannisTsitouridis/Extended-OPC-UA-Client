@@ -2,7 +2,7 @@
 
 ## Overview
 
-This software has been developed within the framework of the I4byDesign Competence Center workflow (https://i4bydesign.gr/) with the goal of enabling the operation of a multi-endpoint Python-based industrial device. This device serves as a connector between OPC UA servers located on the industrial site and the center’s IoT platform. Notably, the software is designed with a platform-independent orientation. Furthermore, third-party utilization is encouraged, fostering the broader adoption of OPC UA and contributing to the unification of industrial IoT practices.
+This software has been developed within the framework of the I4byDesign Competence Center workflow (https://i4bydesign.gr/), specifically within the Frog IoT project in close cooperation with a team of researchers from Centre of Research and Technology, Hellas's Information Technology Insitute (ITI-CERTH). The goal was to enable the operation of a multi-endpoint Python-based industrial device, serving as a connector between OPC UA servers located on the industrial site and the Frog platform. Notably, the software is designed with a platform-independent orientation. Furthermore, third-party utilization is encouraged, fostering the broader adoption of OPC UA and contributing to the unification of industrial IoT practices.
 
 ## Project Details
 
@@ -46,7 +46,17 @@ The system aims to provide an innovative and adaptable solution for industrial e
 
 ## Acknowledgments
 
-...
+We extend our heartfelt gratitude to the individuals and organizations whose contributions have been instrumental in the development and success of this project. Their unwavering support, valuable insights, and dedicated efforts have significantly shaped the project into its current form. Special thanks to:
+
+- **Petros Iakovou (I4byDesign):** For skillfully project managing I4byDesign's Frog Project ([Watch the video](https://www.youtube.com/watch?v=7eMxYEYd3J8)) **[github link](https://github.com/berxt).
+- **Apostolos Papagiannis (I4byDesign):** For playing a key role in establishing the project's foundations during its early stages **[github link](https://github.com/apost9lis).
+- **Chris Sougles (CERTH):** For overseeing the hardware design of I4byDesign's OPC UA gateway, the planned platform for running this software **[github link]().
+- **Dimos Ioannidis (CERTH):** For serving as an overall supervisor for the Frog project **[github link]().
+
+We also express gratitude to the broader open-source community for creating the tools and libraries that empower our project, with special recognition to the authors of `asyncua`, a project that has proven pivotal in addressing many of our challenges.
+
+Thank you to everyone who has contributed, provided feedback, and supported us along the way. Your efforts are genuinely appreciated. And we continue to move forward...
+
 
 ## License
 
