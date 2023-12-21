@@ -1,14 +1,5 @@
 # Extended OPC UA Gateway
 
-## Table of Contents
-- [Overview](#overview)
-- [Project Details](#project-details)
-- [Third-Party Libraries](#third-party-libraries)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Acknowledgments](#acknowledgments)
-- [License](#license)
-
 ## Overview
 
 This software is written under the I4byDesign Competence Center workflow(https://i4bydesign.gr/) to accomplish the operation of a multi-endpoint python-based industrial device operating as a connector between OPC UA servers located on the industrial site and the center’s IOT Platform. However, it has Platform-independent orientation, while third party use is encouraged in prospects of OPC UA spreading and industrial IOT unification.
