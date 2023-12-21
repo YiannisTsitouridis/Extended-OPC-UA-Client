@@ -36,11 +36,42 @@ The system aims to provide an innovative and adaptable solution for industrial e
    - [Link to Python Software Foundation License] (https://docs.python.org/3/license.html)
 
 
+## Requirements
+
+   - Install Python3
+
+   - Install pip
+      $ sudo apt-install pip
+
+   - Install Asyncua package:
+      $ pip install asyncua
+
+   - Install numpy:
+      $ pip install numpy
+
+   - Install paho mqtt:
+      $ pip install paho-mqtt
+
+   - Install dict2xml:
+      $ python3 -m install dict2xml
+
+   - Install Configparser:
+      $ pip install configparser
+
 ## Installation
 
-...
+   $ cd /path/to/your/desired/directory
+   $ git clone https://github.com/YiannisTsitouridis/Extended-OPC-UA-Client.git
 
 ## Usage
+
+To run the client's application you need to start the main.py
+   $ cd Extended-OPC-UA-Client
+   $ ./main.py
+
+Then what's needed is a banch of commands through MQTT messages:
+
+## Description of MQTT messages
 
 ...
 
